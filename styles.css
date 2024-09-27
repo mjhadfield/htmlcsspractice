@@ -1,0 +1,38 @@
+/* Ensure body content doesn't overlap the fixed elements */
+body {
+    margin-top: 205px; /* Space for the fixed menu and updates */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Top menu bar alignment and properties */
+.site-menu {
+    background-color: white;
+    height: 120px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    justify-content: center; /* Align horizontally */
+    align-items: center;     /* Align vertically */
+}
+
+/* Style for the site-updates */
+.site-updates {
+    background-color: #32947f;
+    color: white;
+    height: 85px;
+    top: 120px;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align horizontally */
+    align-items: center;     /* Align vertically */
+    text-align: center;
+}

@@ -1,0 +1,71 @@
+/* 
+  CSS 'Display' Guide:
+
+  1. block: 
+     - Elements are displayed as block-level elements.
+     - They take up the full width available and start on a new line.
+     - Examples: <div>, <p>, <h1> to <h6>, <section>.
+
+  2. inline: 
+     - Elements are displayed as inline elements.
+     - They do not start on a new line and only take up as much width as necessary.
+     - Examples: <span>, <a>, <strong>, <em>.
+
+  3. inline-block: 
+     - Combines features of both block and inline.
+     - Elements are displayed inline but respect width and height properties like block elements.
+     - Useful for aligning elements side by side while maintaining control over their dimensions.
+
+  4. flex: 
+     - Makes the element a flex container, enabling a flexible layout.
+     - Child elements can be arranged in rows or columns and can adjust to fill space based on defined properties.
+     - Enables powerful alignment and distribution of space among items.
+
+  5. grid: 
+     - Turns the element into a grid container, allowing for a two-dimensional layout.
+     - Child elements can be arranged into rows and columns, with precise control over sizing and positioning.
+     - Useful for complex layouts that require both row and column management.
+
+  6. none: 
+     - The element is removed from the document flow entirely and is not visible.
+     - It does not occupy any space in the layout.
+     - Typically used to hide elements.
+
+  7. table: 
+     - Displays the element as a table element, similar to HTML <table> element behavior.
+     - Useful for layout purposes where you want to mimic table structures.
+
+  8. table-row, table-cell: 
+     - Specific display values for simulating table rows and cells.
+     - Useful when you want to create layouts that mimic table behavior without using actual <table> elements.
+
+  9. inherit: 
+     - The element takes the computed value of its parent element's display property.
+     - Useful for maintaining consistent display behavior across nested elements.
+*/
+
+/* 
+  CSS 'Position' attribute Guide:
+
+  1. static (default): 
+     - Elements are positioned according to the normal document flow.
+     - Cannot be offset (top, left, right, or bottom properties won't work).
+
+  2. relative: 
+     - Element is positioned relative to its normal position.
+     - Can be offset with top, left, right, or bottom, without affecting other elements.
+
+  3. absolute: 
+     - Element is positioned relative to its nearest positioned ancestor (not static), 
+       or relative to the initial containing block (the browser window) if no positioned ancestor exists.
+     - It is removed from the normal document flow, so it can overlap other elements.
+
+  4. fixed: 
+     - Element is positioned relative to the viewport (browser window).
+     - It stays fixed in the same spot even when the page is scrolled.
+     - Like absolute, it is removed from normal document flow.
+
+  5. sticky: 
+     - Element toggles between relative and fixed positioning depending on the scroll position.
+     - It becomes fixed when you scroll past a certain point, and returns to relative when scrolling back.
+*/
