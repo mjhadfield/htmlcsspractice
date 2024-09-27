@@ -1,3 +1,11 @@
+/* Wrap the entire site in a container, 1200px to start */
+.container {
+    max-width: 1200px; /* or 960px, 1440px depending on preference */
+    width: 100%; /* Allows the container to scale down */
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Optional padding for smaller screens */
+}
+
 /* Ensure body content doesn't overlap the fixed elements */
 body {
     margin-top: 205px; /* Space for the fixed menu and updates */
@@ -12,7 +20,6 @@ body {
     left: 0;
     width: 100%;
     z-index: 10;
-    overflow: hidden;
     position: fixed;
     display: flex;
     justify-content: center; /* Align horizontally */
@@ -35,4 +42,43 @@ body {
     justify-content: center; /* Align horizontally */
     align-items: center;     /* Align vertically */
     text-align: center;
+}
+
+/* Navigation styles */
+.site-navigation {
+    display: flex;
+    gap: 20px; /* Space between links */
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative; /* Required for absolute positioning of the dropdown content */
+}
+
+/* Dropdown link style */
+.dropdown-content {
+    display: none; /* Hide by default */
+    position: absolute; /* Position it relative to the dropdown */
+    background-color: white; /* Background for dropdown */
+    min-width: 160px; /* Minimum width */
+    z-index: 20; /* Place above other elements */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Shadow effect */
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block; /* Show on hover */
+}
+
+/* Links styling */
+.site-navigation a, .dropdown-content a {
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Padding for links */
+    color: #000; /* Link color */
+    display: block; /* Block display for the dropdown links */
+}
+
+/* Dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1; /* Change background on hover */
 }
