@@ -1,5 +1,9 @@
 /* 
-  CSS 'Display' Guide:
+This is just a reference document for when I forget what all the tags mean
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+CSS 'Display' attribute:
 
   1. block: 
      - Elements are displayed as block-level elements.
@@ -42,10 +46,10 @@
   9. inherit: 
      - The element takes the computed value of its parent element's display property.
      - Useful for maintaining consistent display behavior across nested elements.
-*/
 
-/* 
-  CSS 'Position' attribute Guide:
+-----------------------------------------------------------------------------------------------------------------------------
+
+  CSS 'Position' attribute:
 
   1. static (default): 
      - Elements are positioned according to the normal document flow.
