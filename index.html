@@ -7,9 +7,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<div class="container">
-    <div class="site-logo"></div>
+<body>    
+    <!-- Hamburger Menu Icon for Mobile (New) -->
+    <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Mobile Navigation (New) -->
+    <nav class="mobile-navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+    <!-- Desktop Navigation (Unchanged) -->
     <div class="site-menu">
         <nav class="site-navigation">
             <a href="index.html">Home</a>
@@ -26,17 +43,19 @@
                     <a href="#">Option 8</a>
                 </div>
             </div>
-            <a href="#.html">Blog</a>
-            <a href="#.html">About</a>
-            <a href="#.html">Contact</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
         </nav>
     </div>
+
     <div class="site-updates">
         <p>Coupla lines of site updates!<br>Free Shipping!</p>
     </div>
-    <br>
-    <h1>Header</h1>
-    <p>Paragraph with some stuff in it</p>
 </div>   
+
+<!-- JavaScript to Toggle Mobile Menu (New) -->
+<script src="javascript.js"></script>
+
 </body>
 </html>

@@ -1,84 +1,157 @@
-/* Wrap the entire site in a container, 1200px to start */
-.container {
-    max-width: 1200px; /* or 960px, 1440px depending on preference */
-    width: 100%; /* Allows the container to scale down */
-    margin: 0 auto; /* Center the container */
-    padding: 0 20px; /* Optional padding for smaller screens */
+/* Mobile styles */
+@media screen and (max-width: 640px) {
+    /* Hide the desktop navigation and show the hamburger icon */
+    .site-navigation,
+    .site-updates {
+      display: none;
+    }
+  
+    /* Add the hamburger icon */
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      position: fixed;
+      z-index: 200;
+      top: 20px;
+      left: 20px;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease-in-out;
+    }
+    .hamburger-menu.active {
+        transform: rotate(90deg); /* Rotate 90 degrees when active */
+    }
+  
+    /* Hamburger icon lines */
+    .hamburger-menu span {
+      display: block;
+      height: 3px;
+      width: 25px;
+      background-color: black;
+      margin: 5px 0;
+    }
+  
+    .mobile-navigation {
+      display: none;
+    }
+  
+    .mobile-navigation.active {
+        display: block;
+        position: absolute;
+        top: 25px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        z-index: 150;
+        transform: translateX(0%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 24px;
+    }
+  
+    .mobile-navigation ul {
+      list-style: none;
+      padding: 20px;
+    }
+  
+    .mobile-navigation li {
+      margin-bottom: 10px;
+    }
+  
+    .mobile-navigation a {
+      text-decoration: none;
+      color: black;
+    }
+}
+  
+/* Desktop styles */
+@media screen and (min-width: 641px) {
+    body {
+        margin-top: 205px; /* Space for the fixed menu and updates */
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        max-width: 1200px; /* or 960px, 1440px depending on preference */
+        width: 100%; /* Allows the container to scale down */
+        margin: 0 auto; /* Center the container */
+        padding: 0 20px; /* Optional padding for smaller screens */
+    }
+
+    /* Hide in desktop mode */
+    .mobile-navigation {
+        display: none;
+    }
+
+    /* Top menu bar alignment and properties */
+    .site-menu {
+        background-color: white;
+        height: 120px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        position: fixed;
+        display: flex;
+        justify-content: center; /* Align horizontally */
+        align-items: center;     /* Align vertically */
+    }
+
+    /* Style for the site-updates */
+    .site-updates {
+        background-color: #32947f;
+        color: white;
+        height: 85px;
+        top: 120px;
+        left: 0;
+        width: 100%;
+        z-index: 9;
+        overflow: hidden;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Align horizontally */
+        align-items: center;     /* Align vertically */
+        text-align: center;
+    }
+
+    /* Navigation styles */
+    .site-navigation {
+        display: flex;
+        gap: 20px; /* Space between links */
+    }
+
+    /* Dropdown container */
+    .dropdown {
+        position: relative; /* Required for absolute positioning of the dropdown content */
+    }
+
+    /* Dropdown link style */
+    .dropdown-content {
+        display: none; /* Hide by default */
+        position: absolute; /* Position it relative to the dropdown */
+        background-color: white; /* Background for dropdown */
+        min-width: 160px; /* Minimum width */
+        z-index: 20; /* Place above other elements */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Shadow effect */
+    }
+
+    /* Show dropdown on hover */
+    .dropdown:hover .dropdown-content {
+        display: block; /* Show on hover */
+    }
+
+    /* Links styling */
+    .site-navigation a,
+    .dropdown-content a {
+        text-decoration: none; /* Remove underline */
+        padding: 10px 15px; /* Padding for links */
+        color: #000; /* Link color */
+        display: block; /* Block display for the dropdown links */
+    }
+
+    /* Dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #f1f1f1; /* Change background on hover */
+    }
 }
 
-/* Ensure body content doesn't overlap the fixed elements */
-body {
-    margin-top: 205px; /* Space for the fixed menu and updates */
-    font-family: 'Poppins', sans-serif;
-}
 
-/* Top menu bar alignment and properties */
-.site-menu {
-    background-color: white;
-    height: 120px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    position: fixed;
-    display: flex;
-    justify-content: center; /* Align horizontally */
-    align-items: center;     /* Align vertically */
-}
-
-/* Style for the site-updates */
-.site-updates {
-    background-color: #32947f;
-    color: white;
-    height: 85px;
-    top: 120px;
-    left: 0;
-    width: 100%;
-    z-index: 9;
-    overflow: hidden;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Align horizontally */
-    align-items: center;     /* Align vertically */
-    text-align: center;
-}
-
-/* Navigation styles */
-.site-navigation {
-    display: flex;
-    gap: 20px; /* Space between links */
-}
-
-/* Dropdown container */
-.dropdown {
-    position: relative; /* Required for absolute positioning of the dropdown content */
-}
-
-/* Dropdown link style */
-.dropdown-content {
-    display: none; /* Hide by default */
-    position: absolute; /* Position it relative to the dropdown */
-    background-color: white; /* Background for dropdown */
-    min-width: 160px; /* Minimum width */
-    z-index: 20; /* Place above other elements */
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Shadow effect */
-}
-
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
-    display: block; /* Show on hover */
-}
-
-/* Links styling */
-.site-navigation a, .dropdown-content a {
-    text-decoration: none; /* Remove underline */
-    padding: 10px 15px; /* Padding for links */
-    color: #000; /* Link color */
-    display: block; /* Block display for the dropdown links */
-}
-
-/* Dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #f1f1f1; /* Change background on hover */
-}
