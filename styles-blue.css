@@ -2,12 +2,12 @@
 body {
     margin-top: 205px; /* Space for the fixed menu and updates */
     font-family: 'Poppins', sans-serif;
-    background-color: #FDF7E4;
+    background-color: #E4F7FD;
 }
 
 .site-updates {
-    background-color: #DED0B6;
-    color: #000000;
+    background-color: #B6D0DE;
+    color: #003B5C;
     height: 85px;
     top: 120px;
     left: 0;
@@ -48,7 +48,7 @@ body {
         display: block;
         height: 4px;
         width: 40px;
-        background-color: #BBAB8C;
+        background-color: #4D7C99;
         margin: 8px;
     }
   
@@ -59,10 +59,10 @@ body {
         padding-top: 100px;
         transition: transform 0.3s ease-in-out;
         position: fixed;
-        background-color: #FDF7E4;
+        background-color: #E4F7FD;
         width: 300px;
         height: 100%;
-        box-shadow: 1px 0 1px #424242;
+        box-shadow: 1px 0 1px #003B5C;
         display: flex;
         flex-direction: column;
     }
@@ -73,17 +73,17 @@ body {
     
     .mobile-navigation a {
         text-decoration: none;
-        color: #000000;
+        color: #003B5C;
         text-transform: uppercase;
         letter-spacing: 2px;
         padding: 15px 0 15px 20px;
     }
     
     .mobile-navigation a:hover {
-        color: #BBAB8C; 
+        color: #4D7C99; 
         font-weight: bold;
     }  
-    
+   
     .mobile-dropdown {
         position: relative; 
         padding: 15px 0;
@@ -104,12 +104,12 @@ body {
     
     .mobile-dropdown-content a {
         text-decoration: none; 
-        color: #000; 
+        color: #003B5C; 
         display: block;
     }
     
     .mobile-dropdown-content a:hover {
-        color: #BBAB8C;
+        color: #4D7C99;
         font-weight: bold;
     }
 }
@@ -128,7 +128,7 @@ body {
     }
 
     .site-banner {
-        background-color: #FDF7E4;
+        background-color: #E4F7FD;
         height: 120px;
         top: 0;
         left: 0;
@@ -157,10 +157,10 @@ body {
     .dropdown-content {
         display: none;
         position: absolute;
-        background-color: #FDF7E4;
+        background-color: #E4F7FD;
         min-width: 160px;
         z-index: 20;
-        box-shadow: 0 8px 16px #00000033;
+        box-shadow: 0 8px 16px #003B5C33;
     }
 
     .dropdown:hover .dropdown-content {
@@ -171,11 +171,11 @@ body {
     .dropdown-content a {
         text-decoration: none;
         padding: 10px 15px;
-        color: #8b7040;
+        color: #4D7C99;
         display: block;
     }
     .dropdown-content a:hover,
     .site-navigation a:hover {
-      color: #bbab8ca4;
+      color: #4D7C99A4;
     }
 }
