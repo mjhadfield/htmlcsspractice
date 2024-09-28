@@ -1,85 +1,118 @@
-/* Mobile styles */
-@media screen and (max-width: 640px) {
-    /* Hide the desktop navigation and show the hamburger icon */
-    .site-navigation,
-    .site-updates {
-      display: none;
-    }
-  
-    /* Add the hamburger icon */
-    .hamburger-menu {
-      display: block;
-      cursor: pointer;
-      position: fixed;
-      z-index: 200;
-      top: 20px;
-      left: 20px;
-      transform: rotate(0deg);
-      transition: transform 0.3s ease-in-out;
-    }
-    .hamburger-menu.active {
-        transform: rotate(90deg); /* Rotate 90 degrees when active */
-    }
-  
-    /* Hamburger icon lines */
-    .hamburger-menu span {
-      display: block;
-      height: 3px;
-      width: 25px;
-      background-color: black;
-      margin: 5px 0;
-    }
-  
-    .mobile-navigation {
-      display: none;
-    }
-  
-    .mobile-navigation.active {
-        display: block;
-        position: absolute;
-        top: 25px;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        z-index: 150;
-        transform: translateX(0%);
-        transition: transform 0.3s ease-in-out;
-        font-size: 24px;
-    }
-  
-    .mobile-navigation ul {
-      list-style: none;
-      padding: 20px;
-    }
-  
-    .mobile-navigation li {
-      margin-bottom: 10px;
-    }
-  
-    .mobile-navigation a {
-      text-decoration: none;
-      color: black;
-    }
-}
-  
-/* Desktop styles */
-@media screen and (min-width: 641px) {
+/* -----------------------------------Global styles----------------------------------- */
     body {
         margin-top: 205px; /* Space for the fixed menu and updates */
         font-family: 'Poppins', sans-serif;
     }
 
+    /* Global style for the site-updates banner */
+    .site-updates {
+        background-color: #32947f;
+        color: white;
+        height: 85px;
+        top: 120px;
+        left: 0;
+        width: 100%;
+        z-index: 9;
+        overflow: hidden;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        text-align: center;
+        font-size: 20px;
+    }
+
+/* -----------------------------------Mobile styles----------------------------------- */
+@media screen and (max-width: 640px) {
+
+    /* Hide desktop navigation */
+    .site-navigation {
+        display: none;
+    }
+  
+    /* Hamburger settings */
+    .hamburger-menu {
+        display: block;
+        cursor: pointer;
+        position: fixed;
+        z-index: 200;
+        top: 40px;
+        left: 20px;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .hamburger-menu.active {
+        transform: rotate(90deg); /* Rotate 90 degrees when active */
+    }
+  
+    /* Mobile navigation settings */
+    .hamburger-menu span {
+        display: block;
+        height: 4px;
+        width: 40px;
+        background-color: #32947f;
+        margin: 8px;
+    }
+  
+    .mobile-navigation {
+        z-index: 150;
+        left: -300px; /* Start off-screen */
+        transition: transform 0.3s ease-in-out;
+        position: fixed;
+        top: 0px;
+        background-color: white;
+        width: 300px;
+        height: 100%;
+        box-shadow: 1px 0 1px #424242; /* Optional shadow for effect */
+        font-size: 24px;
+    }
+  
+    .mobile-navigation.active {
+        transform: translateX(100%);
+    }
+  
+    .mobile-navigation ul {
+        list-style: none;
+        padding-top: 80px;
+    }
+  
+    .mobile-navigation li {
+        padding-top: 15px;
+    }
+  
+    .mobile-navigation a {
+        text-decoration: none;
+        color: black;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: color 0.1s ease-in-out;
+    }
+    .mobile-navigation a:hover {
+        color: #32947f; 
+    }
+    
+    
+  }
+  
+  
+    /*-----------------------------------Desktop styles-----------------------------------*/
+    @media screen and (min-width: 641px) {
+
+    /* Hide mobile elements */
+    .mobile-navigation {
+    display: none;
+    }
+    
     .container {
         max-width: 1200px; /* or 960px, 1440px depending on preference */
         width: 100%; /* Allows the container to scale down */
         margin: 0 auto; /* Center the container */
-        padding: 0 20px; /* Optional padding for smaller screens */
+        padding: 0 20px;
     }
 
-    /* Hide in desktop mode */
-    .mobile-navigation {
-        display: none;
-    }
+
 
     /* Top menu bar alignment and properties */
     .site-menu {
@@ -153,5 +186,3 @@
         background-color: #f1f1f1; /* Change background on hover */
     }
 }
-
-
