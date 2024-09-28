@@ -67,6 +67,8 @@
         height: 100%;
         box-shadow: 1px 0 1px #424242; /* Optional shadow for effect */
         font-size: 24px;
+        display: flex;
+        flex-direction: column;
     }
   
     .mobile-navigation.active {
@@ -91,8 +93,33 @@
     }
     .mobile-navigation a:hover {
         color: #32947f; 
+    }  
+    .mobile-dropdown {
+        position: relative; /* Required for absolute positioning of the dropdown content */
     }
     
+    .mobile-dropdown-content {
+        display: none; /* Hidden by default */
+        margin-top: 10px; /* Adds some space above the dropdown items */
+    }
+    
+    /* Show dropdown when parent is active */
+    .mobile-dropdown.active .mobile-dropdown-content {
+        display: block; /* Show on click */
+    }
+    
+    /* Links styling for mobile dropdown */
+    .mobile-dropdown-content a {
+        text-decoration: none; /* Remove underline */
+        padding: 10px 15px; /* Padding for links */
+        color: #000; /* Link color */
+        display: block; /* Block display for the dropdown links */
+    }
+    
+    /* Mobile dropdown links on hover */
+    .mobile-dropdown-content a:hover {
+        background-color: #f1f1f1; /* Change background on hover */
+    }
     
   }
   
