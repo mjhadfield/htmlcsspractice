@@ -61,7 +61,8 @@ body {
 .container {
     width: 100%;
     max-width: 1100px;
-    margin: 180px auto 0;
+    margin: 0 auto;
+    padding-top: 180px;
     background-color: var(--bg-content);
     box-sizing: border-box;
     color: var(--text-main);
@@ -302,5 +303,8 @@ p {
     .dropdown-content a:hover,
     .site-navigation a:hover {
         color: var(--text-highlight);
+    }
+    .container {
+        padding-top: 55px; /* Adjust this value as needed for desktop */
     }
 }
