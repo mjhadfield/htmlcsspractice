@@ -79,7 +79,7 @@ body {
 }
 
 .cart-contents {
-    z-index: 150;
+    z-index: 162;
     right: -300px;
     top: 0;
     padding-top: 100px;
@@ -128,6 +128,13 @@ p {
     margin-top: 1rem;
     margin-bottom: 1rem;
     line-height: 1.5;
+}
+
+hr.gradient {
+    border: none;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, var(--text-highlight), transparent);
+    margin: 15px 0;
 }
 
 /* -----------------------------------Mobile styles----------------------------------- */
