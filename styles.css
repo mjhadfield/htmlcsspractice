@@ -241,9 +241,21 @@ p {
     }
 }
 
+.mobile-logo {
+    position: fixed;
+    z-index: 20;
+    top: 20px; /* Align with hamburger and cart */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: calc(100% - 200px); /* 60px padding on each side */
+    width: 300px;
+    height: auto;
+}
+
 /*-----------------------------------Desktop styles-----------------------------------*/
 @media screen and (min-width: 641px) {
-    .mobile-navigation {
+    .mobile-navigation,
+    .mobile-logo {
         display: none;
     }
 
