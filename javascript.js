@@ -3,6 +3,13 @@ document.querySelector('.hamburger-menu').addEventListener('click', function() {
     document.querySelector('.mobile-navigation').classList.toggle('active');
   });
 
+  document.querySelector('.cart-menu').addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.querySelector('.cart-contents').classList.toggle('active');
+  });
+
+
+
 // Get the shop link and dropdown content
 const shopLink = document.querySelector('.shop-link');
 const dropdownContent = document.querySelector('.mobile-dropdown');

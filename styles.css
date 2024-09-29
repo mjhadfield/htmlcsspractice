@@ -131,6 +131,54 @@ p {
         margin: 8px;
     }
 
+    .cart-menu {
+        display: block;
+        cursor: pointer;
+        position: fixed;
+        z-index: 200;
+        top: 40px;
+        right: 20px;
+        transform: rotate(0deg);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      
+      .cart-menu:active {
+        animation: pulse 0.3s ease;
+      }
+
+    .cart-menu span {
+        display: block;
+        height: 4px;
+        width: 40px;
+        background-color: var(--text-main);
+        margin: 8px;
+    }
+
+    .cart-contents {
+        z-index: 150;
+        right: -300px;
+        top: 0;
+        padding-top: 100px;
+        transition: transform 0.3s ease-in-out;
+        position: fixed;
+        background-color: var(--bg-banner-nav);
+        width: 300px;
+        height: 100%;
+        box-shadow: -1px 0 1px var(--box-shadow);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .cart-contents.active {
+        transform: translateX(-100%);
+    }
+
     .mobile-navigation {
         z-index: 150;
         left: -300px;
