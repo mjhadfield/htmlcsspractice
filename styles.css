@@ -243,12 +243,21 @@ p {
 
 .mobile-logo {
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px; /* Match the height of your site-banner */
     z-index: 150;
-    top: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: calc(100% - 200px); /* 100px padding on each side */
-    width: 300px;
+    padding: 0 80px; /* Add padding to prevent overlap with hamburger and cart icons */
+}
+
+.mobile-logo img {
+    max-width: 100%;
+    max-height: 90px;
+    width: auto;
     height: auto;
 }
 
