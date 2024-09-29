@@ -27,6 +27,18 @@ body {
     min-height: 100vh;
 }
 
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 180px;
+    background-color: var(--bg-content);
+    box-sizing: border-box;
+    color: var(--text-main);
+    flex: 1;
+    overflow-y: auto;
+}
+
 .site-banner {
     background-color: var(--bg-banner-nav);
     height: 120px;
@@ -64,18 +76,6 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.container {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-top: 180px;
-    background-color: var(--bg-content);
-    box-sizing: border-box;
-    color: var(--text-main);
-    flex: 1;
-    overflow-y: auto;
 }
 
 .cart-contents {
@@ -353,4 +353,3 @@ hr.gradient {
         z-index: 300;
     }
 }
-
