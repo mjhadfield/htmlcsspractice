@@ -33,7 +33,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 160;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -133,7 +133,8 @@ p {
 /* -----------------------------------Mobile styles----------------------------------- */
 @media screen and (max-width: 640px) {
     .site-navigation,
-    .desktop-cart {
+    .desktop-cart,
+    .site-logo {
         display: none;
     }
 
@@ -260,7 +261,7 @@ p {
     justify-content: center;
     align-items: center;
     height: 120px; /* Match the height of your site-banner */
-    z-index: 150;
+    z-index: 161;
     padding: 0 80px; /* Add padding to prevent overlap with hamburger and cart icons */
 }
 
@@ -314,7 +315,7 @@ p {
         color: var(--text-highlight);
     }
     .container {
-        padding-top: 55px; /* Adjust this value as needed for desktop */
+        padding-top: 130px; /* Adjust this value as needed for desktop */
     }
     .desktop-cart {
         display: block;
@@ -330,6 +331,19 @@ p {
         width: 40px;
         background-color: var(--text-main);
         margin: 8px;
+    }
+    .site-logo {
+        position: absolute;
+        left: max(0px, min(800px, calc((100vw - 1100px) / 2)));
+        height: clamp(30px, calc(18vw - 90px), 100px);
+        width: auto;
+        object-fit: contain;
+    }
+    .desktop-cart {
+        position: absolute;
+        right: max(30px, min(800px, calc((100vw - 1100px) / 2)));
+        cursor: pointer;
+        z-index: 160;
     }
 }
 
