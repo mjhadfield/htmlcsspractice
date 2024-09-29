@@ -8,6 +8,11 @@ document.querySelector('.hamburger-menu').addEventListener('click', function() {
     document.querySelector('.cart-contents').classList.toggle('active');
   });
 
+  document.querySelector('.desktop-cart').addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.querySelector('.cart-contents').classList.toggle('active');
+  });
+
 
 
 // Get the shop link and dropdown content
