@@ -243,8 +243,8 @@ p {
 
 .mobile-logo {
     position: fixed;
-    z-index: 20;
-    top: 20px; /* Align with hamburger and cart */
+    z-index: 149;
+    top: 35px; /* Align with hamburger and cart */
     left: 50%;
     transform: translateX(-50%);
     max-width: calc(100% - 200px); /* 60px padding on each side */
