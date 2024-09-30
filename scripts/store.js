@@ -10,7 +10,7 @@ function getCurrentCategory() {
   function populateProductGrid() {
     const category = getCurrentCategory();
   
-    fetch('/scripts/products.json')
+    fetch('./scripts/products.json')
       .then(response => response.json())
       .then(products => {
         const productGrid = document.getElementById('product-grid');
