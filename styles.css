@@ -183,11 +183,11 @@ hr.gradient {
         0% { transform: scale(1); }
         50% { transform: scale(1.1); }
         100% { transform: scale(1); }
-      }
-      
-      .cart-menu:active {
+    }
+    
+    .cart-menu:active {
         animation: pulse 0.3s ease;
-      }
+    }
 
     .cart-menu span {
         display: block;
