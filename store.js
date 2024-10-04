@@ -23,7 +23,7 @@ function getCurrentCategory() {
             if (filteredProducts.length === 0) {
                 // If no products are found, display the message
                 const noItemsMessage = document.createElement('p');
-                noItemsMessage.textContent = "New products coming soon! Currently we're only stocking beer, no homeware.";
+                noItemsMessage.textContent = "No homeware found, only beer. You have enough glasses. Check a different category.";
                 productGrid.appendChild(noItemsMessage);
             } else {
                 // If products are found, display them
