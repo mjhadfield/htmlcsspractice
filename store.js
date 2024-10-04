@@ -64,3 +64,79 @@ function getCurrentCategory() {
   
   // Call this function when the page loads
   document.addEventListener('DOMContentLoaded', populateProductGrid);
+
+  //Cart functionality starts here
+
+  //Create a cart
+  let cart = {};
+
+  //Add to cart function
+  function addToCart(productId) {
+    const quantityInput = document.getElementById(`quantity-${productId}`);
+    const quantity = parseInt(quantityInput.value);
+
+    if (cart[productId]) {
+        cart[productId] += quantity;
+    } else {
+        cart[productId] = quantity;
+    }
+
+    updateCartDisplay();
+}
+
+//Update the cart display
+function updateCartDisplay() {
+  const cartDiv = document.getElementById('cart');
+  cartDiv.innerHTML = '';
+
+  fetch('products.json')
+      .then(response => response.json())
+      .then(products => {
+          let total = 0;
+          for (const [productId, quantity] of Object.entries(cart)) {
+              const product = products.find(p => p.id === parseInt(productId));
+              if (product) {
+                  const itemTotal = product.cost * quantity;
+                  total += itemTotal;
+
+                  const itemDiv = document.createElement('div');
+                  itemDiv.className = 'cart-item';
+                  itemDiv.innerHTML = `
+                      <div class="cart-item-image">
+                          <img src="${product.imageUrl}" alt="${product.name}">
+                          <span class="cart-item-quantity">${quantity}</span>
+                      </div>
+                      <div class="cart-item-details">
+                          <span class="cart-item-name">${product.name}</span>
+                          <span class="cart-item-price">$${itemTotal.toFixed(2)}</span>
+                      </div>
+                      <button onclick="removeFromCart(${product.id})">Remove</button>
+                  `;
+                  cartDiv.appendChild(itemDiv);
+              }
+          }
+
+          const totalDiv = document.createElement('div');
+          totalDiv.className = 'cart-total';
+          totalDiv.textContent = `Total: $${total.toFixed(2)}`;
+          cartDiv.appendChild(totalDiv);
+      })
+      .catch(error => console.error('Error updating cart:', error));
+}
+
+//Remove items from the cart
+
+function removeFromCart(productId) {
+  if (cart[productId]) {
+      delete cart[productId];
+      updateCartDisplay();
+  }
+}
+
+//Display the cart on page load
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateProductGrid();
+  updateCartDisplay();
+});
+
