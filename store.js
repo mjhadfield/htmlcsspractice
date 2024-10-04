@@ -9,22 +9,33 @@ function getCurrentCategory() {
 
   function populateProductGrid() {
     const category = getCurrentCategory();
-  
+
     fetch('products.json')
-      .then(response => response.json())
-      .then(products => {
-        const productGrid = document.getElementById('product-grid');
-        productGrid.innerHTML = ''; // Clear existing products
-  
-        products
-          .filter(product => category === 'all' || product.category.toLowerCase() === category)
-          .forEach(product => {
-            const productItem = createProductItem(product);
-            productGrid.appendChild(productItem);
-          });
-      })
-      .catch(error => console.error('Error fetching products:', error));
-  }
+        .then(response => response.json())
+        .then(products => {
+            const productGrid = document.getElementById('product-grid');
+            productGrid.innerHTML = ''; // Clear existing products
+
+            const filteredProducts = products.filter(product => 
+                category === 'all' || product.category.toLowerCase() === category
+            );
+
+            if (filteredProducts.length === 0) {
+                // If no products are found, display the message
+                const noItemsMessage = document.createElement('p');
+                noItemsMessage.textContent = "New products coming soon! Currently we're only stocking beer, no homeware.";
+                productGrid.appendChild(noItemsMessage);
+            } else {
+                // If products are found, display them
+                filteredProducts.forEach(product => {
+                    const productItem = createProductItem(product);
+                    productGrid.appendChild(productItem);
+                });
+            }
+        })
+        .catch(error => console.error('Error fetching products:', error));
+}
+
   
   function createProductItem(product) {
     const productItem = document.createElement('div');
@@ -50,8 +61,6 @@ function getCurrentCategory() {
   
     return productItem;
   }
-  
-  
   
   // Call this function when the page loads
   document.addEventListener('DOMContentLoaded', populateProductGrid);
