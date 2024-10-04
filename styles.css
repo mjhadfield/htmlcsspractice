@@ -134,8 +134,47 @@ hr.gradient {
     border: none;
     height: 1px;
     background-image: linear-gradient(to right, transparent, var(--text-highlight), transparent);
-    margin: 15px 0;
+    margin: 0px;
 }
+
+/* -----------------------------------Button styles----------------------------------- */
+
+.button1 {
+    background-color: #4e9eff; /* Button background color */
+    color: #ffffff; /* Text color */
+    padding: 10px 20px; /* Vertical and horizontal padding */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.button2 {
+    background-color: #4e9eff; /* Button background color */
+    color: #ffffff; /* Text color */
+    padding: 5px 10px; /* Vertical and horizontal padding */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 12px; /* Font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.button1:hover {
+    background-color: #3a8ccc; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.button1:active {
+    transform: translateY(0); /* Reset on click */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Reduce shadow on active */
+}
+
 
 /* -----------------------------------Mobile styles----------------------------------- */
 @media screen and (max-width: 640px) {

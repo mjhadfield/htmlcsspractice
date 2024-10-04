@@ -3,21 +3,12 @@ let cart = {};
 // Load the cart from localStorage as soon as the script is executed
 
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('afterbegin', data);
+  loadHeader(); // Call the loadHeader function
 
-      // Attach event listeners after the header is added
-      attachEventListeners();
-
-      // Call updateCartDisplay after the header and cart div are loaded
-      updateCartDisplay();
-      populateProductGrid();
-      loadCart();
-
-    })
-    .catch(error => console.error('Error loading header:', error));
+  // Populate the product grid and load the cart after the header
+  populateProductGrid();
+  loadCart();
+  updateCartDisplay();
 });
 
 function getCurrentCategory() {
@@ -64,13 +55,13 @@ function createProductItem(product) {
       <p class="product-description">${product.description}</p>
     </div>
     <div class="product-bottom">
-      <span class="price">$${product.cost.toFixed(2)}</span>
+      <span class="price">£${product.cost.toFixed(2)}</span>
       <div class="quantity">
         <label for="quantity-${product.id}">Qty:</label>
         <input type="number" id="quantity-${product.id}" value="1" min="1" max="10" class="quantity-input" onchange="handleQuantityChange(event, ${product.id})">
       </div>
       <div class="button-container">
-        <button onclick="addToCart(${product.id})">Add to Cart</button>
+        <button class="button1" onclick="addToCart(${product.id})">Add to Cart</button>
       </div>
     </div>
   `;
@@ -105,7 +96,7 @@ function addToCart(productId) {
   const quantity = parseInt(quantityInput.value);
 
   if (isNaN(quantity) || quantity < 1) {
-    alert('Please enter a valid quantity');
+    showNotification('Please enter a valid quantity');
     return;
   }
 
@@ -118,9 +109,29 @@ function addToCart(productId) {
   saveCart();
   updateCartDisplay();
 
-  alert(`Added ${quantity} item(s) to the cart`);
+  showNotification(`Added ${quantity} item(s) to the cart`);
 
   quantityInput.value = 1;
+}
+
+function showNotification(message) {
+  const notification = document.getElementById('notification');
+  notification.textContent = message;
+
+  // Show the notification and trigger the fade-in effect
+  notification.style.display = 'block'; // Make it visible first
+  setTimeout(() => {
+    notification.style.opacity = '1'; // Fade in
+  }, 10); // Small timeout to allow the display to take effect
+
+  // Hide the notification after 3 seconds
+  setTimeout(() => {
+    notification.style.opacity = '0'; // Start fading out
+    // After the fade out is complete, hide the element
+    setTimeout(() => {
+      notification.style.display = 'none'; // Hide completely
+    }, 500); // Match the duration of the fade out
+  }, 1000); // Display for 3 seconds
 }
 
 // Update the cart display based on the current cart data
@@ -128,7 +139,16 @@ function updateCartDisplay() {
   const cartDiv = document.getElementById('cart');
   if (!cartDiv) return; // Exit if cart div doesn't exist
 
-  cartDiv.innerHTML = '';
+  cartDiv.innerHTML = ''; // Clear the cart display
+
+  // Check if the cart is empty
+  if (Object.keys(cart).length === 0) {
+    const emptyMessage = document.createElement('div');
+    emptyMessage.className = 'empty-cart-message'; // You can add CSS for styling if needed
+    emptyMessage.textContent = "There's nothing in your basket.";
+    cartDiv.appendChild(emptyMessage);
+    return; // Exit the function if cart is empty
+  }
 
   fetch('products.json')
     .then(response => response.json())
@@ -149,9 +169,9 @@ function updateCartDisplay() {
             </div>
             <div class="cart-item-details">
               <span class="cart-item-name">${product.name}</span>
-              <span class="cart-item-price">$${itemTotal.toFixed(2)}</span>
+              <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
             </div>
-            <button onclick="removeFromCart(${product.id})">Remove</button>
+            <button class="button2" onclick="removeFromCart(${product.id})">Remove</button>
           `;
           cartDiv.appendChild(itemDiv);
         }
@@ -159,16 +179,22 @@ function updateCartDisplay() {
 
       const totalDiv = document.createElement('div');
       totalDiv.className = 'cart-total';
-      totalDiv.textContent = `Total: $${total.toFixed(2)}`;
+      totalDiv.textContent = `Total: £${total.toFixed(2)}`;
       cartDiv.appendChild(totalDiv);
     })
     .catch(error => console.error('Error updating cart:', error));
 }
 
-// Remove an item from the cart
+
 function removeFromCart(productId) {
   if (cart[productId]) {
-    delete cart[productId];
+    // Decrease the quantity by 1
+    cart[productId]--;
+
+    // If the quantity reaches 0, remove the product from the cart
+    if (cart[productId] <= 0) {
+      delete cart[productId];
+    }
     saveCart();
     updateCartDisplay();
   }

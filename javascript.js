@@ -1,13 +1,19 @@
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('header.html')
-      .then(response => response.text())
-      .then(data => {
-          document.body.insertAdjacentHTML('afterbegin', data);
+function loadHeader() {
+    // Check if the header is already loaded
+    if (!document.querySelector('#header-content')) {
+        return fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML('afterbegin', data);
+                attachEventListeners(); // Attach event listeners after loading
+                updateCartDisplay(); // Ensure the cart display updates after loading
+            })
+            .catch(error => console.error('Error loading header:', error));
+    }
+}
 
-          // Attach event listeners after the header is added
-          attachEventListeners();
-      })
-      .catch(error => console.error('Error loading header:', error));
+document.addEventListener('DOMContentLoaded', function() {
+    loadHeader(); // Call the loadHeader function
 });
 
 function attachEventListeners() {
