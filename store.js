@@ -42,7 +42,6 @@ function populateProductGrid() {
     .catch(error => console.error('Error fetching products:', error));
 }
 
-//Create the product item
 function createProductItem(product) {
   const productItem = document.createElement('div');
   productItem.className = 'product-item';
@@ -50,22 +49,35 @@ function createProductItem(product) {
   productItem.innerHTML = `
     <img src="${product.imageUrl}" alt="${product.name}" class="product-image">
     <div class="product-content">
-      <h3 class="product-title">${product.name}</h3>
-      <p class="product-description">${product.description}</p>
+      <h3 class="product-top">${product.name} <br> £${product.cost.toFixed(2)}</h3>
     </div>
     <div class="product-bottom">
-      <span class="price">£${product.cost.toFixed(2)}</span>
-      <div class="quantity">
-        <label for="quantity-${product.id}">Qty:</label>
-        <input type="number" id="quantity-${product.id}" value="1" min="1" max="10" class="quantity-input" onchange="handleQuantityChange(event, ${product.id})">
+      <div class="quantity-control">
+        <button class="quantity-btn minus-btn" onclick="decreaseQuantity(${product.id})">-</button>
+        <input type="number" id="quantity-${product.id}" value="1" min="1" max="10" class="quantity-input" readonly>
+        <button class="quantity-btn plus-btn" onclick="increaseQuantity(${product.id})">+</button>
       </div>
-      <div class="button-container">
-        <button class="button1" onclick="addToCart(${product.id})">Add to Cart</button>
-      </div>
+      <button class="button-product" onclick="addToCart(${product.id})">Add to Cart</button>
     </div>
   `;
 
   return productItem;
+}
+
+function increaseQuantity(productId) {
+  const input = document.getElementById(`quantity-${productId}`);
+  const currentValue = parseInt(input.value);
+  if (currentValue < parseInt(input.max)) {
+    input.value = currentValue + 1;
+  }
+}
+
+function decreaseQuantity(productId) {
+  const input = document.getElementById(`quantity-${productId}`);
+  const currentValue = parseInt(input.value);
+  if (currentValue > parseInt(input.min)) {
+    input.value = currentValue - 1;
+  }
 }
 
 // Load the cart from localStorage

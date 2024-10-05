@@ -12,6 +12,9 @@
     --box-shadow-red: #ff000033;
     --box-shadow-blue: #2980b933;
     --text-error: #ff0000;
+    --button-main: #4e9eff;
+    --button-hover: #FFAF4E;
+    --product-header: #eeeff06c; /*Transparent white */
 }
 
 /* Green styles
@@ -203,19 +206,6 @@ hr.gradient {
     box-shadow: 0 2px 5px var(--box-shadow); /* Subtle shadow */
 }
 
-.button2 {
-    background-color: var(--text-highlight); /* Button background color */
-    color: var(--text-main); /* Text color */
-    padding: 5px 10px; /* Vertical and horizontal padding */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 12px; /* Font size */
-    font-weight: bold; /* Bold text */
-    cursor: pointer; /* Change cursor on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-    box-shadow: 0 2px 5px var(--box-shadow); /* Subtle shadow */
-}
-
 .button1:hover {
     background-color: var(--text-highlight); /* Darker shade on hover */
     transform: translateY(-2px); /* Slight lift effect */
@@ -223,6 +213,27 @@ hr.gradient {
 
 .button1:active {
     transform: translateY(0); /* Reset on click */
+    box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
+}
+
+.button-product {
+    background-color: var(--button-main); 
+    color: var(--text-main);
+    padding: 12px 12px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 12px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    box-shadow: 0 2px 5px var(--box-shadow-blue);
+}
+
+.button-product:hover {
+    background-color: var(--button-hover); /* Darker shade on hover */
+}
+
+.button-product:active {
     box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
 }
 
