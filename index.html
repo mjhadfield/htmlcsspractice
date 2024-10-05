@@ -18,9 +18,17 @@
     <!----------Main body container----------> 
     <div class="container"><br>
         <h1>Introduction</h1>
-        <p>The index just a change log for now, I'll circle back and build one later once the main UI, navigation, and store functions are built.</p>
-        <p>Optimised for mobile viewing but should scale well on all resolutions.</p>
+        <p>The index just a change/bug log for now, Once the main UI, navigation, and store functions are built and bugfixed I'll do an index. Designed with mobile viewing in mind but it should scale well up to 4k desktop resolutions.</p>
+        <h1>Known bugs</h1>
+        <ul class="bug-list">
+        <li>The basket icon alignment is really not ideal in desktop view, but it's an absolute nightmare to fix. Might have to rework the desktop header from scratch.</li>
+        <li>The product alignment is off by about 5px in desktop view</li>
+        <li>The contact form doesn't send the information off anywhere, might need a third party solution for a static site</li>
+        <li>Adding enough items to the basket to cause overflow correctly introduces a scroll bar but removes the total</li>
+        <li>Also with basket overflow, it removes the top gradient bar. Fuck knows why. </li>
+        </ul>
         <h1>Change Log</h1>
+        <p>05/04/2024 - A bunch of minor updates and improvements, created a list style.</p>
         <p>04/10/2024 - Minor updates. </p>
         <p>04/10/2024 - Gave up trying to sort alignment issues. Code review tomorrow!</p>
         <p>04/10/2024 - Added some CSS styling to the baskets and buttons (not complete!)</p>

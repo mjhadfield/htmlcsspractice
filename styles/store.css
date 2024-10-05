@@ -15,8 +15,7 @@
   grid-template-columns: repeat(3, 1fr); /* Default 3-column layout */
   gap: 50px;
   max-width: 1100px;
-  margin: 10px auto;
-  padding-left: 0px;
+  margin: 10px 40px;
   padding-right: 10px;
   padding-top: 40px;
 }
@@ -110,7 +109,7 @@
   .product-grid {
     grid-template-columns: 1fr; /* Single column layout */
     justify-items: center; /* Center items in the grid */
-    margin-left: 0px;
+    margin-left: 10px;
     margin-right: 0px;
   }
 }
@@ -216,7 +215,7 @@
   opacity: 0;
   z-index: 1000;
   display: none; /* Start hidden */
-  top: 50%; /* Move to the vertical center of the viewport */
+  top:7%; /* Move to the vertical center of the viewport */
   left: 50%; /* Move to the horizontal center of the viewport */
   transform: translate(-50%, -50%); /* Center it using transform */
 }

@@ -108,7 +108,7 @@ function addToCart(productId) {
   saveCart();
   updateCartDisplay();
 
-  showNotification(`${quantity} item(s) added to cart`);
+  showNotification(`${quantity} added to cart`);
 
   quantityInput.value = 1;
 }

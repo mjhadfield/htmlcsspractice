@@ -70,7 +70,7 @@ body {
     background-color: var(--bg-accent);
     color: var(--text-updates);
     height: 60px;
-    top: 120px;
+    top: 119px;
     left: 0;
     width: 100%;
     z-index: 9;
@@ -206,6 +206,32 @@ hr.gradient {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Reduce shadow on active */
 }
 
+/* -----------------------------------List Styles----------------------------------- */
+
+ul.bug-list {
+    list-style-type: none; /* Remove default bullet points */
+    padding-top: 0px;
+    padding-bottom: 15px;
+    font-size: 1rem; /* Set a consistent font size */
+    color: var(--text-main); /* Use the main text color */
+    margin-right: 20px;
+}
+
+ul.bug-list li {
+    padding: 7px 0px; /* Add padding between list items */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+ul.bug-list li:hover::before {
+    color: red; /* Change bullet point color to red on hover */
+}
+
+ul.bug-list li::before {
+    content: '•'; /* Custom bullet point */
+    color: var(--text-highlight); /* Bullet color */
+    margin-right: 10px; /* Space between bullet and text */
+    font-size: 1.2rem; /* Slightly larger bullet point */
+}
 
 /* -----------------------------------Mobile styles----------------------------------- */
 
