@@ -179,10 +179,14 @@ function updateCartDisplay() {
               <span class="cart-item-quantity">${quantity}</span>
             </div>
             <div class="cart-item-details">
-              <span class="cart-item-name">${product.name}</span>
-              <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
+              <div class="cart-item-name">${product.name}</div>
+              <div class="cart-item-price-remove">
+                <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
+              </div>
+              <div class="cart-item-remove">
+                <button class="button-cart" onclick="removeFromCart(${product.id})">Remove</button>
+              </div>
             </div>
-            <button class="button1" onclick="removeFromCart(${product.id})">Remove</button>
           `;
           cartDiv.appendChild(itemDiv);
         }

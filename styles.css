@@ -240,6 +240,27 @@ hr.gradient {
     box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
 }
 
+.button-cart {
+    font-size: 12px;
+    padding: 3px 8px;
+    background-color: var(--text-highlight);
+    color: var(--text-main);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button-cart:hover {
+    background-color: var(--button-hover); /* Darker shade on hover */
+}
+
+.button-cart:active {
+    background-color: var(--button-main); 
+    box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
+}
+
+
+
 /* -----------------------------------List Styles----------------------------------- */
 
 ul.bug-list {
