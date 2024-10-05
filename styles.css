@@ -153,6 +153,18 @@ p {
     margin-left: 1rem;
 }
 
+p a {
+    color: var(--text-highlight);
+    font-weight: bold;
+    text-decoration: none;
+}
+p a:hover {
+    color: var(--input-focus);
+    text-decoration: none;
+}
+
+
+
 .pcentre {
     font-size: 1rem;
     margin-top: 1rem;
@@ -460,6 +472,7 @@ ul.bug-list li::before {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 fieldset {

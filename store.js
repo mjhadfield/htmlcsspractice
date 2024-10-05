@@ -42,7 +42,7 @@ function populateProductGrid() {
     .catch(error => console.error('Error fetching products:', error));
 }
 
-//Create the product item previews
+//Create the product item
 function createProductItem(product) {
   const productItem = document.createElement('div');
   productItem.className = 'product-item';
