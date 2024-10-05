@@ -68,3 +68,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.querySelectorAll('.quantity-btn').forEach(button => {
+    button.addEventListener('click', () => {
+    button.classList.add('hover-effect'); 
+      // Remove the hover-effect class after 1 second
+    setTimeout(() => {
+        button.classList.remove('hover-effect');
+      }, 1000); // 1000 milliseconds = 1 second
+    });
+});
