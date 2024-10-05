@@ -14,17 +14,23 @@
     --text-error: #ff0000;
 }
 
-/* Form colour variables I really need to change these */
+/* Green styles
 
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --background-color: #363b4b;
-    --text-color: #e0e0e0;
-    --input-background: #131111;
-    --input-border: #e0e0e0;
-    --input-focus: #2980b9;
+    --bg-body: #f5f5f0;
+    --bg-banner-nav: #e8e8e0;
+    --bg-accent: #7a8c7a;
+    --bg-content: #f0f0e6;
+    --text-main: #333333;
+    --text-updates: #4a4a4a;
+    --text-highlight: #3a5f3a;
+    --box-shadow: #c0c0b0;
+    --box-shadow-red: #ff6b6b33;
+    --box-shadow-blue: #6b9ac433;
+    --text-error: #d32f2f;
 }
+
+*/
 
 /* -----------------------------------Global Styles styles----------------------------------- */
 
@@ -48,7 +54,7 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding-top: 180px;
-    background-color: var();
+    background-color: var(--bg-content);
     box-sizing: border-box;
     color: var(--text-main);
     flex: 1;
@@ -161,7 +167,7 @@ p a {
     text-decoration: none;
 }
 p a:hover {
-    color: var(--input-focus);
+    color: var(--text-highlight);
     text-decoration: none;
 }
 
@@ -185,8 +191,8 @@ hr.gradient {
 /* -----------------------------------Button styles----------------------------------- */
 
 .button1 {
-    background-color: var(--primary-color);
-    color: var(--text-color);
+    background-color: var(--text-highlight);
+    color: var(--text-main);
     padding: 10px 20px; 
     border: none; 
     border-radius: 5px; /* Rounded corners */
@@ -198,7 +204,7 @@ hr.gradient {
 }
 
 .button2 {
-    background-color: var(--primary-color); /* Button background color */
+    background-color: var(--text-highlight); /* Button background color */
     color: var(--text-main); /* Text color */
     padding: 5px 10px; /* Vertical and horizontal padding */
     border: none; /* Remove default border */
@@ -211,7 +217,7 @@ hr.gradient {
 }
 
 .button1:hover {
-    background-color: var(--input-focus); /* Darker shade on hover */
+    background-color: var(--text-highlight); /* Darker shade on hover */
     transform: translateY(-2px); /* Slight lift effect */
 }
 
@@ -341,9 +347,7 @@ ul.bug-list li::before {
     }
 
     .mobile-dropdown {
-        position: relative;
         padding: 15px 0;
-        width: 100%;
     }
 
     .mobile-dropdown-content {
@@ -470,7 +474,7 @@ ul.bug-list li::before {
     max-width: 400px;
     padding: 2rem;
     padding-right: 50px;
-    background-color: var(--background-color);
+    background-color: var(--bg-accent);
     border-radius: 8px;
     box-shadow: 0 4px 6px var(--box-shadow);
     margin: 0 auto;
@@ -486,14 +490,14 @@ fieldset {
 legend {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--secondary-color);
+    color: var(--bg-accent);
     margin-bottom: 1.5rem;
 }
 
 label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--text-color);
+    color: var(--text-main);
     font-weight: 500;
 }
 
@@ -501,16 +505,16 @@ input, textarea {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1rem;
-    border: 1px solid var(--input-border);
+    border: 1px solid var(--text-main);
     border-radius: 4px;
-    background-color: var(--input-background);
+    background-color: var(--bg-body);
     transition: border-color 0.3s ease;
-    color: var(--input-focus);
+    color: var(--text-highlight);
 }
 
 input:focus, textarea:focus {
     outline: none;
-    border-color: var(--input-focus);
+    border-color: var(--text-highlight);
     box-shadow: 0 0 0 2px var(--box-shadow-blue);
 }
 
@@ -521,8 +525,8 @@ textarea {
 }
 
 .form-button {
-    background-color: var(--primary-color);
-    color: var(--text-color);
+    background-color: var(--text-highlight);
+    color: var(--text-main);
     border: none;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -533,7 +537,7 @@ textarea {
 }
 
 .form-button:hover {
-    background-color: var(--input-focus);
+    background-color: var(--text-highlight);
 }
 
 
@@ -547,7 +551,7 @@ textarea:invalid:not(:focus):not(:placeholder-shown).touched {
 
 input:invalid:focus,
 textarea:invalid:focus {
-    border-color: var(--input-focus);
+    border-color: var(--text-highlight);
     box-shadow: 0 0 0 2px var(--box-shadow-blue);
 }
 
