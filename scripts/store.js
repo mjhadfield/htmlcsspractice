@@ -18,7 +18,7 @@ function getCurrentCategory() {
 function populateProductGrid() {
   const category = getCurrentCategory();
 
-  fetch('products.json')
+  fetch('scripts/products.json')
     .then(response => response.json())
     .then(products => {
       const productGrid = document.getElementById('product-grid');
@@ -47,14 +47,14 @@ function createProductItem(product) {
   productItem.className = 'product-item';
 
   productItem.innerHTML = `
-    <img src="${product.imageUrl}" alt="${product.name}" class="product-image">
-    <div class="product-content">
+    <img src="${product.imageUrl}" alt="${product.name}" class="product-card-image">
+    <div class="product-top-container">
       <h3 class="product-top">${product.name} <br> £${product.cost.toFixed(2)}</h3>
     </div>
-    <div class="product-bottom">
+    <div class="quantity-control-container">
       <div class="quantity-control">
         <button class="quantity-btn minus-btn" onclick="decreaseQuantity(${product.id})">-</button>
-        <input type="number" id="quantity-${product.id}" value="1" min="1" max="10" class="quantity-input" readonly>
+        <input type="number" id="quantity-${product.id}" value="1" min="1" max="10" class="quantity-input">
         <button class="quantity-btn plus-btn" onclick="increaseQuantity(${product.id})">+</button>
       </div>
       <button class="button-product" onclick="addToCart(${product.id})">Add to Cart</button>
@@ -161,7 +161,7 @@ function updateCartDisplay() {
     return; // Exit the function if cart is empty
   }
 
-  fetch('products.json')
+  fetch('scripts/products.json')
     .then(response => response.json())
     .then(products => {
       let total = 0;
@@ -178,13 +178,13 @@ function updateCartDisplay() {
             <img src="${product.imageUrl}" alt="${product.name}">
             <span class="cart-item-quantity">${quantity}</span>
           </div>
-          <div class="cart-item-details">
+          <div class="cart-item-container">
             <div class="cart-item-name">${product.name}</div>
-            <div class="cart-item-price-remove">
+            <div class="cart-item-price-container">
               <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
             </div>
             <div class="cart-item-remove">
-              <button class="button-cart" onclick="removeFromCart(${product.id})">Remove</button>
+              <button class="button-remove" onclick="removeFromCart(${product.id})">Remove</button>
             </div>
           </div>
         `;

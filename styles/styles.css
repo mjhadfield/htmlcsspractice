@@ -8,34 +8,16 @@
     --text-main: #e0e0e0;
     --text-updates: #f0e9e9;
     --text-highlight: #4e9eff;
+    --text-muted: #ddd;
+    --text-dark: #000000;
+    --text-error: #ff0000;
     --box-shadow: #424242;
     --box-shadow-red: #ff000033;
     --box-shadow-blue: #2980b933;
-    --text-error: #ff0000;
     --button-main: #4e9eff;
     --button-hover: #FFAF4E;
     --product-header: #eeeff06c; /*Transparent white */
-    --text-muted: #ddd; /* Add this for light borders */
-    --text-dark: #000000;
 }
-
-/* Green styles
-
-:root {
-    --bg-body: #f5f5f0;
-    --bg-banner-nav: #e8e8e0;
-    --bg-accent: #7a8c7a;
-    --bg-content: #f0f0e6;
-    --text-main: #333333;
-    --text-updates: #4a4a4a;
-    --text-highlight: #3a5f3a;
-    --box-shadow: #c0c0b0;
-    --box-shadow-red: #ff6b6b33;
-    --box-shadow-blue: #6b9ac433;
-    --text-error: #d32f2f;
-}
-
-*/
 
 /* -----------------------------------Global Styles styles----------------------------------- */
 
@@ -239,26 +221,6 @@ hr.gradient {
     background-color: var(--button-main); 
     box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
 }
-
-.button-cart {
-    font-size: 12px;
-    padding: 3px 8px;
-    background-color: var(--text-highlight);
-    color: var(--text-main);
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.button-cart:hover {
-    background-color: var(--button-hover); /* Darker shade on hover */
-}
-
-.button-cart:active {
-    background-color: var(--button-main); 
-    box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
-}
-
 
 
 /* -----------------------------------List Styles----------------------------------- */

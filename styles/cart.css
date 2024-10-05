@@ -1,0 +1,161 @@
+/*----------------------------Stylesheet for the basket sidebar-----------------------------*/
+
+/* Note 05/10/2024 I really wish I had caled this a basket instead of a cart in all my variables but it's way too late to change it now */
+
+/* Overall cart container */
+#cart {
+    max-width: 400px;
+    margin-top: 0px;
+    margin-bottom: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Individual cart items */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+/* Completely forgotten what this bit does, think it was to try and fix alignment issues */
+.cart-item::before,
+.cart-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--text-highlight), transparent);
+}
+.cart-item::before {
+    top: 0;
+}
+.cart-item::after {
+    bottom: 0;
+}
+.cart-item:last-child::after {
+    display: none;
+}
+
+/* Cart image fixed to size */
+.cart-item-image {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    margin-right: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--text-highlight);
+}
+.cart-item-image img {
+    width: 100%;           
+    height: 100%;          
+    object-fit: cover;
+}
+
+/* Item name */
+.cart-item-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100px;
+    align-items: center; 
+    text-align: center;
+}
+
+.cart-item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Item Price */
+.cart-item-price-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    font-size: 16px;
+    color: var(--text-highlight);
+    font-weight: 500;
+}
+
+/* Container for the remove button */
+.cart-item-remove {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* The remove button */
+.button-remove {
+    font-size: 12px;
+    padding: 3px 8px;
+    background-color: var(--text-highlight);
+    color: var(--text-main);
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button-remove:hover {
+    background-color: var(--button-hover); 
+}
+
+.button-remove:active {
+    background-color: var(--button-main); 
+    box-shadow: 0 1px 3px var(--box-shadow);
+}
+
+/* Small icon for item quantity */
+.cart-item-quantity {
+    background-color: var(--text-highlight);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Cart total attributes - NB 05/10/24 this should move to the top of the cart */
+.cart-total {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-main);
+}
+
+.cart-total::before {
+    color: var(--text-highlight);
+}
+
+.empty-cart-message {
+    font-size: 16px;
+    color: var(--text-main); 
+    text-align: center; 
+    margin-top: 20px; 
+    font-weight: bold;
+}
