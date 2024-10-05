@@ -1,3 +1,45 @@
+/*----------------------Generic global style components ----------------------*/
+
+/* Hover effects for desktop, hiding for desktop*/
+
+.quantity-btn:hover {
+  background-color: var(--button-hover); 
+}
+.quantity-btn.hover-effect {
+  background-color: var(--button-hover);
+}
+
+.quantity-btn:active {
+  background-color: var(--button-main); 
+  box-shadow: 0 1px 3px var(--box-shadow); 
+}
+
+/* Disabled hovers for mobile */
+@media (hover: none) {
+  .quantity-btn:hover,
+  .button-product:hover {
+    background-color: var(--button-main);
+  }
+}
+
+/* Popup notification when items are added to the cart */
+.notification {
+  position: fixed; 
+  background-color: var(--button-main); 
+  color: var(--text-main);
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: opacity 0.5s ease; 
+  opacity: 0;
+  z-index: 1000;
+  display: none; 
+  top:7%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+}
+
+/*----------------------Displaying the product grid on different environments ----------------------*/
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Default 3-column layout */
@@ -8,6 +50,29 @@
   padding-top: 40px;
 }
 
+/* Media query to switch to 2 columns at narrower viewports */
+@media (max-width: 1113px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    justify-items: center; /* Center items in the grid */
+    margin-right: 75px;
+    margin-left: 75px;
+  }
+}
+
+/* Media query for mobile viewports below 576px */
+@media (max-width: 800px) {
+  .product-grid {
+    grid-template-columns: 1fr; /* Single column layout */
+    justify-items: center; /* Center items in the grid */
+    margin-left: 10px;
+    margin-right: 0px;
+  }
+}
+
+/*-------------------------------Creating the store product card--------------------------------*/
+
+/* This is the container */
 .product-item {
   width: 300px; /* Fixed size */
   height: 400px; /* Fixed size */
@@ -21,9 +86,22 @@
   position: relative;
 }
 
+/* Top and bottom sections for title/price/quantity */
 .product-top {
   margin: 0px 0;
   font-size: 1.2em;
+}
+
+.product-bottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 100%;
+  height: 15%;
+  background-color: var(--product-header); 
+  padding: 10px;
 }
 
 .product-content {
@@ -45,18 +123,6 @@
   z-index: 1;
 }
 
-.product-bottom {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  width: 100%;
-  height: 15%;
-  background-color: var(--product-header); 
-  padding: 10px;
-}
-
 .quantity-control {
   display: flex;
   align-items: center;
@@ -64,6 +130,7 @@
   overflow: hidden;
 }
 
+/* Handling the quantity buttons (this was a HEADACHE) */
 .quantity-btn {
   width: 40px;
   height: 40px;
@@ -78,21 +145,6 @@
   align-items: center;
   transition: background-color 0.3s, box-shadow 0.3s; 
 }
-
-/* Hover for desktop and hover-effect for mobile */
-
-.quantity-btn:hover {
-  background-color: var(--button-hover); 
-}
-.quantity-btn.hover-effect {
-  background-color: var(--button-hover);
-}
-
-.quantity-btn:active {
-  background-color: var(--button-main); 
-  box-shadow: 0 1px 3px var(--box-shadow); 
-}
-
 
 .minus-btn {
   border-radius: 20px 0 0 20px;
@@ -124,35 +176,8 @@
   margin-left: 30px;
 }
 
-/* Media query to switch to 2 columns at narrower viewports */
-@media (max-width: 1113px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    justify-items: center; /* Center items in the grid */
-    margin-right: 75px;
-    margin-left: 75px;
-  }
-}
-
-/* Media query for mobile viewports below 576px */
-@media (max-width: 800px) {
-  .product-grid {
-    grid-template-columns: 1fr; /* Single column layout */
-    justify-items: center; /* Center items in the grid */
-    margin-left: 10px;
-    margin-right: 0px;
-  }
-}
-
-/* Disable product hover effects on mobile devices */
-@media (hover: none) {
-  .quantity-btn:hover,
-  .button-product:hover {
-    background-color: var(--button-main); /* Revert to original color */
-  }
-}
-
-/* Cart styles */
+/*----------------------------Properties for the sidebar cart-----------------------------*/
+/* Overall cart container */
 #cart {
   max-width: 400px;
   margin-top: 0px;
@@ -161,6 +186,7 @@
   margin-right: 10px;
 }
 
+/* Individual cart items */
 .cart-item {
   display: flex;
   align-items: center;
@@ -200,9 +226,9 @@
 }
 
 .cart-item-image img {
-  width: 100%;           /* Set to full width of the container */
-  height: 100%;          /* Set to full height of the container */
-  object-fit: cover;     /* Fill the container without distortion */
+  width: 100%;           
+  height: 100%;          
+  object-fit: cover;
 }
 
 .cart-item-details {
@@ -211,6 +237,8 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100px;
+  align-items: center; 
+  text-align: center;/
 }
 
 .cart-item-name {
@@ -268,26 +296,10 @@
   color: var(--text-highlight);
 }
 
-
-.notification {
-  position: fixed; /* Use fixed to center it in the viewport */
-  background-color: var(--button-main); /* Customize this color */
-  color: var(--text-main);
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: opacity 0.5s ease; /* Smooth fade transition */
-  opacity: 0;
-  z-index: 1000;
-  display: none; /* Start hidden */
-  top:7%; /* Move to the vertical center of the viewport */
-  left: 50%; /* Move to the horizontal center of the viewport */
-  transform: translate(-50%, -50%); /* Center it using transform */
-}
-
 .empty-cart-message {
   font-size: 16px;
-  color: var(--text-main); /* A subtle color for the message */
-  text-align: center; /* Center the message */
-  margin-top: 20px; /* Add some spacing */
+  color: var(--text-main); 
+  text-align: center; 
+  margin-top: 20px; 
   font-weight: bold;
 }
