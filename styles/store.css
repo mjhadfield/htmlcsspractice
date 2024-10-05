@@ -158,8 +158,10 @@
 /* Cart styles */
 #cart {
   max-width: 400px;
-  margin: 40px auto;
-  padding: 0 20px 20px; /* Remove top padding */
+  margin-top: 0px;
+  margin-bottom: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .cart-item {
