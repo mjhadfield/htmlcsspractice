@@ -174,20 +174,20 @@ function updateCartDisplay() {
           const itemDiv = document.createElement('div');
           itemDiv.className = 'cart-item';
           itemDiv.innerHTML = `
-            <div class="cart-item-image">
-              <img src="${product.imageUrl}" alt="${product.name}">
-              <span class="cart-item-quantity">${quantity}</span>
+          <div class="cart-item-image">
+            <img src="${product.imageUrl}" alt="${product.name}">
+            <span class="cart-item-quantity">${quantity}</span>
+          </div>
+          <div class="cart-item-details">
+            <div class="cart-item-name">${product.name}</div>
+            <div class="cart-item-price-remove">
+              <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
             </div>
-            <div class="cart-item-details">
-              <div class="cart-item-name">${product.name}</div>
-              <div class="cart-item-price-remove">
-                <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
-              </div>
-              <div class="cart-item-remove">
-                <button class="button-cart" onclick="removeFromCart(${product.id})">Remove</button>
-              </div>
+            <div class="cart-item-remove">
+              <button class="button-cart" onclick="removeFromCart(${product.id})">Remove</button>
             </div>
-          `;
+          </div>
+        `;
           cartDiv.appendChild(itemDiv);
         }
       }
