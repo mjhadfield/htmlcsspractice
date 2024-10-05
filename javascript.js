@@ -17,29 +17,32 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function attachEventListeners() {
-  document.querySelector('.hamburger-menu').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.querySelector('.mobile-navigation').classList.toggle('active');
-  });
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mobileNavigation = document.querySelector('.mobile-navigation');
+    const cartMenu = document.querySelector('.cart-menu');
+    const desktopCart = document.querySelector('.desktop-cart');
+    const cartContents = document.querySelector('.cart-contents');
+    const shopLink = document.querySelector('.shop-link');
+    const dropdownContent = document.querySelector('.mobile-dropdown');
 
-  document.querySelector('.cart-menu').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.querySelector('.cart-contents').classList.toggle('active');
-  });
+    hamburgerMenu.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileNavigation.classList.toggle('active');
+    });
 
-  document.querySelector('.desktop-cart').addEventListener('click', function() {
-      this.classList.toggle('active');
-      document.querySelector('.cart-contents').classList.toggle('active');
-  });
+    cartMenu.addEventListener('click', function() {
+        this.classList.toggle('active');
+        cartContents.classList.toggle('active');
+    });
 
-  // Get the shop link and dropdown content
-  const shopLink = document.querySelector('.shop-link');
-  const dropdownContent = document.querySelector('.mobile-dropdown');
+    desktopCart.addEventListener('click', function() {
+        this.classList.toggle('active');
+        cartContents.classList.toggle('active');
+    });
 
-  // Add click event to the shop link
-  shopLink.addEventListener('click', function(event) {
-      event.preventDefault(); // Prevent the default action
-      // Toggle active class on mobile dropdown
-      dropdownContent.classList.toggle('active');
-  });
+    // Add click event to the shop link
+    shopLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default action
+        dropdownContent.classList.toggle('active');
+    });
 }

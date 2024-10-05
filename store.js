@@ -1,16 +1,14 @@
+//Create the cart and load it's contents from local storage
+
 let cart = {};
-
-// Load the cart from localStorage as soon as the script is executed
-
 document.addEventListener('DOMContentLoaded', function() {
-  loadHeader(); // Call the loadHeader function
-
   // Populate the product grid and load the cart after the header
   populateProductGrid();
   loadCart();
   updateCartDisplay();
 });
 
+//Display products based on page title
 function getCurrentCategory() {
   const path = window.location.pathname;
   const page = path.split("/").pop();
@@ -44,6 +42,7 @@ function populateProductGrid() {
     .catch(error => console.error('Error fetching products:', error));
 }
 
+//Create the product item previews
 function createProductItem(product) {
   const productItem = document.createElement('div');
   productItem.className = 'product-item';
@@ -145,7 +144,7 @@ function updateCartDisplay() {
   if (Object.keys(cart).length === 0) {
     const emptyMessage = document.createElement('div');
     emptyMessage.className = 'empty-cart-message'; // You can add CSS for styling if needed
-    emptyMessage.textContent = "There's nothing in your basket.";
+    emptyMessage.textContent = "There's no beer in here yet 😟";
     cartDiv.appendChild(emptyMessage);
     return; // Exit the function if cart is empty
   }
