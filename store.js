@@ -182,7 +182,7 @@ function updateCartDisplay() {
               <span class="cart-item-name">${product.name}</span>
               <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
             </div>
-            <button class="button2" onclick="removeFromCart(${product.id})">Remove</button>
+            <button class="button1" onclick="removeFromCart(${product.id})">Remove</button>
           `;
           cartDiv.appendChild(itemDiv);
         }
