@@ -87,15 +87,32 @@ body {
     position: fixed;
     background-color: var(--bg-banner-nav);
     width: 300px;
-    height: 100%;
+    height: 100vh;
     box-shadow: -1px 0 1px var(--box-shadow);
     display: flex;
     flex-direction: column;
+    overflow-y: auto; /* Add vertical scrolling */
 }
 
 .cart-contents.active {
     transform: translateX(-100%);
 }
+
+/* Optional: Style the scrollbar for webkit browsers */
+.cart-contents::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-contents::-webkit-scrollbar-track {
+    background: var(--bg-banner-nav);
+}
+
+.cart-contents::-webkit-scrollbar-thumb {
+    background-color: var(--text-highlight);
+    border-radius: 3px;
+}
+
+
 
 /* -----------------------------------Typography styles----------------------------------- */
 h1 {
