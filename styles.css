@@ -9,10 +9,12 @@
     --text-updates: #f0e9e9;
     --text-highlight: #4e9eff;
     --box-shadow: #424242;
-
+    --box-shadow-red: #ff000033;
+    --box-shadow-blue: #2980b933;
+    --text-error: #ff0000;
 }
 
-/* This is for the form */
+/* Form colour variables I really need to change these */
 
 :root {
     --primary-color: #3498db;
@@ -46,7 +48,7 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding-top: 180px;
-    background-color: var(--bg-content);
+    background-color: var();
     box-sizing: border-box;
     color: var(--text-main);
     flex: 1;
@@ -183,21 +185,21 @@ hr.gradient {
 /* -----------------------------------Button styles----------------------------------- */
 
 .button1 {
-    background-color: #4e9eff; /* Button background color */
-    color: #ffffff; /* Text color */
-    padding: 10px 20px; /* Vertical and horizontal padding */
-    border: none; /* Remove default border */
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 10px 20px; 
+    border: none; 
     border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    font-weight: bold; /* Bold text */
-    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; 
+    font-weight: bold;
+    cursor: pointer; 
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    box-shadow: 0 2px 5px var(--box-shadow); /* Subtle shadow */
 }
 
 .button2 {
-    background-color: #4e9eff; /* Button background color */
-    color: #ffffff; /* Text color */
+    background-color: var(--primary-color); /* Button background color */
+    color: var(--text-main); /* Text color */
     padding: 5px 10px; /* Vertical and horizontal padding */
     border: none; /* Remove default border */
     border-radius: 5px; /* Rounded corners */
@@ -205,17 +207,17 @@ hr.gradient {
     font-weight: bold; /* Bold text */
     cursor: pointer; /* Change cursor on hover */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    box-shadow: 0 2px 5px var(--box-shadow); /* Subtle shadow */
 }
 
 .button1:hover {
-    background-color: #3a8ccc; /* Darker shade on hover */
+    background-color: var(--input-focus); /* Darker shade on hover */
     transform: translateY(-2px); /* Slight lift effect */
 }
 
 .button1:active {
     transform: translateY(0); /* Reset on click */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Reduce shadow on active */
+    box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
 }
 
 /* -----------------------------------List Styles----------------------------------- */
@@ -470,7 +472,7 @@ ul.bug-list li::before {
     padding-right: 50px;
     background-color: var(--background-color);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--box-shadow);
     margin: 0 auto;
     margin-bottom: 100px;
 }
@@ -503,13 +505,13 @@ input, textarea {
     border-radius: 4px;
     background-color: var(--input-background);
     transition: border-color 0.3s ease;
-    color: #2980b9;
+    color: var(--input-focus);
 }
 
 input:focus, textarea:focus {
     outline: none;
     border-color: var(--input-focus);
-    box-shadow: 0 0 0 2px #2980b933;
+    box-shadow: 0 0 0 2px var(--box-shadow-blue);
 }
 
 
@@ -520,7 +522,7 @@ textarea {
 
 .form-button {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--text-color);
     border: none;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -534,22 +536,22 @@ textarea {
     background-color: var(--input-focus);
 }
 
-/* Add this to your existing CSS */
+
+/* Handling compulsary and invalid field styling */
 
 input:invalid:not(:focus):not(:placeholder-shown).touched,
 textarea:invalid:not(:focus):not(:placeholder-shown).touched {
-    border-color: #ff0000;
-    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.2);
+    border-color: var(--text-error);
+    box-shadow: 0 0 0 2px var(--box-shadow-red);
 }
 
 input:invalid:focus,
 textarea:invalid:focus {
     border-color: var(--input-focus);
-    box-shadow: 0 0 0 2px #2980b933;
+    box-shadow: 0 0 0 2px var(--box-shadow-blue);
 }
 
-/* Optional: Add a red asterisk to required field labels */
 label.required::after {
     content: " *";
-    color: #ff0000;
+    color: var(--text-error);
 }
