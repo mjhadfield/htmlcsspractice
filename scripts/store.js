@@ -177,6 +177,7 @@ function updateCartDisplay() {
           <div class="cart-item-image">
             <img src="${product.imageUrl}" alt="${product.name}">
             <span class="cart-item-quantity">${quantity}</span>
+            <button class="cart-item-removeall" onclick="removeAllFromCart(${productId})">x</button>
           </div>
           <div class="cart-item-container">
             <div class="cart-item-name">${product.name}</div>
@@ -213,6 +214,12 @@ function removeFromCart(productId) {
     saveCart();
     updateCartDisplay();
   }
+}
+
+function removeAllFromCart(productId){
+  delete cart[productId];
+  saveCart();
+  updateCartDisplay();
 }
 
 // Handle quantity input changes

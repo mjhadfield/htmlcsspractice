@@ -18,39 +18,44 @@
     <!----------Main body container----------> 
     <div class="container"><br>
         <h1>Introduction</h1>
-        <p>The index just a change/bug log for now, Once the main UI, navigation, and store functions are built and bugfixed I'll do an index. Designed with mobile viewing in mind but it should scale well up to 4k desktop resolutions.</p>
+        <p>The index just a log for now, Once the main UI, navigation, and store functions are built and bugfixed I'll do an index. Designed with mobile viewing in mind but it should scale well up to 4k desktop resolutions.</p>
         <h1>Known bugs</h1>
         <ul class="bug-list">
-        <li>The basket icon placment in desktop view is trash, header might need a complete rework for desktop.</li>
-        <li><s>The product alignment is off by about 5px in desktop view</s></li>
-        <li>The contact form doesn't send the information off anywhere, might need a third party solution for a static site</li>
-        <li><s>Adding enough items to the basket to cause overflow correctly introduces a scroll bar but removes the total</s></li>
-        <li><s>Also with basket overflow, it removes the top gradient bar. Fuck knows why.</s></li>
+            <li>You'll notice a javascript error in the console, needs organising so I don't need to call store.js on non-store pages.</li>
+            <li>The basket icon placment in desktop view is trash, header might need a complete rework for desktop.</li>
+            <li><s>The product alignment is off by about 5px in desktop view</s></li>
+            <li>The contact form doesn't send the information off anywhere, might need a third party solution for a static site</li>
+            <li><s>Adding enough items to the basket to cause overflow correctly introduces a scroll bar but removes the total</s></li>
+            <li><s>Also with basket overflow, it removes the top gradient bar. Fuck knows why.</s></li>
         </ul>
         <h1>Change Log</h1>
-        <p>05/10/2024 - Lots of CSS organisation and commenting, scripts moved into a different folder. Should really split up the javascript a bit more so it doesn't all need to be called on every page to get the basket to load.</p>
-        <p>05/10/2024 - Got some products in with varying picture sizes so I can check how my CSS handles it. Badly. It handles it badly. Lots of stuff I thought was a fixed size is actually dynamic.</p>
-        <p>05/10/2024 - Modified the product card CSS to include quantity buttons for a nicer user experience </p>
-        <p>05/10/2024 - Did a bit of cleanup of the CSS to put all of the colours into variables for ease of creating new ones down the road.</p>
-        <p>05/04/2024 - A bunch of minor updates and improvements, created a list style.</p>
-        <p>04/10/2024 - Minor updates. </p>
-        <p>04/10/2024 - Gave up trying to sort alignment issues. Code review tomorrow!</p>
-        <p>04/10/2024 - Added some CSS styling to the baskets and buttons (not complete!)</p>
-        <p>04/10/2024 - Created a variable to track contents of the basket</p>
-        <p>04/10/2024 - Added some metadata for mobile linking</p>
-        <p>04/10/2024 - Added the rest of the product pages and added some javascript for when no products are found. Will work on the stying of that another time</p>
-        <p>04/10/2024 - Moved the header into a separate file for ease of maintenance</p>
-        <p>30/09/2024 - Started work on the store. Holding the data in a JSON and populating items based on category using javascript. CSS is disgusting and will take forever. Pilsner is the only active category at the moment.</p>
-        <p>29/08/2024 - Quick cleanup of code alignment, created holding pages for each section. Time to work on the store functionality!</p>
-        <p>29/08/2024 - The basket slides out and displays properly now, created a gradient divider style based on text highlight colour.</p>
-        <p>29/08/2024 - Finished off the desktop navigation to include a logo and basket, so the shell is pretty much complete now. Probably worth adding a copyright footer for completeness.</p>
-        <p>29/08/2024 - Added dynamic scaling to the update banner too as this looked shit on some mobile resolutions (Looking at you iPhone 7).</p>
-        <p>29/09/2024 - Fixed the dynamic scaling of the top banner for different mobile resolutions and added better handling of the container for desktop viewports.</p> 
-        <p>28/09/2024 - Spoke too soon.</p>   
-        <p>28/09/2024 - Okay that worked, seems to be behaving again. That's enough for now.</p>
-        <p>28/09/2024 - Pushing new version to check the logo alignment in mobile view. Think I've broken the container div...</p>
-        <p>27/09/2024 - Probably time to start just writing a changelog for new commits to fill out the page instead of using Lorum Ipsum.</p>
-        <p>26/09/2024 - Initial branch created and comitted.</p>
+        <ul class="change-list">
+            <li>06/10/2024 - Moved the bugs and changes over to a list instead of using paragraph elements and did some more CSS cleanup</li>
+            <li>06/10/2024 - Added an icon to remove all of an item from the basket</li>
+            <li>05/10/2024 - Lots of CSS organisation and commenting, scripts moved into a different folder. Should really split up the javascript a bit more so it doesn't all need to be called on every page to get the basket to load.</li>
+            <li>05/10/2024 - Got some products in with varying picture sizes so I can check how my CSS handles it. Badly. It handles it badly. Lots of stuff I thought was a fixed size is actually dynamic.</li>
+            <li>05/10/2024 - Modified the product card CSS to include quantity buttons for a nicer user experience </li>
+            <li>05/10/2024 - Did a bit of cleanup of the CSS to put all of the colours into variables for ease of creating new ones down the road.</li>
+            <li>05/04/2024 - A bunch of minor updates and improvements, created a list style.</li>
+            <li>04/10/2024 - Minor updates. </li>
+            <li>04/10/2024 - Gave up trying to sort alignment issues. Code review tomorrow!</li>
+            <li>04/10/2024 - Added some CSS styling to the baskets and buttons (not complete!)</li>
+            <li>04/10/2024 - Created a variable to track contents of the basket</li>
+            <li>04/10/2024 - Added some metadata for mobile linking</li>
+            <li>04/10/2024 - Added the rest of the product pages and added some javascript for when no products are found. Will work on the stying of that another time</li>
+            <li>04/10/2024 - Moved the header into a separate file for ease of maintenance</li>
+            <li>30/09/2024 - Started work on the store. Holding the data in a JSON and populating items based on category using javascript. CSS is disgusting and will take forever. Pilsner is the only active category at the moment.</li>
+            <li>29/08/2024 - Quick cleanup of code alignment, created holding pages for each section. Time to work on the store functionality!</li>
+            <li>29/08/2024 - The basket slides out and displays properly now, created a gradient divider style based on text highlight colour.</li>
+            <li>29/08/2024 - Finished off the desktop navigation to include a logo and basket, so the shell is pretty much complete now. Probably worth adding a copyright footer for completeness.</li>
+            <li>29/08/2024 - Added dynamic scaling to the update banner too as this looked shit on some mobile resolutions (Looking at you iPhone 7).</li>
+            <li>29/09/2024 - Fixed the dynamic scaling of the top banner for different mobile resolutions and added better handling of the container for desktop viewports.</li> 
+            <li>28/09/2024 - Spoke too soon.</li>   
+            <li>28/09/2024 - Okay that worked, seems to be behaving again. That's enough for now.</li>
+            <li>28/09/2024 - Pushing new version to check the logo alignment in mobile view. Think I've broken the container div...</li>
+            <li>27/09/2024 - Probably time to start just writing a changelog for new commits to fill out the page instead of using Lorum Ipsum.</li>
+            <li>26/09/2024 - Initial branch created and comitted.</li>
+        </ul>
     </div>
 
     <!----------Footer Section----------> 

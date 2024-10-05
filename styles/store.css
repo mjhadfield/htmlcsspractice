@@ -169,6 +169,8 @@
   margin: 0;
   padding: 0;
   appearance: textfield;
+  background-color:var(--text-dark);
+  color: var(--text-highlight);
 }
 
 /* Alignment for the quantity */

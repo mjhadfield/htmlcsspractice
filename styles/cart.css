@@ -125,7 +125,23 @@
 /* Small icon for item quantity */
 .cart-item-quantity {
     background-color: var(--text-highlight);
-    color: white;
+    color: (var(--text-main));
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Small icon for removing all of an item */
+.cart-item-removeall {
+    color: var(--text-error);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -135,8 +151,21 @@
     font-size: 12px;
     position: absolute;
     top: 1px;
-    right: 1px;
+    left: 1px;
     box-shadow: var(--box-shadow);
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.cart-item-removeall:hover {
+    background-color: darkred; /* Darker shade on hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+    box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Add a subtle glow effect */
+}
+
+.cart-item-removeall:active {
+    transform: scale(0.95); /* Slight shrink effect when clicked */
 }
 
 /* Cart total attributes - NB 05/10/24 this should move to the top of the cart */

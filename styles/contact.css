@@ -1,0 +1,90 @@
+/* Form Styling */
+
+.contact-form {
+    max-width: 400px;
+    padding: 2rem;
+    padding-right: 50px;
+    background-color: var(--bg-accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--box-shadow);
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+legend {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--bg-accent);
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--text-main);
+    border-radius: 4px;
+    background-color: var(--bg-body);
+    transition: border-color 0.3s ease;
+    color: var(--text-highlight);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--text-highlight);
+    box-shadow: 0 0 0 2px var(--box-shadow-blue);
+}
+
+
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.form-button {
+    background-color: var(--text-highlight);
+    color: var(--text-main);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+    background-color: var(--text-highlight);
+}
+
+/* Handling compulsary and invalid field styling */
+
+input:invalid:not(:focus):not(:placeholder-shown).touched,
+textarea:invalid:not(:focus):not(:placeholder-shown).touched {
+    border-color: var(--text-error);
+    box-shadow: 0 0 0 2px var(--box-shadow-red);
+}
+
+input:invalid:focus,
+textarea:invalid:focus {
+    border-color: var(--text-highlight);
+    box-shadow: 0 0 0 2px var(--box-shadow-blue);
+}
+
+label.required::after {
+    content: " *";
+    color: var(--text-error);
+}

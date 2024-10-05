@@ -21,11 +21,13 @@
 
 /* -----------------------------------Global Styles styles----------------------------------- */
 
+/* Sack off any default padding and handle it on an individual basis */
 html, body {
     margin: 0;
     padding: 0;
 }
 
+/* Basics */
 body {
     font-family: 'Roboto', sans-serif;
     background-color: var(--bg-body);
@@ -36,6 +38,7 @@ body {
     min-height: 100vh;
 }
 
+/* Container for the main content on every page */
 .container {
     width: 100%;
     max-width: 1100px;
@@ -48,6 +51,7 @@ body {
     overflow-y: auto;
 }
 
+/* Site banner container */
 .site-banner {
     background-color: var(--bg-banner-nav);
     height: 120px;
@@ -61,6 +65,7 @@ body {
     align-items: center;
 }
 
+/* Site banner styling */
 .site-updates {
     background-color: var(--bg-accent);
     color: var(--text-updates);
@@ -76,7 +81,7 @@ body {
     text-align: center;
     overflow: hidden;
 }
-
+/* Site update text, this can definitely be handled better */
 .site-updates p {
     margin: 0;
     padding: 0 10px;
@@ -87,6 +92,9 @@ body {
     text-overflow: ellipsis;
 }
 
+/* -----------------------------------CART STYLING - Stuff from store.css needs to be moved here ----------------------------------- */
+
+/* Cart container */
 .cart-contents {
     z-index: 160;
     right: -300px;
@@ -103,19 +111,18 @@ body {
     overflow-y: auto; /* Add vertical scrolling */
 }
 
+/* Slide out on click */
 .cart-contents.active {
     transform: translateX(-100%);
 }
 
-/* Optional: Style the scrollbar for webkit browsers */
+/* Style the overflow scrollbar */
 .cart-contents::-webkit-scrollbar {
     width: 6px;
 }
-
 .cart-contents::-webkit-scrollbar-track {
     background: var(--bg-banner-nav);
 }
-
 .cart-contents::-webkit-scrollbar-thumb {
     background-color: var(--text-highlight);
     border-radius: 3px;
@@ -136,7 +143,7 @@ h1 {
 h2 {
     font-size: 2rem;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.2;
     color: var(--text-main);
     margin-top: 2rem;
 }
@@ -146,6 +153,7 @@ p {
     margin-bottom: 1.5rem;
     margin-right: 1rem;
     margin-left: 1rem;
+    color: var(--text-main);
 }
 
 p a {
@@ -154,18 +162,17 @@ p a {
     text-decoration: none;
 }
 p a:hover {
-    color: var(--text-highlight);
+    color: var(--button-hover);
     text-decoration: none;
 }
-
-
 
 .pcentre {
     font-size: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-    line-height: 1.5;
+    line-height: 1.2;
     text-align: center;
+    color: var(--text-main);
 }
 
 hr.gradient {
@@ -176,29 +183,6 @@ hr.gradient {
 }
 
 /* -----------------------------------Button styles----------------------------------- */
-
-.button1 {
-    background-color: var(--text-highlight);
-    color: var(--text-main);
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; 
-    font-weight: bold;
-    cursor: pointer; 
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-    box-shadow: 0 2px 5px var(--box-shadow); /* Subtle shadow */
-}
-
-.button1:hover {
-    background-color: var(--text-highlight); /* Darker shade on hover */
-    transform: translateY(-2px); /* Slight lift effect */
-}
-
-.button1:active {
-    transform: translateY(0); /* Reset on click */
-    box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
-}
 
 .button-product {
     background-color: var(--button-main); 
@@ -226,28 +210,55 @@ hr.gradient {
 /* -----------------------------------List Styles----------------------------------- */
 
 ul.bug-list {
-    list-style-type: none; /* Remove default bullet points */
     padding-top: 0px;
     padding-bottom: 15px;
-    font-size: 1rem; /* Set a consistent font size */
-    color: var(--text-main); /* Use the main text color */
+    font-size: 1rem; 
     margin-right: 20px;
+    list-style-type: none; /* Remove default bullets */
 }
 
 ul.bug-list li {
-    padding: 7px 0px; /* Add padding between list items */
-    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition on hover */
-}
-
-ul.bug-list li:hover::before {
-    color: red; /* Change bullet point color to red on hover */
+    padding: 7px 0px; 
+    transition: color 0.3s ease, background-color 0.3s ease; 
+    color: var(--text-muted);
+    position: relative; /* For positioning the pseudo-element */
+    padding-left: 1.5em; /* Make room for the custom bullet */
 }
 
 ul.bug-list li::before {
-    content: '•'; /* Custom bullet point */
-    color: var(--text-highlight); /* Bullet color */
-    margin-right: 10px; /* Space between bullet and text */
-    font-size: 1.2rem; /* Slightly larger bullet point */
+    content: '•'; 
+    color: red; 
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem; 
+}
+
+ul.change-list {
+    padding-top: 0px;
+    padding-bottom: 15px;
+    font-size: 1rem; 
+    margin-right: 20px;
+    list-style-type: none; /* Remove default bullets */
+}
+
+ul.change-list li {
+    padding: 7px 0px; 
+    transition: color 0.3s ease, background-color 0.3s ease; 
+    color: var(--text-muted);
+    position: relative; /* For positioning the pseudo-element */
+    padding-left: 1.5em; /* Make room for the custom bullet */
+}
+
+ul.change-list li::before {
+    content: '•'; 
+    color: green; 
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem; 
 }
 
 /* -----------------------------------Mobile styles----------------------------------- */
@@ -415,7 +426,7 @@ ul.bug-list li::before {
         background-color: var(--bg-banner-nav);
         min-width: 160px;
         z-index: 20;
-        box-shadow: 0 8px 16px var(--box-shadow);
+        box-shadow: 0 5px 50px var(--box-shadow);
     }
 
     .dropdown:hover .dropdown-content {
@@ -465,94 +476,4 @@ ul.bug-list li::before {
         cursor: pointer;
         z-index: 300;
     }
-}
-
-.contact-form {
-    max-width: 400px;
-    padding: 2rem;
-    padding-right: 50px;
-    background-color: var(--bg-accent);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px var(--box-shadow);
-    margin: 0 auto;
-    margin-bottom: 100px;
-}
-
-fieldset {
-    border: none;
-    padding: 0;
-    margin: 0;
-}
-
-legend {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--bg-accent);
-    margin-bottom: 1.5rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-main);
-    font-weight: 500;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid var(--text-main);
-    border-radius: 4px;
-    background-color: var(--bg-body);
-    transition: border-color 0.3s ease;
-    color: var(--text-highlight);
-}
-
-input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--text-highlight);
-    box-shadow: 0 0 0 2px var(--box-shadow-blue);
-}
-
-
-textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-.form-button {
-    background-color: var(--text-highlight);
-    color: var(--text-main);
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.form-button:hover {
-    background-color: var(--text-highlight);
-}
-
-
-/* Handling compulsary and invalid field styling */
-
-input:invalid:not(:focus):not(:placeholder-shown).touched,
-textarea:invalid:not(:focus):not(:placeholder-shown).touched {
-    border-color: var(--text-error);
-    box-shadow: 0 0 0 2px var(--box-shadow-red);
-}
-
-input:invalid:focus,
-textarea:invalid:focus {
-    border-color: var(--text-highlight);
-    box-shadow: 0 0 0 2px var(--box-shadow-blue);
-}
-
-label.required::after {
-    content: " *";
-    color: var(--text-error);
 }
