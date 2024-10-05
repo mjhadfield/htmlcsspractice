@@ -75,15 +75,17 @@
 .quantity-control {
   display: flex;
   align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .quantity-btn {
   width: 40px;
-  height: 41px;
+  height: 40px;
   font-size: 18px;
   background-color: var(--button-main);
   color: var(--text-main);
-  border: 0px;
+  border: none;
   cursor: pointer;
   padding: 0;
   display: flex;
@@ -91,14 +93,21 @@
   align-items: center;
 }
 
+.quantity-btn:hover {
+  background-color: var(--button-hover); /* Darker shade on hover */
+}
+
+.quantity-btn:active {
+  background-color: var(--button-main); 
+  box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
+}
+
 .minus-btn {
-  border-radius: 50% 0 0 50%;
-  border-right: none;
+  border-radius: 20px 0 0 20px;
 }
 
 .plus-btn {
-  border-radius: 0 50% 50% 0;
-  border-left: none;
+  border-radius: 0 20px 20px 0;
 }
 
 .quantity-input {
@@ -106,12 +115,17 @@
   height: 40px;
   text-align: center;
   font-size: 16px;
-  border: 1px solid black;
+  border: none;
   border-radius: 0;
-  border-left: none;
-  border-right: none;
   margin: 0;
   padding: 0;
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.quantity-input::-webkit-inner-spin-button, 
+.quantity-input::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .button-product {

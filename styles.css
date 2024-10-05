@@ -234,6 +234,7 @@ hr.gradient {
 }
 
 .button-product:active {
+    background-color: var(--button-main); 
     box-shadow: 0 1px 3px var(--box-shadow); /* Reduce shadow on active */
 }
 
