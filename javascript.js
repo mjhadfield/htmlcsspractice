@@ -46,3 +46,25 @@ function attachEventListeners() {
         dropdownContent.classList.toggle('active');
     });
 }
+
+//
+
+document.addEventListener('DOMContentLoaded', function() {
+    const requiredFields = document.querySelectorAll('input[required], textarea[required]');
+    
+    requiredFields.forEach(field => {
+        field.addEventListener('blur', function() {
+            if (this.value.trim() === '') {
+                this.classList.add('touched');
+            } else {
+                this.classList.remove('touched');
+            }
+        });
+
+        field.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                this.classList.remove('touched');
+            }
+        });
+    });
+});
