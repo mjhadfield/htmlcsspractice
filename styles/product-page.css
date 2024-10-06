@@ -14,14 +14,14 @@ body {
 }
 
 .product-page-name {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     margin-bottom: 15px;
     color: var(--text-highlight);
 }
 
 .product-page-description {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 20px;
     color: var(--text-muted);
 }
@@ -75,7 +75,7 @@ body {
 }
 
 .product-page-fulldescription {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.6;
     color: var(--text-muted);
     padding: 15px;
