@@ -51,20 +51,6 @@ body {
     overflow-y: auto;
 }
 
-/* Site banner container */
-.site-banner {
-    background-color: var(--bg-banner-nav);
-    height: 120px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 160;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* Site banner styling */
 .site-updates {
     background-color: var(--bg-accent);
@@ -414,6 +400,27 @@ ul.change-list li::before {
         display: none;
     }
 
+    .site-banner {
+    background-color: var(--bg-banner-nav);
+    height: 120px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 160;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
     .site-navigation {
         display: flex;
         gap: 20px;
@@ -449,35 +456,36 @@ ul.change-list li::before {
     .site-navigation a:hover {
         color: var(--text-highlight);
     }
-    .container {
-        padding-top: 130px; 
-    }
+
     .desktop-cart {
-        display: block;
-        z-index: 300;
+        height: 60px;
         cursor: pointer;
-        transform: rotate(0deg);
-        transition: transform 0.3s ease-in-out;
+        z-index: 300;
     }
-    
-    .desktop-cart span {
-        display: block;
-        height: 4px;
-        width: 40px;
-        background-color: var(--text-main);
-        margin: 8px;
-    }
+
     .site-logo {
-        position: absolute;
-        left: max(0px, min(800px, calc((100vw - 1100px) / 2)));
-        height: clamp(30px, calc(18vw - 90px), 100px);
+        height: 90px;
         width: auto;
         object-fit: contain;
-    }
-    .desktop-cart {
-        position: absolute;
-        right: max(30px, min(800px, calc((100vw - 1100px) / 2)));
-        cursor: pointer;
         z-index: 300;
+    }
+    .logo-container {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start; /* Align to the left */
+    }
+    
+    /* Cart container */
+    .cart-container {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end; /* Align to the right */
+    }
+    
+    /* Navigation container */
+    .navigation-container {
+        flex: 2;
+        display: flex;
+        justify-content: center; /* Align navigation in the center */
     }
 }
