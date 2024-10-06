@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function attachEventListeners() {
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const mobileNavigation = document.querySelector('.mobile-navigation');
-    const cartMenu = document.querySelector('.cart-menu');
+    const cartMenu = document.querySelector('.cart-menu-mobile');
     const desktopCart = document.querySelector('.desktop-cart');
     const cartContents = document.querySelector('.cart-contents');
     const shopLink = document.querySelector('.shop-link');

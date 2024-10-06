@@ -3,20 +3,20 @@
 :root {
     --bg-body: #121212;
     --bg-banner-nav: #1e1e1e;
-    --bg-accent: #363b4b;
+    --bg-accent: #4a3c31; /* Darker wood brown */
     --bg-content: #1a1a1a;
     --text-main: #e0e0e0;
     --text-updates: #f0e9e9;
-    --text-highlight: #4e9eff;
+    --text-highlight: #d4a157; /* Golden accent */
     --text-muted: #ddd;
     --text-dark: #000000;
     --text-error: #ff0000;
     --box-shadow: #424242;
     --box-shadow-red: #ff000033;
-    --box-shadow-blue: #2980b933;
-    --button-main: #4e9eff;
-    --button-hover: #FFAF4E;
-    --product-header: #eeeff06c; /*Transparent white */
+    --box-shadow-orange: #d4a15733; /* Replaced blue shadow */
+    --button-main: #c68f3e; /* Muted gold */
+    --button-hover: #e8b96c; /* Lighter gold for hover */
+    --product-header: #eeeff06c; /* Transparent white */
 }
 
 /* -----------------------------------Global Styles styles----------------------------------- */
@@ -59,7 +59,7 @@ body {
     top: 119px;
     left: 0;
     width: 100%;
-    z-index: 9;
+    z-index: 50;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -260,51 +260,60 @@ ul.change-list li::before {
         display: none;
     }
 
+    .site-banner-mobile {
+        background-color: var(--bg-banner-nav);
+        height: 120px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 160;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .hamburger-menu {
         display: block;
         cursor: pointer;
         position: fixed;
-        z-index: 200;
+        z-index: 201;
         top: 40px;
         left: 12px;
         transform: rotate(0deg);
         transition: transform 0.3s ease-in-out;
     }
-
+    
     .hamburger-menu.active {
         transform: rotate(90deg);
     }
-
+    
     .hamburger-menu span {
         display: block;
         height: 4px;
         width: 40px;
         background-color: var(--text-main);
         margin: 8px;
+        box-shadow: 0 0 8px 1px rgba(255, 165, 0, 0.5);
+        transition: box-shadow 0.3s ease;
+    }
+    
+    .hamburger-menu:hover span {
+        box-shadow: 0 0 12px 2px rgba(255, 165, 0, 0.7);
     }
 
-    .cart-menu {
+    .cart-menu-mobile {
         display: block;
         cursor: pointer;
         position: fixed;
-        z-index: 200;
+        z-index: 500;
         top: 40px;
         right: 20px;
-        transform: rotate(0deg);
-        transition: transform 0.3s ease-in-out;
+        filter: drop-shadow(0 0 3px var(--button-main));
+        transition: filter 0.3s ease;
     }
 
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
-    
-    .cart-menu:active {
-        animation: pulse 0.3s ease;
-    }
-
-    .cart-menu span {
+    .cart-menu-mobile span {
         display: block;
         height: 4px;
         width: 40px;
@@ -313,7 +322,7 @@ ul.change-list li::before {
     }
 
     .mobile-navigation {
-        z-index: 150;
+        z-index: 160;
         left: -300px;
         top: 0;
         padding-top: 100px;
@@ -394,6 +403,10 @@ ul.change-list li::before {
 
 /*-----------------------------------Desktop styles-----------------------------------*/
 
+/*Warning this is a mess. 
+I struggled for so long I made AI do it..
+It's difficult to figure out what's going on here*/
+
 @media screen and (min-width: 641px) {
     .mobile-navigation,
     .mobile-logo {
@@ -401,25 +414,26 @@ ul.change-list li::before {
     }
 
     .site-banner {
-    background-color: var(--bg-banner-nav);
-    height: 120px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 160;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        background-color: var(--bg-banner-nav);
+        height: 120px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 160;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.banner-inner {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-}
+    .banner-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 20px;
+    }
 
     .site-navigation {
         display: flex;
@@ -461,6 +475,12 @@ ul.change-list li::before {
         height: 60px;
         cursor: pointer;
         z-index: 300;
+        filter: drop-shadow(0 0 3px var(--button-main)); /* Orange glow */
+        transition: filter 0.3s ease;
+    }
+
+    .desktop-cart:hover {
+        filter: drop-shadow(0 0 12px #ffa500b3); /* Increased glow on hover */
     }
 
     .site-logo {
@@ -468,24 +488,55 @@ ul.change-list li::before {
         width: auto;
         object-fit: contain;
         z-index: 300;
+        transition: height 0.3s ease; /* Smooth resizing */
     }
+
     .logo-container {
-        flex: 1;
         display: flex;
-        justify-content: flex-start; /* Align to the left */
+        justify-content: flex-start;
+        flex-grow: 1;
+        max-width: 150px;
     }
-    
-    /* Cart container */
+
     .cart-container {
-        flex: 1;
         display: flex;
-        justify-content: flex-end; /* Align to the right */
+        justify-content: flex-end;
+        flex-grow: 1;
+        max-width: 150px;
+        transform: translateX(-150px); /* Move cart slightly towards center */
+        transition: transform 0.3s ease, height 0.3s ease; /* Smooth resizing */
     }
-    
-    /* Navigation container */
+
     .navigation-container {
-        flex: 2;
         display: flex;
-        justify-content: center; /* Align navigation in the center */
+        justify-content: center;
+        flex-grow: 2;
+    }
+}
+
+/* Responsive scaling based on width */
+@media screen and (max-width: 1000px) {
+    .site-logo {
+        height: 70px;
+    }
+
+    .desktop-cart {
+        height: 50px;
+    }
+    .cart-container{
+        transform: translateX(-80px);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .site-logo {
+        height: 50px;
+    }
+
+    .desktop-cart {
+        height: 40px;
+    }
+    .cart-container{
+        transform: translateX(-10px);
     }
 }
