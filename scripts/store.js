@@ -1,13 +1,32 @@
-//Create the cart and load it's contents from local storage
+//Create global variables
 
 let cart = {};
+let globalProducts = [];
+
+
+//Event listener to load everything required
 document.addEventListener('DOMContentLoaded', function() {
-  // Populate the product grid and load the cart after the header
   populateProductGrid();
   loadCart();
   updateCartDisplay();
   updateCartIconQuantity();
+  loadProducts();
 });
+// Fetch products and store them in the global variable
+function loadProducts() {
+    return fetch('scripts/products.json')
+        .then(response => response.json())
+        .then(products => {
+            globalProducts = products;
+            console.log('Products loaded successfully');
+        })
+        .catch(error => {
+            console.error('Error loading products:', error);
+        });
+}
+
+// Call this function when your page loads
+loadProducts();
 
 //Display products based on page title
 function getCurrentCategory() {
@@ -111,6 +130,13 @@ function addToCart(productId) {
     showNotification('Please enter a valid quantity');
     return;
   }
+  const product = globalProducts.find(p => p.id === parseInt(productId));
+
+  if (!product) {
+      showNotification('Product not found');
+      return;
+  }
+
 
   if (cart[productId]) {
     cart[productId] += quantity;
@@ -122,7 +148,7 @@ function addToCart(productId) {
   updateCartDisplay();
   updateCartIconQuantity();
 
-  showNotification(`${quantity} added to cart`);
+  showNotification(`${quantity} ${product.name}${quantity > 1 ? 's' : ''} added to cart`);
 
   quantityInput.value = 1;
 }
