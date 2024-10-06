@@ -5,10 +5,10 @@
     padding: 2rem;
     padding-right: 50px;
     background-color: var(--bg-accent);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px var(--box-shadow);
+    border-radius: 20px;
     margin: 0 auto;
     margin-bottom: 100px;
+    margin-top: 50px;
 }
 
 fieldset {
@@ -70,6 +70,12 @@ textarea {
     background-color: var(--text-highlight);
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Handling compulsary and invalid field styling */
 
 input:invalid:not(:focus):not(:placeholder-shown).touched,
@@ -87,4 +93,20 @@ textarea:invalid:focus {
 label.required::after {
     content: " *";
     color: var(--text-error);
+}
+
+@media screen and (max-width: 1100px)
+{    .contact-form {
+        max-width: 400px;
+        padding: 2rem;
+        padding-right: 50px;
+        background-color: var(--bg-accent);
+        margin-top: -70px;
+    }
+    .container {
+        background-color: var(--bg-accent);
+    }
+    .site-updates{
+        display: none;
+    }
 }
