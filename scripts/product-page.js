@@ -43,6 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const imageContainer = document.querySelector('.product-page-image');
             imageContainer.appendChild(imgElement);
 
+            // Create price element
+            const priceElement = document.createElement('div');
+            priceElement.className = 'product-page-price';
+            priceElement.textContent = `£${product.cost.toFixed(2)}`;
+
             // Add click event to open modal
             imgElement.onclick = function() {
                 openModal(this.src);
@@ -52,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const quantitySelect = createQuantitySelect();
             const addToCartButton = createAddToCartButton(product.id);
             const purchaseDiv = document.querySelector('.product-page-purchase');
+            purchaseDiv.appendChild(priceElement);
             purchaseDiv.appendChild(quantitySelect);
             purchaseDiv.appendChild(addToCartButton);
 

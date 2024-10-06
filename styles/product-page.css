@@ -131,6 +131,20 @@ body {
     cursor: pointer;
 }
 
+.product-page-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-highlight);
+}
+
+.product-page-purchase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 5%; /* Reduced from 10% to accommodate the price */
+}
+
 
 /* This handles scaling at larger resolutions */
 @media screen and (min-width: 500px) and (max-width: 1000px) {
