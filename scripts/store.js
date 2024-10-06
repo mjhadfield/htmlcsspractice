@@ -194,6 +194,7 @@ function updateCartDisplay() {
     emptyMessage.className = 'empty-cart-message';
     emptyMessage.textContent = "There's no beer in here yet 😟";
     cartDiv.appendChild(emptyMessage);
+    updateCartIconQuantity();
     return; // Exit the function if cart is empty
   }
 
@@ -251,6 +252,7 @@ function removeFromCart(productId) {
     }
     saveCart();
     updateCartDisplay();
+    updateCartIconQuantity();
   }
 }
 
@@ -284,10 +286,8 @@ function updateCartQuantity(productId, newQuantity) {
 function updateCartIconQuantity() {
   const cartQuantityElement = document.querySelector('.basket-icon-quantity');
   if (cartQuantityElement) {
-    const totalItems = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
-    cartQuantityElement.textContent = totalItems;
-    // If the cart is empty, hide the badge
-    cartQuantityElement.style.display = totalItems > 0 ? 'flex' : 'none';
-    cartQuantityElement.style.display = totalItems > 0 ? 'flex' : 'none';
+      const totalItems = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
+      cartQuantityElement.textContent = totalItems === 0 ? '0' : totalItems; // Set text to totalItems or '0'
+      cartQuantityElement.style.display = 'flex';
   }
 }
