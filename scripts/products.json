@@ -7,7 +7,7 @@
     {"id":6,"name":"Lemon Drizzleberry Cupcake","cost":4.50,"description":"","category":"fruitSour","imageUrl":"images/products/6.png"},
     {"id":7,"name":"Cookies & Cream Blueberry Double Stack","cost":7.95,"description":"","category":"fruitSour","imageUrl":"images/products/7.png"},
     {"id":8,"name":"Passion Fruit Mojito","cost":6.90,"description":"","category":"fruitSour","imageUrl":"images/products/8.png"},
-    {"id":9,"name":"White Chocolate Cherry Cheesecake Double Scoop","cost":6.80,"description":"","category":"fruitSour","imageUrl":"images/products/9.png"},
+    {"id":9,"name":"White Chocolate Cherry Cheesecake","cost":6.80,"description":"","category":"fruitSour","imageUrl":"images/products/9.png"},
     {"id":10,"name":"Sugar 'N' Spice","cost":5.80,"description":"","category":"fruitSour","imageUrl":"images/products/10.png"},
     {"id":11,"name":"Shake S'more","cost":6.95,"description":"","category":"fruitSour","imageUrl":"images/products/11.png"},
     {"id":12,"name":"Blood & Ink","cost":4.50,"description":"","category":"fruitSour","imageUrl":"images/products/12.png"},

@@ -15,7 +15,7 @@ async function loadHeader() {
     if (document.querySelector('#header-content')) return;
 
     try {
-        const response = await fetch('header.html');
+        const response = await fetch('../header.html');
         const data = await response.text();
         document.body.insertAdjacentHTML('afterbegin', data);
         console.log ('Header loaded successfully')

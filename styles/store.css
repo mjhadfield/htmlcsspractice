@@ -85,16 +85,17 @@
 .product-top-container {
   position: relative;
   z-index: 2;
-  padding: 5px;
   background-color: var(--product-header);
   color: var(--text-dark);
   width: 100%;
+  margin-top: -250px;
+  height: 100px;
 }
 
 /* Top section for title/price */
 .product-top {
-  margin: 0px 0;
   font-size: 1.2em;
+  margin-top: 7px;
 }
 
 /* Bottom container */
@@ -107,7 +108,6 @@
   width: 100%;
   height: 15%;
   background-color: var(--product-header); 
-  padding: 10px;
 }
 
 /* Bottom section for adding to basket */

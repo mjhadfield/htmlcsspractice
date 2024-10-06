@@ -21,15 +21,14 @@
         <p>The index just a log for now, Once the main UI, navigation, and store functions are built and bugfixed I'll do an index. Designed with mobile viewing in mind but it should scale well up to 4k desktop resolutions.</p>
         <h1>Known bugs</h1>
         <ul class="bug-list">
-            <li><s>Javascript error in the console, needs organising so I don't need to call store.js on non-store pages. Without it the basket doesn't work currently.</s></li>
-            <li><s>The basket icon placment in desktop view is trash, header might need a complete rework for desktop.</s></li>
-            <li><s>The product alignment is off by about 5px in desktop view</s></li>
-            <li><s>The contact form doesn't send the information off anywhere, might need a third party solution for a static site</s></li>
-            <li><s>Adding enough items to the basket to cause overflow correctly introduces a scroll bar but removes the total</s></li>
-            <li><s>Also with basket overflow, it removes the top gradient bar. Fuck knows why.</s></li>
+            <li>Add to cart button doesn't work on the product pages, only from the store front.</li>
         </ul>
         <h1>Change Log</h1>
         <ul class="change-list">
+            <li>07/10/2024 - Added CSS for the product pages to scale well on both mobile and desktop</li>
+            <li>07/10/2024 - Added dynamically created product pages!</li>
+            <li>06/10/2024 - Created product descriptions and formatted them in a JSON. Created containers for all of the product page elements</li>
+            <li>06/10/2024 - Added a footer div to every page, haven't done anything with it yet - but before I make all the products pages...</li>
             <li>06/10/2024 - Found a third party service for contact forms and set one up, so the contact page is now functional</li>
             <li>06/10/2024 - Refactored the main Javascript file, added some error handling and console logging. Store.JS needs the same treatment but it's overwhelming.</li>
             <li>06/10/2024 - Reworked the site header in both mobile and desktop, much more managable now.</li>
@@ -66,7 +65,7 @@
 
     <!----------Footer Section----------> 
     <footer>
-
+        <div class="page-footer"></div>
     </footer>
     
 

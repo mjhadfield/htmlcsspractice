@@ -12,7 +12,7 @@ async function loadProducts() {
   }
 
   try {
-      const response = await fetch('scripts/products.json');
+      const response = await fetch('../scripts/products.json');
       globalProducts = await response.json();
       console.log('Products loaded successfully');
       populateProductGrid(); // Call this after products are loaded
@@ -54,7 +54,9 @@ function createProductItem(product) {
   productItem.className = 'product-item';
 
   productItem.innerHTML = `
-      <img src="${product.imageUrl}" alt="${product.name}" class="product-card-image">
+  <a href="product.html?id=${product.id}" class="product-image-link">
+    <img src="${product.imageUrl}" alt="${product.name}" class="product-card-image">
+  </a>
       <div class="product-top-container">
           <h3 class="product-top">${product.name} <br> £${product.cost.toFixed(2)}</h3>
       </div>
@@ -313,3 +315,4 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCartDisplay();
   updateCartIconQuantity();
 });
+
