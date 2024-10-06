@@ -1,14 +1,3 @@
-// Stop browser caching while in development
-
-function addCacheBuster(url) {
-return url + '?v=' + new Date().getTime();
-}
-
-// Usage
-let scriptElement = document.createElement('script');
-scriptElement.src = addCacheBuster('path/to/your/script.js');
-document.head.appendChild(scriptElement);
-
 // Main function to initialize everything
 function initializeApp() {
     loadHeader()
