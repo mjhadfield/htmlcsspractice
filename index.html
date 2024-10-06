@@ -22,7 +22,7 @@
         <h1>Known bugs</h1>
         <ul class="bug-list">
             <li>Javascript error in the console, needs organising so I don't need to call store.js on non-store pages. Without it the basket doesn't work currently.</li>
-            <li>The basket icon placment in desktop view is trash, header might need a complete rework for desktop.</li>
+            <li><s>The basket icon placment in desktop view is trash, header might need a complete rework for desktop.</s></li>
             <li><s>The product alignment is off by about 5px in desktop view</s></li>
             <li>The contact form doesn't send the information off anywhere, might need a third party solution for a static site</li>
             <li><s>Adding enough items to the basket to cause overflow correctly introduces a scroll bar but removes the total</s></li>
@@ -30,21 +30,24 @@
         </ul>
         <h1>Change Log</h1>
         <ul class="change-list">
-            <li>06/10/2024 - Moved the bugs and changes over to a list instead of using paragraph elements and did some more CSS cleanup</li>
-            <li>06/10/2024 - Added an icon to remove all of an item from the basket</li>
+            <li>06/10/2024 - Reworked the site header in both mobile and desktop, much more managable now.</li>
+            <li>06/10/2024 - Broke the CSS, fixed the CSS.</li>
+            <li>06/10/2024 - Added a count of how many items are in the basket to the icon.</li>
+            <li>06/10/2024 - Moved the bugs and changes over to a list instead of using paragraph elements and did some more CSS cleanup.</li>
+            <li>06/10/2024 - Added an icon to remove all of an item from the basket.</li>
             <li>05/10/2024 - Lots of CSS organisation and commenting, scripts moved into a different folder. Should really split up the javascript a bit more so it doesn't all need to be called on every page to get the basket to load.</li>
             <li>06/10/2024 - Fixed the below, products are now all a fixed size in both the store and basket.</li>
             <li>05/10/2024 - Got some products in with varying picture sizes so I can check how my CSS handles it. Badly. It handles it badly. Lots of stuff I thought was a fixed size is actually dynamic.</li>
-            <li>05/10/2024 - Modified the product card CSS to include quantity buttons for a nicer user experience </li>
+            <li>05/10/2024 - Modified the product card CSS to include quantity buttons for a nicer user experience.</li>
             <li>05/10/2024 - Did a bit of cleanup of the CSS to put all of the colours into variables for ease of creating new ones down the road.</li>
             <li>05/04/2024 - A bunch of minor updates and improvements, created a list style.</li>
             <li>04/10/2024 - Minor updates. </li>
             <li>04/10/2024 - Gave up trying to sort alignment issues. Code review tomorrow!</li>
-            <li>04/10/2024 - Added some CSS styling to the baskets and buttons (not complete!)</li>
-            <li>04/10/2024 - Created a variable to track contents of the basket</li>
-            <li>04/10/2024 - Added some metadata for mobile linking</li>
-            <li>04/10/2024 - Added the rest of the product pages and added some javascript for when no products are found. Will work on the stying of that another time</li>
-            <li>04/10/2024 - Moved the header into a separate file for ease of maintenance</li>
+            <li>04/10/2024 - Added some CSS styling to the baskets and buttons (not complete!).</li>
+            <li>04/10/2024 - Created a variable to track contents of the basket.</li>
+            <li>04/10/2024 - Added some metadata for mobile linking.</li>
+            <li>04/10/2024 - Added the rest of the product pages and added some javascript for when no products are found. Will work on the stying of that another time.</li>
+            <li>04/10/2024 - Moved the header into a separate file for ease of maintenance.</li>
             <li>30/09/2024 - Started work on the store. Holding the data in a JSON and populating items based on category using javascript. CSS is disgusting and will take forever. Pilsner is the only active category at the moment.</li>
             <li>29/08/2024 - Quick cleanup of code alignment, created holding pages for each section. Time to work on the store functionality!</li>
             <li>29/08/2024 - The basket slides out and displays properly now, created a gradient divider style based on text highlight colour.</li>

@@ -307,26 +307,10 @@ ul.change-list li::before {
         cursor: pointer;
         position: fixed;
         z-index: 500;
-        top: 40px;
-        right: 20px;
+        top: 45px;
+        right: 25px;
         filter: drop-shadow(0 0 3px var(--button-main));
         transition: filter 0.3s ease;
-    }
-    .cart-icon-quantity {
-        background-color: var(--text-highlight);
-        color: var(--text-main);
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        position: absolute;
-        top: 35px; 
-        left: 20px;
-        font-weight: bold;
-        line-height: 1;
     }
 
     .mobile-navigation {
@@ -417,7 +401,9 @@ It's difficult to figure out what's going on here*/
 
 @media screen and (min-width: 641px) {
     .mobile-navigation,
-    .mobile-logo {
+    .mobile-logo,
+    .cart-menu-mobile,
+    .site-banner-mobile{
         display: none;
     }
 

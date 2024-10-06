@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   populateProductGrid();
   loadCart();
   updateCartDisplay();
+  updateCartIconQuantity();
 });
 
 //Display products based on page title
@@ -119,43 +120,78 @@ function addToCart(productId) {
 
   saveCart();
   updateCartDisplay();
+  updateCartIconQuantity();
 
   showNotification(`${quantity} added to cart`);
 
   quantityInput.value = 1;
 }
 
+let notificationCount = 0; // Keep track of the current number of notifications
+const maxNotifications = 3; // Maximum number of notifications to display
+
 function showNotification(message) {
-  const notification = document.getElementById('notification');
+  const container = document.getElementById('notification-container');
+
+  // If there are already 3 notifications, remove the oldest one
+  if (notificationCount >= maxNotifications) {
+    const oldestNotification = container.firstChild; // Get the first notification
+    if (oldestNotification) {
+      oldestNotification.remove(); // Remove the oldest notification
+      notificationCount--; // Decrease the count
+    }
+  }
+
+  // Create a new notification element
+  const notification = document.createElement('div');
+  notification.classList.add('notification');
   notification.textContent = message;
 
-  // Show the notification and trigger the fade-in effect
-  notification.style.display = 'block'; // Make it visible first
+  // Append the new notification to the container
+  container.appendChild(notification);
+  notificationCount++; // Increase the count
+
+  // Triggering the fade-in animation
   setTimeout(() => {
     notification.style.opacity = '1'; // Fade in
-  }, 10); // Small timeout to allow the display to take effect
+  }, 10);
 
-  // Hide the notification after 3 seconds
+  // Handle fade-out and removal after a certain time
   setTimeout(() => {
-    notification.style.opacity = '0'; // Start fading out
-    // After the fade out is complete, hide the element
-    setTimeout(() => {
-      notification.style.display = 'none'; // Hide completely
-    }, 500); // Match the duration of the fade out
-  }, 1000); // Display for 3 seconds
+    notification.style.opacity = '0'; // Fade out
+
+    // Remove the notification from the DOM after fade-out
+    notification.addEventListener('transitionend', () => {
+      notification.remove();
+      notificationCount--; // Decrease the count when removed
+    });
+  }, 2000); // Duration to show notification before fading out
 }
 
 // Update the cart display based on the current cart data
 function updateCartDisplay() {
   const cartDiv = document.getElementById('cart');
+  const desktopCartQuantity = document.getElementById('desktop-cart-quantity');
+  
   if (!cartDiv) return; // Exit if cart div doesn't exist
 
   cartDiv.innerHTML = ''; // Clear the cart display
+  
+  // Calculate total cart items
+  let totalQuantity = 0;
+  for (const quantity of Object.values(cart)) {
+    totalQuantity += quantity;
+  }
+
+  // Update the desktop cart icon quantity
+  if (desktopCartQuantity) {
+    desktopCartQuantity.textContent = totalQuantity;
+  }
 
   // Check if the cart is empty
   if (Object.keys(cart).length === 0) {
     const emptyMessage = document.createElement('div');
-    emptyMessage.className = 'empty-cart-message'; // You can add CSS for styling if needed
+    emptyMessage.className = 'empty-cart-message';
     emptyMessage.textContent = "There's no beer in here yet 😟";
     cartDiv.appendChild(emptyMessage);
     return; // Exit the function if cart is empty
@@ -197,6 +233,8 @@ function updateCartDisplay() {
       totalDiv.className = 'cart-total';
       totalDiv.textContent = `Total: £${total.toFixed(2)}`;
       cartDiv.appendChild(totalDiv);
+
+      updateCartIconQuantity(); // Update cart icon badge after modifying cart
     })
     .catch(error => console.error('Error updating cart:', error));
 }
@@ -241,4 +279,15 @@ function updateCartQuantity(productId, newQuantity) {
   cart[productId] = newQuantity;
   saveCart();
   updateCartDisplay();
+}
+
+function updateCartIconQuantity() {
+  const cartQuantityElement = document.querySelector('.basket-icon-quantity');
+  if (cartQuantityElement) {
+    const totalItems = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
+    cartQuantityElement.textContent = totalItems;
+    // If the cart is empty, hide the badge
+    cartQuantityElement.style.display = totalItems > 0 ? 'flex' : 'none';
+    cartQuantityElement.style.display = totalItems > 0 ? 'flex' : 'none';
+  }
 }

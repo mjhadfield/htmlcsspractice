@@ -2,7 +2,9 @@
 <header>
     <!----------Global Static Divs----------> 
     
-    <div id="notification" class="notification" style="display:none;"></div>
+    <div id="notification-container">
+        <div id="notification" class="notification" style="display: none;"></div>
+    </div>
 
     <div class="site-updates">
         <p class="p2">✨I suck at graphic design✨<br>Next up: product sorting, checkout view ☠️ </p>
@@ -47,7 +49,7 @@
 
     <div class="cart-menu-mobile">
         <img src="images/cart.png" width="40" height="40">
-        <span class="cart-icon-quantity">0</span>
+        <span class="basket-icon-quantity">0</span>
     </div>
 
     <!----------Desktop Navigation----------> 
@@ -79,7 +81,8 @@
         </div>
         <div class="cart-container">
             <img src="images/cart.png" alt="Cart" class="desktop-cart">
-        </div>             
+            <span id="desktop-cart-quantity" class="basket-icon-quantity">0</span>
+        </div>          
     </div>
     
 </header>
