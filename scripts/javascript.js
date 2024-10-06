@@ -1,80 +1,90 @@
-function loadHeader() {
-    // Check if the header is already loaded
-    if (!document.querySelector('#header-content')) {
-        return fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.body.insertAdjacentHTML('afterbegin', data);
-                attachEventListeners(); // Attach event listeners after loading
-                updateCartDisplay(); // Ensure the cart display updates after loading
-            })
-            .catch(error => console.error('Error loading header:', error));
+// Main function to initialize everything
+function initializeApp() {
+    loadHeader()
+        .then(() => {
+            attachEventListeners();
+            updateCartDisplay();
+            setupFormValidation();
+            setupQuantityButtons();
+        })
+        .catch(error => console.error('Error initializing app:', error));
+}
+
+// Load header function
+async function loadHeader() {
+    if (document.querySelector('#header-content')) return;
+
+    try {
+        const response = await fetch('header.html');
+        const data = await response.text();
+        document.body.insertAdjacentHTML('afterbegin', data);
+        console.log ('Header loaded successfully')
+    } catch (error) {
+        console.error('Error loading header:', error);
+        throw error;
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadHeader(); // Call the loadHeader function
-});
-
+// Attach event listeners
 function attachEventListeners() {
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
-    const mobileNavigation = document.querySelector('.mobile-navigation');
-    const cartMenu = document.querySelector('.cart-menu-mobile');
-    const desktopCart = document.querySelector('.desktop-cart');
-    const cartContents = document.querySelector('.cart-contents');
-    const shopLink = document.querySelector('.shop-link');
-    const dropdownContent = document.querySelector('.mobile-dropdown');
+    const elements = {
+        hamburgerMenu: document.querySelector('.hamburger-menu'),
+        mobileNavigation: document.querySelector('.mobile-navigation'),
+        cartMenu: document.querySelector('.cart-menu-mobile'),
+        desktopCart: document.querySelector('.desktop-cart'),
+        cartContents: document.querySelector('.cart-contents'),
+        shopLink: document.querySelector('.shop-link'),
+        dropdownContent: document.querySelector('.mobile-dropdown')
+    };
 
-    hamburgerMenu.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileNavigation.classList.toggle('active');
-    });
-
-    cartMenu.addEventListener('click', function() {
-        this.classList.toggle('active');
-        cartContents.classList.toggle('active');
-    });
-
-    desktopCart.addEventListener('click', function() {
-        this.classList.toggle('active');
-        cartContents.classList.toggle('active');
-    });
-
-    // Add click event to the shop link
-    shopLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default action
-        dropdownContent.classList.toggle('active');
+    elements.hamburgerMenu.addEventListener('click', () => toggleClasses(elements.hamburgerMenu, elements.mobileNavigation));
+    elements.cartMenu.addEventListener('click', () => toggleClasses(elements.cartMenu, elements.cartContents));
+    elements.desktopCart.addEventListener('click', () => toggleClasses(elements.desktopCart, elements.cartContents));
+    elements.shopLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        elements.dropdownContent.classList.toggle('active');
     });
 }
 
-//
+// Helper function to toggle classes
+function toggleClasses(...elements) {
+    elements.forEach(el => el.classList.toggle('active'));
+}
 
-document.addEventListener('DOMContentLoaded', function() {
+// Setup form validation
+function setupFormValidation() {
     const requiredFields = document.querySelectorAll('input[required], textarea[required]');
     
     requiredFields.forEach(field => {
-        field.addEventListener('blur', function() {
-            if (this.value.trim() === '') {
-                this.classList.add('touched');
-            } else {
-                this.classList.remove('touched');
-            }
-        });
-
-        field.addEventListener('input', function() {
-            if (this.value.trim() !== '') {
-                this.classList.remove('touched');
-            }
-        });
+        field.addEventListener('blur', () => validateField(field));
+        field.addEventListener('input', () => validateField(field));
     });
-});
+}
 
-document.querySelectorAll('.quantity-btn').forEach(button => {
-    button.addEventListener('click', () => {
-    button.classList.add('hover-effect'); 
-      // Remove the hover-effect class after 1 second
-    setTimeout(() => {
-        button.classList.remove('hover-effect');
-      }, 1000); // 1000 milliseconds = 1 second
+// Helper function to validate a field
+function validateField(field) {
+    if (field.value.trim() === '') {
+        field.classList.add('touched');
+    } else {
+        field.classList.remove('touched');
+    }
+}
+
+// Setup quantity buttons
+function setupQuantityButtons() {
+    document.querySelectorAll('.quantity-btn').forEach(button => {
+        button.addEventListener('click', () => addTemporaryClass(button, 'hover-effect', 1000));
     });
+}
+
+// Helper function to add and remove a class after a delay
+function addTemporaryClass(element, className, delay) {
+    element.classList.add(className);
+    setTimeout(() => element.classList.remove(className), delay);
+}
+
+// Initialize the app when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded event fired. Initializing app...');
+    initializeApp();
 });

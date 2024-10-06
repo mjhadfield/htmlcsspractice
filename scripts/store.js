@@ -3,30 +3,23 @@
 let cart = {};
 let globalProducts = [];
 
+async function loadProducts() {
+  // Check if the product-grid element exists
+  const productGrid = document.getElementById('product-grid');
+  if (!productGrid) {
+      console.log('Product grid not found on this page. Skipping product load.');
+      return; // Exit the function if the product grid doesn't exist
+  }
 
-//Event listener to load everything required
-document.addEventListener('DOMContentLoaded', function() {
-  populateProductGrid();
-  loadCart();
-  updateCartDisplay();
-  updateCartIconQuantity();
-  loadProducts();
-});
-// Fetch products and store them in the global variable
-function loadProducts() {
-    return fetch('scripts/products.json')
-        .then(response => response.json())
-        .then(products => {
-            globalProducts = products;
-            console.log('Products loaded successfully');
-        })
-        .catch(error => {
-            console.error('Error loading products:', error);
-        });
+  try {
+      const response = await fetch('scripts/products.json');
+      globalProducts = await response.json();
+      console.log('Products loaded successfully');
+      populateProductGrid(); // Call this after products are loaded
+  } catch (error) {
+      console.error('Error loading products:', error);
+  }
 }
-
-// Call this function when your page loads
-loadProducts();
 
 //Display products based on page title
 function getCurrentCategory() {
@@ -37,29 +30,23 @@ function getCurrentCategory() {
 
 function populateProductGrid() {
   const category = getCurrentCategory();
+  const productGrid = document.getElementById('product-grid');
+  productGrid.innerHTML = '';
 
-  fetch('scripts/products.json')
-    .then(response => response.json())
-    .then(products => {
-      const productGrid = document.getElementById('product-grid');
-      productGrid.innerHTML = '';
+  const filteredProducts = globalProducts.filter(product =>
+      category === 'all' || product.category.toLowerCase() === category
+  );
 
-      const filteredProducts = products.filter(product =>
-        category === 'all' || product.category.toLowerCase() === category
-      );
-
-      if (filteredProducts.length === 0) {
-        const noItemsMessage = document.createElement('p');
-        noItemsMessage.textContent = "No homeware found, only beer. You have enough glasses. Check a different category.";
-        productGrid.appendChild(noItemsMessage);
-      } else {
-        filteredProducts.forEach(product => {
+  if (filteredProducts.length === 0) {
+      const noItemsMessage = document.createElement('p');
+      noItemsMessage.textContent = "No products found";
+      productGrid.appendChild(noItemsMessage);
+  } else {
+      filteredProducts.forEach(product => {
           const productItem = createProductItem(product);
           productGrid.appendChild(productItem);
-        });
-      }
-    })
-    .catch(error => console.error('Error fetching products:', error));
+      });
+  }
 }
 
 function createProductItem(product) {
@@ -67,18 +54,18 @@ function createProductItem(product) {
   productItem.className = 'product-item';
 
   productItem.innerHTML = `
-    <img src="${product.imageUrl}" alt="${product.name}" class="product-card-image">
-    <div class="product-top-container">
-      <h3 class="product-top">${product.name} <br> £${product.cost.toFixed(2)}</h3>
-    </div>
-    <div class="quantity-control-container">
-      <div class="quantity-control">
-        <button class="quantity-btn minus-btn" onclick="decreaseQuantity(${product.id})">-</button>
-        <input type="number" id="quantity-${product.id}" value="1" min="1" max="10" class="quantity-input">
-        <button class="quantity-btn plus-btn" onclick="increaseQuantity(${product.id})">+</button>
+      <img src="${product.imageUrl}" alt="${product.name}" class="product-card-image">
+      <div class="product-top-container">
+          <h3 class="product-top">${product.name} <br> £${product.cost.toFixed(2)}</h3>
       </div>
-      <button class="button-product" onclick="addToCart(${product.id})">Add to Cart</button>
-    </div>
+      <div class="quantity-control-container">
+          <div class="quantity-control">
+              <button class="quantity-btn minus-btn" onclick="decreaseQuantity(${product.id})">-</button>
+              <input type="number" id="quantity-${product.id}" value="1" min="1" max="10" class="quantity-input">
+              <button class="quantity-btn plus-btn" onclick="increaseQuantity(${product.id})">+</button>
+          </div>
+          <button class="button-product" onclick="addToCart(${product.id})">Add to Cart</button>
+      </div>
   `;
 
   return productItem;
@@ -88,7 +75,7 @@ function increaseQuantity(productId) {
   const input = document.getElementById(`quantity-${productId}`);
   const currentValue = parseInt(input.value);
   if (currentValue < parseInt(input.max)) {
-    input.value = currentValue + 1;
+      input.value = currentValue + 1;
   }
 }
 
@@ -96,7 +83,7 @@ function decreaseQuantity(productId) {
   const input = document.getElementById(`quantity-${productId}`);
   const currentValue = parseInt(input.value);
   if (currentValue > parseInt(input.min)) {
-    input.value = currentValue - 1;
+      input.value = currentValue - 1;
   }
 }
 
@@ -137,7 +124,6 @@ function addToCart(productId) {
       return;
   }
 
-
   if (cart[productId]) {
     cart[productId] += quantity;
   } else {
@@ -152,6 +138,8 @@ function addToCart(productId) {
 
   quantityInput.value = 1;
 }
+
+  // Product notification handling
 
 let notificationCount = 0; // Keep track of the current number of notifications
 const maxNotifications = 3; // Maximum number of notifications to display
@@ -317,3 +305,11 @@ function updateCartIconQuantity() {
       cartQuantityElement.style.display = 'flex';
   }
 }
+
+// Event listener to load all functions on page load)
+document.addEventListener('DOMContentLoaded', function() {
+  loadProducts();
+  loadCart();
+  updateCartDisplay();
+  updateCartIconQuantity();
+});
