@@ -312,13 +312,21 @@ ul.change-list li::before {
         filter: drop-shadow(0 0 3px var(--button-main));
         transition: filter 0.3s ease;
     }
-
-    .cart-menu-mobile span {
-        display: block;
-        height: 4px;
-        width: 40px;
-        background-color: var(--text-main);
-        margin: 8px;
+    .cart-icon-quantity {
+        background-color: var(--text-highlight);
+        color: var(--text-main);
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        position: absolute;
+        top: 35px; 
+        left: 20px;
+        font-weight: bold;
+        line-height: 1;
     }
 
     .mobile-navigation {
