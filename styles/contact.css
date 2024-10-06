@@ -95,7 +95,7 @@ label.required::after {
     color: var(--text-error);
 }
 
-@media screen and (max-width: 1100px)
+@media screen and (max-width: 640px)
 {    .contact-form {
         max-width: 400px;
         padding: 2rem;
