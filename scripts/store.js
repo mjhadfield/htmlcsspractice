@@ -180,15 +180,19 @@ function addToCart(productId, quantity) {
 
 // Product notification handling
 
-// Product notification handling
-let activeNotification = null; // Track the current active notification
+let notificationCount = 0; // Keep track of the current number of notifications
+const maxNotifications = 3; // Maximum number of notifications to display
 
 function showNotification(message) {
   const container = document.getElementById('notification-container');
 
-  // If there's already an active notification, remove it
-  if (activeNotification) {
-    activeNotification.remove();
+  // If there are already 3 notifications, remove the oldest one
+  if (notificationCount >= maxNotifications) {
+    const oldestNotification = container.firstChild; // Get the first notification
+    if (oldestNotification) {
+      oldestNotification.remove(); // Remove the oldest notification
+      notificationCount--; // Decrease the count
+    }
   }
 
   // Create a new notification element
@@ -198,7 +202,7 @@ function showNotification(message) {
 
   // Append the new notification to the container
   container.appendChild(notification);
-  activeNotification = notification; // Track the current notification
+  notificationCount++; // Increase the count
 
   // Triggering the fade-in animation
   setTimeout(() => {
@@ -212,13 +216,11 @@ function showNotification(message) {
     // Remove the notification from the DOM after fade-out
     notification.addEventListener('transitionend', () => {
       notification.remove();
-      activeNotification = null; // Clear the active notification when removed
+      notificationCount--; // Decrease the count when removed
     });
   }, 2000); // Duration to show notification before fading out
 }
 
-
-// Update the cart display based on the current cart data
 function updateCartDisplay() {
   const cartDiv = document.getElementById('cart');
   const desktopCartQuantity = document.getElementById('desktop-cart-quantity');
@@ -248,12 +250,13 @@ function updateCartDisplay() {
     return; // Exit the function if cart is empty
   }
 
-  //This is the handling for the products in the cart
-
   fetch('scripts/products.json')
     .then(response => response.json())
     .then(products => {
       let total = 0;
+      const itemsContainer = document.createElement('div');
+      itemsContainer.className = 'cart-items-container';
+
       for (const [productId, quantity] of Object.entries(cart)) {
         const product = products.find(p => p.id === parseInt(productId));
         if (product) {
@@ -262,29 +265,36 @@ function updateCartDisplay() {
           const itemDiv = document.createElement('div');
           itemDiv.className = 'cart-item';
           itemDiv.innerHTML = `
-          <div class="cart-item-image">
-            <img src="${product.imageUrl}" alt="${product.name}">
-            <span class="cart-item-quantity">${quantity}</span>
-            <button class="cart-item-removeall" onclick="removeAllFromCart(${productId})">x</button>
-          </div>
-          <div class="cart-item-container">
-            <div class="cart-item-name">${product.name}</div>
-            <div class="cart-item-price-container">
-              <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
+            <div class="cart-item-image">
+              <img src="${product.imageUrl}" alt="${product.name}">
+              <span class="cart-item-quantity">${quantity}</span>
+              <button class="cart-item-removeall" onclick="removeAllFromCart(${productId})">x</button>
             </div>
-            <div class="cart-item-remove">
-              <button class="button-remove" onclick="removeFromCart(${product.id})">Remove</button>
+            <div class="cart-item-container">
+              <div class="cart-item-name">${product.name}</div>
+              <div class="cart-item-price-container">
+                <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
+              </div>
+              <div class="cart-item-remove">
+                <button class="button-remove" onclick="removeFromCart(${product.id})">Remove</button>
+              </div>
             </div>
-          </div>
-        `;
-          cartDiv.appendChild(itemDiv);
+          `;
+          itemsContainer.appendChild(itemDiv);
         }
       }
 
-      const totalDiv = document.createElement('div');
-      totalDiv.className = 'cart-total';
-      totalDiv.textContent = `Total: £${total.toFixed(2)}`;
-      cartDiv.appendChild(totalDiv);
+// Create and append the total
+const totalDiv = document.createElement('div');
+totalDiv.className = 'cart-total';
+totalDiv.innerHTML = `
+  <div class="cart-total-amount">Total: £${total.toFixed(2)}</div>
+  <a href="basket.html" class="view-basket-button">View Basket</a>
+`;
+cartDiv.insertBefore(totalDiv, cartDiv.firstChild);
+
+      // Then append the items container
+      cartDiv.appendChild(itemsContainer);
 
       updateCartIconQuantity(); // Update cart icon badge after modifying cart
     })

@@ -108,7 +108,6 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 5px;
 }
 
 .cart-item-price {
@@ -227,17 +226,37 @@
     transform: scale(0.95); /* Slight shrink effect when clicked */
 }
 
-/* Cart total attributes - NB 05/10/24 this should move to the top of the cart */
+/* Cart total attributes*/
 .cart-total {
-    margin-top: 30px;
-    font-size: 18px;
-    font-weight: 600;
-    text-align: center;
+    background-color: var(--bg-accent);
     color: var(--text-main);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.cart-total::before {
-    color: var(--text-highlight);
+.cart-total-amount {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.view-basket-button {
+    background-color: var(--text-highlight);
+    color: var(--text-main);
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.view-basket-button:hover {
+    background-color: var(--button-hover);
 }
 
 .empty-cart-message {
