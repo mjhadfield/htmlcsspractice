@@ -288,8 +288,8 @@ function updateCartDisplay() {
 const totalDiv = document.createElement('div');
 totalDiv.className = 'cart-total';
 totalDiv.innerHTML = `
-  <div class="cart-total-amount">Total: £${total.toFixed(2)}</div>
-  <a href="basket.html" class="view-basket-button">View Basket</a>
+  <div class="cart-total-amount">Subtotal: £${total.toFixed(2)}</div>
+  <a href="basket.html" class="view-basket-button">View Basket / Checkout</a>
 `;
 cartDiv.insertBefore(totalDiv, cartDiv.firstChild);
 
