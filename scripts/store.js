@@ -180,45 +180,43 @@ function addToCart(productId, quantity) {
 
 // Product notification handling
 
-let notificationCount = 0; // Keep track of the current number of notifications
-const maxNotifications = 3; // Maximum number of notifications to display
+let currentNotification = null;
+let notificationTimeout = null;
 
 function showNotification(message) {
   const container = document.getElementById('notification-container');
 
-  // If there are already 3 notifications, remove the oldest one
-  if (notificationCount >= maxNotifications) {
-    const oldestNotification = container.firstChild; // Get the first notification
-    if (oldestNotification) {
-      oldestNotification.remove(); // Remove the oldest notification
-      notificationCount--; // Decrease the count
-    }
+  // Clear any existing notification
+  if (currentNotification) {
+    clearTimeout(notificationTimeout);
+    container.removeChild(currentNotification);
   }
 
   // Create a new notification element
-  const notification = document.createElement('div');
-  notification.classList.add('notification');
-  notification.textContent = message;
+  currentNotification = document.createElement('div');
+  currentNotification.classList.add('notification');
+  currentNotification.textContent = message;
 
   // Append the new notification to the container
-  container.appendChild(notification);
-  notificationCount++; // Increase the count
+  container.appendChild(currentNotification);
 
-  // Triggering the fade-in animation
+  // Trigger the fade-in animation
   setTimeout(() => {
-    notification.style.opacity = '1'; // Fade in
+    currentNotification.style.opacity = '1'; // Fade in
   }, 10);
 
   // Handle fade-out and removal after a certain time
-  setTimeout(() => {
-    notification.style.opacity = '0'; // Fade out
+  notificationTimeout = setTimeout(() => {
+    currentNotification.style.opacity = '0'; // Fade out
 
     // Remove the notification from the DOM after fade-out
-    notification.addEventListener('transitionend', () => {
-      notification.remove();
-      notificationCount--; // Decrease the count when removed
+    currentNotification.addEventListener('transitionend', () => {
+      if (currentNotification.parentNode === container) {
+        container.removeChild(currentNotification);
+      }
+      currentNotification = null;
     });
-  }, 2000); // Duration to show notification before fading out
+  }, 3000); // Duration to show notification before fading out (increased to 3 seconds for better visibility)
 }
 
 function updateCartDisplay() {
