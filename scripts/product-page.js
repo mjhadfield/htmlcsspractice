@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('../scripts/products.json').then(response => response.json()),
         fetch('../scripts/descriptions.json').then(response => response.json())
     ]).then(([products, descriptions]) => {
+        globalProducts = products;
         console.log('Successfully parsed JSON:');
 
         // Find the product and description that match the ID
@@ -103,11 +104,12 @@ function createQuantitySelect() {
 function createAddToCartButton(productId) {
     const button = document.createElement('button');
     button.textContent = 'Add to Cart';
+
     button.addEventListener('click', function() {
         const quantity = document.querySelector('.product-page-purchase select').value;
-        // Call your existing add to cart function here
-        console.log(`Added product ${productId} to cart, quantity: ${quantity}`);
+        addToCart(productId, quantity);
     });
+
     return button;
 }
 

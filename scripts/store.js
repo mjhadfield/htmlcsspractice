@@ -1,4 +1,6 @@
-//Create global variables
+//This Javascript is a hot mess. Please don't judge me.
+
+//Global variables
 
 let cart = {};
 let globalProducts = [];
@@ -143,51 +145,50 @@ function saveCart() {
 }
 
 // Add an item to the cart and save it
-function addToCart(productId) {
-  const quantityInput = document.getElementById(`quantity-${productId}`);
-  const quantity = parseInt(quantityInput.value);
+function addToCart(productId, quantity) {
+  const productQuantity = parseInt(quantity) || parseInt(document.getElementById(`quantity-${productId}`).value);
 
-  if (isNaN(quantity) || quantity < 1) {
-    showNotification('Please enter a valid quantity');
-    return;
+  if (isNaN(productQuantity) || productQuantity < 1) {
+      showNotification('Please enter a valid quantity');
+      return;
   }
+  
   const product = globalProducts.find(p => p.id === parseInt(productId));
-
+  
   if (!product) {
       showNotification('Product not found');
       return;
   }
 
+  // Ensure cart quantity is treated as a number before adding
   if (cart[productId]) {
-    cart[productId] += quantity;
+      cart[productId] = parseInt(cart[productId]) + productQuantity;
   } else {
-    cart[productId] = quantity;
+      cart[productId] = productQuantity;
   }
+
+  // Log the updated cart details
+  console.log(`Added to cart: ${product.name}, Quantity: ${productQuantity}`);
 
   saveCart();
   updateCartDisplay();
   updateCartIconQuantity();
 
-  showNotification(`${quantity} ${product.name}${quantity > 1 ? 's' : ''} added to cart`);
-
-  quantityInput.value = 1;
+  showNotification(`${productQuantity} ${product.name}${productQuantity > 1 ? 's' : ''} added to cart`);
 }
 
-  // Product notification handling
 
-let notificationCount = 0; // Keep track of the current number of notifications
-const maxNotifications = 3; // Maximum number of notifications to display
+// Product notification handling
+
+// Product notification handling
+let activeNotification = null; // Track the current active notification
 
 function showNotification(message) {
   const container = document.getElementById('notification-container');
 
-  // If there are already 3 notifications, remove the oldest one
-  if (notificationCount >= maxNotifications) {
-    const oldestNotification = container.firstChild; // Get the first notification
-    if (oldestNotification) {
-      oldestNotification.remove(); // Remove the oldest notification
-      notificationCount--; // Decrease the count
-    }
+  // If there's already an active notification, remove it
+  if (activeNotification) {
+    activeNotification.remove();
   }
 
   // Create a new notification element
@@ -197,7 +198,7 @@ function showNotification(message) {
 
   // Append the new notification to the container
   container.appendChild(notification);
-  notificationCount++; // Increase the count
+  activeNotification = notification; // Track the current notification
 
   // Triggering the fade-in animation
   setTimeout(() => {
@@ -211,10 +212,11 @@ function showNotification(message) {
     // Remove the notification from the DOM after fade-out
     notification.addEventListener('transitionend', () => {
       notification.remove();
-      notificationCount--; // Decrease the count when removed
+      activeNotification = null; // Clear the active notification when removed
     });
   }, 2000); // Duration to show notification before fading out
 }
+
 
 // Update the cart display based on the current cart data
 function updateCartDisplay() {
@@ -346,7 +348,6 @@ document.addEventListener('DOMContentLoaded', function() {
   loadProducts().then(() => {
       const productGrid = document.getElementById('product-grid');
       if (productGrid) {
-          populateProductGrid();
           const sortSelect = document.getElementById('sort-select');
           sortSelect.addEventListener('change', populateProductGrid);
       }
@@ -355,4 +356,3 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCartDisplay();
   updateCartIconQuantity();
 });
-

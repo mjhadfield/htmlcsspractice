@@ -1,3 +1,5 @@
+console.log('Look at you peeking in the console! Good for you 💕')
+
 // Main function to initialize everything
 function initializeApp() {
     loadHeader()
