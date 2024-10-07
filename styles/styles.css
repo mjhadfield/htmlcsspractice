@@ -315,13 +315,13 @@ ul.change-list li::before {
 
     .mobile-navigation {
         z-index: 160;
-        left: -300px;
+        left: -220px;
         top: 0;
         padding-top: 100px;
         transition: transform 0.3s ease-in-out;
         position: fixed;
         background-color: var(--bg-banner-nav);
-        width: 300px;
+        width: 220px;
         height: 100%;
         box-shadow: 1px 0 1px var(--box-shadow);
         display: flex;
