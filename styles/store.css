@@ -168,3 +168,45 @@
 .button-product {
   margin-left: 30px;
 }
+
+/* Product Sort Styling */
+#product-sort {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#sort-select {
+  width: 200px;
+  height: 40px;
+  padding: 5px 10px;
+  border: 1px solid var(--text-highlight);
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: var(--bg-body);
+  color: var(--text-highlight);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#sort-select:hover, #sort-select:focus {
+  border-color: var(--button-main);
+  box-shadow: 0 0 5px rgba(var(--button-main-rgb), 0.5);
+}
+
+#sort-select option {
+  background-color: var(--bg-body);
+  color: var(--text-muted);
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 1000px) {
+  #product-sort {
+      text-align: right;
+      padding-right: 50px;
+  }
+
+  #sort-select {
+      width: 300px;
+  }
+}

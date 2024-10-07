@@ -4,18 +4,19 @@ let cart = {};
 let globalProducts = [];
 
 async function loadProducts() {
-  // Check if the product-grid element exists
   const productGrid = document.getElementById('product-grid');
   if (!productGrid) {
       console.log('Product grid not found on this page. Skipping product load.');
-      return; // Exit the function if the product grid doesn't exist
+      return;
   }
 
   try {
       const response = await fetch('../scripts/products.json');
       globalProducts = await response.json();
       console.log('Products loaded successfully');
-      populateProductGrid(); // Call this after products are loaded
+      if (productGrid) {
+          populateProductGrid();
+      }
   } catch (error) {
       console.error('Error loading products:', error);
   }
@@ -37,11 +38,16 @@ function getCurrentCategory() {
 function populateProductGrid() {
   const category = getCurrentCategory();
   const productGrid = document.getElementById('product-grid');
+  const sortSelect = document.getElementById('sort-select');
   productGrid.innerHTML = '';
 
-  const filteredProducts = globalProducts.filter(product =>
+  let filteredProducts = globalProducts.filter(product =>
       category === 'all' || product.category.toLowerCase() === category
   );
+
+  // Sort the filtered products
+  filteredProducts = sortProducts(filteredProducts, sortSelect.value);
+  console.log("Products sorted")
 
   if (filteredProducts.length === 0) {
       const noItemsMessage = document.createElement('p');
@@ -96,6 +102,22 @@ function decreaseQuantity(productId) {
   const currentValue = parseInt(input.value);
   if (currentValue > parseInt(input.min)) {
       input.value = currentValue - 1;
+  }
+}
+
+// Add this function to sort the products
+function sortProducts(products, sortBy) {
+  switch (sortBy) {
+      case 'name':
+          return products.sort((a, b) => a.name.localeCompare(b.name));
+      case 'price-low':
+          return products.sort((a, b) => a.cost - b.cost);
+      case 'price-high':
+          return products.sort((a, b) => b.cost - a.cost);
+      case 'newest':
+          return products.sort((a, b) => b.id - a.id);
+      default:
+          return products;
   }
 }
 
@@ -321,7 +343,14 @@ function updateCartIconQuantity() {
 
 // Event listener to load all functions on page load)
 document.addEventListener('DOMContentLoaded', function() {
-  loadProducts();
+  loadProducts().then(() => {
+      const productGrid = document.getElementById('product-grid');
+      if (productGrid) {
+          populateProductGrid();
+          const sortSelect = document.getElementById('sort-select');
+          sortSelect.addEventListener('change', populateProductGrid);
+      }
+  });
   loadCart();
   updateCartDisplay();
   updateCartIconQuantity();

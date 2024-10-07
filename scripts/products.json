@@ -36,7 +36,7 @@
     {"id":35,"name":"Persistence Is Utile #VI","cost":6.50,"description":"","category":"stout","imageUrl":"images/products/35.png"},
     {"id":36,"name":"Three Brothers - Session IPA","cost":4.00,"description":"","category":"session","imageUrl":"images/products/36.png"},
     {"id":37,"name":"Hazy Day IPA","cost":3.00,"description":"","category":"session","imageUrl":"images/products/37.png"},
-    {"id":38,"name":"All Day IPA","cost":2.50,"description":"","category":"session","imageUrl":"images/products/38.png"},
+    {"id":38,"name":"All Day IPA","cost":3.50,"description":"","category":"session","imageUrl":"images/products/38.png"},
     {"id":39,"name":"Ice Breaker IPA","cost":3.25,"description":"","category":"session","imageUrl":"images/products/39.png"},
     {"id":40,"name":"Level Head IPA Pint Glass","cost":7,"description":"","category":"glassware","imageUrl":"images/products/40.png"},
     {"id":41,"name":"Ice Breaker Pint Glass","cost":7,"description":"","category":"glassware","imageUrl":"images/products/41.png"},
