@@ -25,6 +25,12 @@ async function loadProducts() {
 function getCurrentCategory() {
   const path = window.location.pathname;
   const page = path.split("/").pop();
+  
+  // Check if the page is "store.html" and return "all" in that case
+  if (page.toLowerCase() === 'store.html') {
+    return 'all';
+  }
+  
   return page.replace('.html', '').toLowerCase();
 }
 
@@ -49,6 +55,8 @@ function populateProductGrid() {
   }
 }
 
+//Create product cards
+
 function createProductItem(product) {
   const productItem = document.createElement('div');
   productItem.className = 'product-item';
@@ -72,6 +80,8 @@ function createProductItem(product) {
 
   return productItem;
 }
+
+//Quantity to add to basket
 
 function increaseQuantity(productId) {
   const input = document.getElementById(`quantity-${productId}`);
@@ -214,6 +224,8 @@ function updateCartDisplay() {
     return; // Exit the function if cart is empty
   }
 
+  //This is the handling for the products in the cart
+
   fetch('scripts/products.json')
     .then(response => response.json())
     .then(products => {
@@ -223,7 +235,6 @@ function updateCartDisplay() {
         if (product) {
           const itemTotal = product.cost * quantity;
           total += itemTotal;
-
           const itemDiv = document.createElement('div');
           itemDiv.className = 'cart-item';
           itemDiv.innerHTML = `
