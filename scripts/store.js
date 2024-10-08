@@ -287,7 +287,7 @@ const totalDiv = document.createElement('div');
 totalDiv.className = 'cart-total';
 totalDiv.innerHTML = `
   <div class="cart-total-amount">Subtotal: £${total.toFixed(2)}</div>
-  <a href="basket.html" class="view-basket-button">View Basket</a>
+  <a href="checkout.html" class="view-basket-button">View Basket</a>
 `;
 cartDiv.insertBefore(totalDiv, cartDiv.firstChild);
 

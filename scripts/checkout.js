@@ -1,39 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const cartItemsContainer = document.getElementById('cart-items');
+
     const cartTotalElement = document.getElementById('cart-total');
     const shippingOptions = document.querySelectorAll('input[name="shipping"]');
     const placeOrderButton = document.getElementById('place-order');
 
     let cartTotal = 0;
     let shippingCost = 0;
-
-    function updateCartDisplay() {
-        cartItemsContainer.innerHTML = '';
-        cartTotal = 0;
-
-        fetch('scripts/products.json')
-            .then(response => response.json())
-            .then(products => {
-                for (const [productId, quantity] of Object.entries(cart)) {
-                    const product = products.find(p => p.id === parseInt(productId));
-                    if (product) {
-                        const itemTotal = product.cost * quantity;
-                        cartTotal += itemTotal;
-
-                        const itemElement = document.createElement('div');
-                        itemElement.className = 'cart-item';
-                        itemElement.innerHTML = `
-                            <img src="${product.imageUrl}" alt="${product.name}">
-                            <span>${product.name} x ${quantity}</span>
-                            <span>£${itemTotal.toFixed(2)}</span>
-                        `;
-                        cartItemsContainer.appendChild(itemElement);
-                    }
-                }
-                updateTotalDisplay();
-            })
-            .catch(error => console.error('Error updating cart:', error));
-    }
 
     function updateTotalDisplay() {
         const total = cartTotal + shippingCost;
@@ -70,10 +42,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial cart display
     updateCartDisplay();
 });
-
-window.onload = function() {
-    if (window.location.pathname === '/checkout.html') {
-        document.querySelector('.cart-menu-mobile').style.display = 'none';
-        console.log("Checkout page - hiding basket icon")
-    }
-};

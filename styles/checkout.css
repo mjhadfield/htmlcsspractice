@@ -1,12 +1,13 @@
+/*----------------------------Global Styles----------------------------*/
+
 :root {
-    --accent-color: #e74c3c;
     --text-color: #34495e;
     --border-color: #bdc3c7;
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 .page-wrapper {
-    padding-top: 165px;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,33 +40,10 @@ section:last-child {
     padding-bottom: 0;
 }
 
-.cart-item {
-    display: flex;
-    align-items: center;
-    padding: 15px 0;
-}
+/*--------------------Checkout basket will go here --------------------*/
 
-.cart-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 20px;
-}
 
-.cart-item-details {
-    flex-grow: 1;
-}
-
-.cart-item-name {
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.cart-item-price {
-    color: var(--accent-color);
-    font-weight: 500;
-}
+/*-----------------------Payment options & Total-----------------------*/
 
 .payment-options, .shipping-options .options {
     display: flex;
@@ -111,7 +89,7 @@ section:last-child {
 
 .option-card .price {
     font-weight: bold;
-    color: var(--accent-color);
+    color: var(--text-error);
 }
 
 .option-card input[type="radio"]:checked + label {
@@ -123,12 +101,10 @@ section:last-child {
     color: var(--white);
 }
 
-/* Specific styles for payment options */
 .payment-options .option-card label {
     justify-content: flex-start;
 }
 
-/* Specific styles for shipping options */
 .shipping-options .option-card label {
     justify-content: space-between;
 }
@@ -143,12 +119,6 @@ section:last-child {
 .option-card label.disabled {
     opacity: 0.6;
     cursor: not-allowed;
-}
-
-h2 {
-    margin-bottom: 15px;
-    font-size: 1.2em;
-    color: var(--text-brown);
 }
 
 label {
