@@ -126,12 +126,15 @@ function sortProducts(products, sortBy) {
 // Load the cart from localStorage
 function loadCart() {
   try {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      cart = JSON.parse(storedCart);
-    }
+      const storedCart = localStorage.getItem('cart');
+      if (storedCart) {
+          cart = JSON.parse(storedCart);
+      } else {
+          cart = {};
+      }
   } catch (error) {
-    console.error('Error loading cart from localStorage:', error);
+      console.error('Error loading cart from localStorage:', error);
+      cart = {};
   }
 }
 
@@ -219,7 +222,10 @@ function showNotification(message) {
   }, 3000); // Duration to show notification before fading out (increased to 3 seconds for better visibility)
 }
 
-function updateCartDisplay() {
+function updateCartDisplay(forceUpdate = false) {
+  if (forceUpdate) {
+      loadCart(); // Reload cart data from localStorage
+  }
   const cartDiv = document.getElementById('cart');
   const desktopCartQuantity = document.getElementById('desktop-cart-quantity');
   
@@ -363,4 +369,15 @@ document.addEventListener('DOMContentLoaded', function() {
   loadCart();
   updateCartDisplay();
   updateCartIconQuantity();
+});
+
+window.addEventListener('storage', function(e) {
+  if (e.key === 'cart') {
+    loadCart();
+    updateCartDisplay();
+  }
+});
+
+window.addEventListener('cartUpdated', function() {
+  updateCartDisplay(true);
 });

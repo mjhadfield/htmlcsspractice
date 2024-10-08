@@ -17,6 +17,7 @@ function loadCart() {
 function updateCheckoutDisplay() {
     const checkoutDiv = document.getElementById('checkout-cart');
     checkoutDiv.innerHTML = ''; // Clear the existing display
+    notifyCartUpdate()
 
     if (Object.keys(cart).length === 0) {
         checkoutDiv.innerHTML = "<p>Your cart is empty.</p>";
@@ -73,6 +74,7 @@ function updateShippingOptions(subtotal) {
         option.addEventListener('change', (e) => {
             shippingCost = parseFloat(e.target.value);
             updateTotalDisplay(subtotal);
+            notifyCartUpdate()
         });
     });
 
@@ -96,6 +98,7 @@ function updateTotalDisplay(subtotal) {
     const checkoutDiv = document.getElementById('checkout-cart');
     if (!document.getElementById('checkout-total')) {
         checkoutDiv.appendChild(totalDiv);
+        notifyCartUpdate()
     }
 }
 
@@ -105,6 +108,7 @@ function updateQuantity(productId, newQuantity) {
     cart[productId] = parseInt(newQuantity);
     saveCart();
     updateCheckoutDisplay();
+    notifyCartUpdate()
 }
 
 // Save the updated cart to localStorage
@@ -121,6 +125,11 @@ function removeFromCart(productId) {
     delete cart[productId];
     saveCart();
     updateCheckoutDisplay();
+    notifyCartUpdate()
+}
+
+function notifyCartUpdate() {
+    window.dispatchEvent(new CustomEvent('cartUpdated'));
 }
 
 // Initialize the checkout page

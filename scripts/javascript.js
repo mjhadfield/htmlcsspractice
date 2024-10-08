@@ -8,6 +8,9 @@ function initializeApp() {
             updateCartDisplay();
             setupFormValidation();
             setupQuantityButtons();
+            
+            // Add this line
+            window.addEventListener('cartUpdated', () => updateCartDisplay(true));
         })
         .catch(error => console.error('Error initializing app:', error));
 }
