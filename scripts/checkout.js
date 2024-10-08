@@ -1,44 +1,130 @@
-document.addEventListener('DOMContentLoaded', () => {
+cart = {};
+let shippingCost = 5; // Default to standard shipping
 
-    const cartTotalElement = document.getElementById('cart-total');
-    const shippingOptions = document.querySelectorAll('input[name="shipping"]');
-    const placeOrderButton = document.getElementById('place-order');
-
-    let cartTotal = 0;
-    let shippingCost = 0;
-
-    function updateTotalDisplay() {
-        const total = cartTotal + shippingCost;
-        cartTotalElement.textContent = `Total: £${total.toFixed(2)}`;
-    
-        // Disable free shipping for orders under £50
-        const freeShippingOption = document.getElementById('shipping-1');
-        const freeShippingLabel = document.querySelector('label[for="shipping-1"]');
-        
-        if (cartTotal >= 50) {
-            freeShippingOption.disabled = false;
-            freeShippingLabel.classList.remove('disabled');
-        } else {
-            freeShippingOption.disabled = true;
-            freeShippingOption.checked = false; // Uncheck if it was selected
-            freeShippingLabel.classList.add('disabled');
+// Load the cart from localStorage
+function loadCart() {
+    try {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+            cart = JSON.parse(storedCart);
         }
+    } catch (error) {
+        console.error('Error loading cart from localStorage:', error);
     }
-    
+}
+
+// Update the cart display on the checkout page
+function updateCheckoutDisplay() {
+    const checkoutDiv = document.getElementById('checkout-cart');
+    checkoutDiv.innerHTML = ''; // Clear the existing display
+
+    if (Object.keys(cart).length === 0) {
+        checkoutDiv.innerHTML = "<p>Your cart is empty.</p>";
+        return;
+    }
+
+    // Fetch products to display with the cart
+    fetch('scripts/products.json')
+        .then(response => response.json())
+        .then(products => {
+            let subtotal = 0;
+            for (const [productId, quantity] of Object.entries(cart)) {
+                const product = products.find(p => p.id === parseInt(productId));
+                if (product) {
+                    const itemTotal = product.cost * quantity;
+                    subtotal += itemTotal;
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'checkout-item';
+                    itemDiv.innerHTML = `
+                        <div class="checkout-item-name">${product.name}</div>
+                        <div class="checkout-item-quantity">
+                            <input type="number" value="${quantity}" min="1" max="10" id="quantity-${productId}" onchange="updateQuantity(${productId}, this.value)">
+                        </div>
+                        <div class="checkout-item-price">£${itemTotal.toFixed(2)}</div>
+                        <button onclick="removeFromCart(${productId})">Remove</button>
+                    `;
+                    checkoutDiv.appendChild(itemDiv);
+                }
+            }
+
+            updateShippingOptions(subtotal);
+            updateTotalDisplay(subtotal);
+        })
+        .catch(error => console.error('Error fetching products:', error));
+}
+
+function updateShippingOptions(subtotal) {
+    const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+    const freeShippingOption = document.getElementById('shipping-1');
+    const freeShippingLabel = document.querySelector('label[for="shipping-1"]');
+
+    if (subtotal >= 50) {
+        freeShippingOption.disabled = false;
+        freeShippingLabel.classList.remove('disabled');
+    } else {
+        freeShippingOption.disabled = true;
+        freeShippingOption.checked = false;
+        freeShippingLabel.classList.add('disabled');
+        document.getElementById('shipping-2').checked = true; // Select standard shipping
+    }
 
     shippingOptions.forEach(option => {
         option.addEventListener('change', (e) => {
             shippingCost = parseFloat(e.target.value);
-            updateTotalDisplay();
+            updateTotalDisplay(subtotal);
         });
     });
 
-    placeOrderButton.addEventListener('click', () => {
-        // Here you would typically send the order to a server
-        alert("This isn't real, I'm not hooking up a payment processor...");
-        console.log("User tried to place an order on a fake website");
-    });
+    // Set initial shipping cost based on selected option
+    const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+    if (selectedShipping) {
+        shippingCost = parseFloat(selectedShipping.value);
+    }
+}
 
-    // Initial cart display
-    updateCartDisplay();
+function updateTotalDisplay(subtotal) {
+    const totalDiv = document.getElementById('checkout-total') || document.createElement('div');
+    totalDiv.id = 'checkout-total';
+    totalDiv.className = 'checkout-total';
+    const grandTotal = subtotal + shippingCost;
+    totalDiv.innerHTML = `
+        <strong>Subtotal: £${subtotal.toFixed(2)}</strong><br>
+        <strong>Shipping: £${shippingCost.toFixed(2)}</strong><br>
+        <strong>Total: £${grandTotal.toFixed(2)}</strong>
+    `;
+    const checkoutDiv = document.getElementById('checkout-cart');
+    if (!document.getElementById('checkout-total')) {
+        checkoutDiv.appendChild(totalDiv);
+    }
+}
+
+// Update the quantity in the cart when changed
+function updateQuantity(productId, newQuantity) {
+    if (newQuantity < 1 || newQuantity > 10) return; // Validation
+    cart[productId] = parseInt(newQuantity);
+    saveCart();
+    updateCheckoutDisplay();
+}
+
+// Save the updated cart to localStorage
+function saveCart() {
+    try {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    } catch (error) {
+        console.error('Error saving cart to localStorage:', error);
+    }
+}
+
+// Remove an item from the cart
+function removeFromCart(productId) {
+    delete cart[productId];
+    saveCart();
+    updateCheckoutDisplay();
+}
+
+// Initialize the checkout page
+document.addEventListener('DOMContentLoaded', function() {
+    loadCart();
+    updateCheckoutDisplay();
 });

@@ -41,6 +41,71 @@ section:last-child {
 }
 
 /*--------------------Checkout basket will go here --------------------*/
+/* Checkout Cart Styles */
+#checkout-cart {
+    max-width: 800px;
+    margin: 0 auto; /* Center the cart */
+    padding: 20px;
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align items vertically */
+    padding: 10px 0; /* Vertical padding for item spacing */
+    border-bottom: 1px solid #eee; /* Separator line */
+}
+
+.checkout-item:last-child {
+    border-bottom: none; /* Remove the border from the last item */
+}
+
+.checkout-item-name {
+    flex: 2; /* Take up more space */
+    font-size: 1.2em; /* Larger font for item name */
+}
+
+.checkout-item-quantity {
+    flex: 1; /* Take up equal space for quantity */
+    display: flex;
+    justify-content: center; /* Center align the input */
+}
+
+.checkout-item-price {
+    flex: 1; /* Equal space for price */
+    font-weight: bold; /* Bold price */
+    color: #333; /* Darker text for price */
+}
+
+.checkout-item button {
+    padding: 5px 10px; /* Button padding */
+    background-color: #ff4c4c; /* Red background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded button */
+    cursor: pointer; /* Pointer cursor */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.checkout-item button:hover {
+    background-color: #ff2c2c; /* Darker red on hover */
+}
+
+.checkout-total {
+    margin-top: 20px; /* Spacing above total */
+    font-size: 1.5em; /* Larger font for total */
+    font-weight: bold; /* Bold total */
+    text-align: right; /* Align to the right */
+}
+
+.checkout-total strong {
+    display: block; /* Make each part of the total on a new line */
+    margin-bottom: 5px; /* Spacing between lines */
+}
 
 
 /*-----------------------Payment options & Total-----------------------*/
