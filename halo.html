@@ -1,0 +1,165 @@
+<!--header template content-->
+<html>
+  <head>
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <style>
+        body {
+            font-size: 13px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #333;
+        }
+        .test-name {
+            margin-bottom: 10px;
+        }
+        .test-box {
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .summary-header {
+          text-align: center;
+          font-weight: bold;
+          margin-top: 15px;
+          margin-bottom: 10px;
+        }
+        .report-header-box {
+            text-align: center;
+            border: 1px dotted grey;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        p.wordprocessor-text {
+            line-height: 1.4;
+			margin-top: 2px;
+			margin-bottom: 2px;
+        }	
+        li {
+            line-height: 20px;
+        }
+        table {
+            font-size: 13px;
+            line-height: 15px;
+            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            color: #333;
+            /*border: 1px solid green;*/
+        }
+        .address-box {
+            font-size: 11px;
+            color: #555;
+        }
+        tr.border_bottom td {
+            border-bottom: 1px solid grey;
+        }
+        table.result-table td {
+            padding: 5px;
+            vertical-align:top;
+        }
+        .border-top {
+            border-top: 1px solid grey;
+        }
+        .antibiogram-text {
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+        <table class="result-table" style="width: 100%;">
+            <tbody>
+                {{#each legacyResultLines}}
+                    {{#if (isVisibleLegacy this)}}
+                        <tr><td></td></tr>
+                        <tr>
+                            <td style="">
+                                <b>{{testName}}</b>
+                            </td>
+                        </tr>
+                        {{#if (notEmpty wordProcessed) }}
+                            <tr>
+                                <td>{{{ wordProcessed }}}</td>
+                            </tr>
+                        {{else if (notEmpty result)}}
+                            <tr>
+                                <td colspan="2">{{ result }}</td>
+                            </tr>
+                        {{else}}
+                        {{/if}}
+                    {{/if}}
+                {{/each}}
+                {{#each profiles}}
+                    {{#if (profileIsReady tests)}}
+                        <tr style="margin-top: 30px;">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom: 1px solid grey;">
+                                <i>{{profileConfig.profileName}}</i>
+                            </td>
+                            <td style="border-bottom: 1px solid grey;""></td>
+                            <td style="border-bottom: 1px solid grey; text-align: right; font-size: 12px;">
+                                <i>Status: <b>{{ expandProfileStatus status }}</b></i>&nbsp;&nbsp;
+                                <i>Ordered: {{ formatDateTime addedDate }}</i>&nbsp;&nbsp;
+                                <i>Reported: {{ getMaxTime tests }}</i>
+                            </td>
+                        </tr>
+                        {{#each tests as | test |}}
+                            {{#if (isReportable test) }}
+                                {{#if (notEmpty wordProcessed) }}
+                                    <tr>
+                                        <td colspan="2"><b>{{testConfig.testName}}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">{{{ wordProcessed }}}</td>
+                                    </tr>
+                                    <tr><td></td></tr>
+                                {{else if (isOrganism testConfig) }}
+                                    <tr>
+                                        <td style="width: 220px"><b>{{testConfig.testName}}</b></td>
+                                        <td>{{ abnormalFlag }}</td>
+                                        <td><pre class="antibiogram-text">{{ replaceNewline result }}</pre></td>
+                                    </tr>
+                                {{else if (notEmpty result)}}
+                                    <tr>
+                                        <td style="width: 220px"><b>{{testConfig.testName}}</b></td>
+                                        <td>{{#if (isAbnormal abnormalFlag) }}<span style="font-weight: 800; color: red;">{{ abnormalFlag }}</span>{{/if}}</td>
+                                        <td>{{result}}{{#if (notEmpty testConfig.units)}} &nbsp;&nbsp;&nbsp;({{ testConfig.units }}){{/if}}</td>
+                                    </tr>
+                                    {{#if (notEmpty comment)}}
+                                        <tr>
+                                            <td style="width: 220px"></td>
+                                            <td>{{#if (isAbnormal abnormalFlag) }}{{/if}}</td>
+                                            <td>{{comment}}</td>
+                                        </tr>
+                                    {{/if}}
+                                {{else}}
+                                {{/if}}
+                            {{/if}}
+                        {{/each}}
+                    {{/if}}
+                {{/each}}
+                {{#if (arrayHasValues recordSnomeds) }}
+                    <tr><td></td></tr>
+                    <tr>
+                        <td colspan="2" style="border-bottom: 1px solid grey;">
+                            <i>Additional Information</i>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>SNOMED-CT Codes</td>
+                        <td>
+                            {{#each recordSnomeds}}
+                                {{snomed.id}}
+                            {{/each}}
+                        </td>
+                    </tr>
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+  </body>
+</html>
