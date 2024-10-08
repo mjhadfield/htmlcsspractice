@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Hadfield | Basket</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="styles/checkout.css">
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
+</head>
+<body>    
+    <!----------Main body container----------> 
+    <div class="container">
+    <div class="page-wrapper">
+        <div class="checkout-container">
+            <section class="cart-summary">
+                <h2>Cart Summary</h2>
+                <div id="cart-items"></div>
+            </section>
+            
+            <section class="payment-details">
+                <h2>Payment Details</h2>
+                <div class="payment-options">
+                    <div class="option-card">
+                        <input type="radio" id="paypal" name="payment" value="paypal" checked>
+                        <label for="paypal">
+                            <span class="icon">🅿️</span>
+                            <span class="text">PayPal</span>
+                        </label>
+                    </div>
+                    <div class="option-card">
+                        <input type="radio" id="credit-card" name="payment" value="credit-card">
+                        <label for="credit-card">
+                            <span class="icon">💳</span>
+                            <span class="text">Credit Card</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="shipping-options">
+                <h2>Shipping Options</h2>
+                <p style="font-size: 12px;">Free shipping available on orders ofer £50</p>
+                <div class="options">
+                    <div class="option-card">
+                        <input type="radio" id="shipping-1" name="shipping" value="0" checked>
+                        <label for="shipping-1">
+                            <span class="text">Free shipping!</span>
+                            <span class="price">£0.00</span>
+                        </label>
+                    </div>
+                    <div class="option-card">
+                        <input type="radio" id="shipping-2" name="shipping" value="2.99">
+                        <label for="shipping-2">
+                            <span class="text">Standard Delivery</span>
+                            <span class="price">£4.99</span>
+                        </label>
+                    </div>
+                    <div class="option-card">
+                        <input type="radio" id="shipping-3" name="shipping" value="4.99">
+                        <label for="shipping-3">
+                            <span class="text">Next Day Delivery</span>
+                            <span class="price">£8.99</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="order-summary">
+                <div id="cart-total"></div>
+                <button id="place-order" class="button-primary">Place Order</button>
+            </section>
+        </div>
+    </div>
+    </div>
+
+    <!----------Footer Section----------> 
+    <footer>
+        <div class="page-footer"></div>
+    </footer>
+    
+    <script src="scripts/javascript.js"></script>
+    <script src="scripts/store.js"></script>
+    <script src="scripts/checkout.js"></script>
+</body>
+</html>
