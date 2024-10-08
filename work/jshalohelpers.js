@@ -28,12 +28,6 @@ Handlebars.registerHelper('notEmpty', function(text) {
     return text !== "" && text !== null && text !== undefined;
 })
 
-Handlebars.registerHelper('hasUnitOrRange', function(test) {
-    var hasUnits = test.testConfig.units !== null &&  test.testConfig.units !== undefined;
-    var hasRange = test.referenceRange !== null && test.referenceRange !== undefined;
-    return hasUnits || hasRange;
-})
-
 Handlebars.registerHelper('formatDateTime', function(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
