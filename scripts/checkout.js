@@ -1,5 +1,6 @@
 cart = {};
 let shippingCost = 5; // Default to standard shipping
+let debounceTimer;
 
 // Load the cart from localStorage
 function loadCart() {
@@ -13,11 +14,23 @@ function loadCart() {
     }
 }
 
+// Unified UI Update for both Checkout and Basket
+function updateCartUI() {
+    updateCheckoutDisplay();  // Update checkout page
+}
+
+// Debounced Cart Update Notification
+function notifyCartUpdate() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('cartUpdated'));
+    }, 100);  // Adjust debounce delay as needed
+}
+
 // Update the cart display on the checkout page
 function updateCheckoutDisplay() {
     const checkoutDiv = document.getElementById('checkout-cart');
     checkoutDiv.innerHTML = ''; // Clear the existing display
-    notifyCartUpdate()
 
     if (Object.keys(cart).length === 0) {
         checkoutDiv.innerHTML = "<p>Your cart is empty.</p>";
@@ -74,7 +87,7 @@ function updateShippingOptions(subtotal) {
         option.addEventListener('change', (e) => {
             shippingCost = parseFloat(e.target.value);
             updateTotalDisplay(subtotal);
-            notifyCartUpdate()
+            notifyCartUpdate();  // Ensure UI is updated after shipping selection
         });
     });
 
@@ -98,7 +111,6 @@ function updateTotalDisplay(subtotal) {
     const checkoutDiv = document.getElementById('checkout-cart');
     if (!document.getElementById('checkout-total')) {
         checkoutDiv.appendChild(totalDiv);
-        notifyCartUpdate()
     }
 }
 
@@ -107,8 +119,7 @@ function updateQuantity(productId, newQuantity) {
     if (newQuantity < 1 || newQuantity > 10) return; // Validation
     cart[productId] = parseInt(newQuantity);
     saveCart();
-    updateCheckoutDisplay();
-    notifyCartUpdate()
+    notifyCartUpdate(); // Trigger the UI update for both basket and checkout
 }
 
 // Save the updated cart to localStorage
@@ -124,16 +135,14 @@ function saveCart() {
 function removeFromCart(productId) {
     delete cart[productId];
     saveCart();
-    updateCheckoutDisplay();
-    notifyCartUpdate()
-}
-
-function notifyCartUpdate() {
-    window.dispatchEvent(new CustomEvent('cartUpdated'));
+    notifyCartUpdate(); // Trigger the UI update for both basket and checkout
 }
 
 // Initialize the checkout page
 document.addEventListener('DOMContentLoaded', function() {
     loadCart();
-    updateCheckoutDisplay();
+    updateCartUI(); // Ensure both basket and checkout are updated initially
+
+    // Add the cartUpdated event listener
+    window.addEventListener('cartUpdated', updateCartUI);
 });
