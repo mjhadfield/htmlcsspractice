@@ -44,9 +44,11 @@ function notifyCartUpdate() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
         window.dispatchEvent(new CustomEvent('cartUpdated'));
-    }, 300);  // Adjust debounce delay as needed
+    }, 100);  // Adjust debounce delay as needed
 }
 
+
+// Update the checkout total
 function updateCheckoutDisplay() {
     const checkoutDiv = document.getElementById('checkout-cart');
     checkoutDiv.innerHTML = ''; // Clear the existing display

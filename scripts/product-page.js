@@ -1,5 +1,4 @@
-
-//---------------------------------------------------------------------Purchasing options
+/*-----Purchasing functions-----*/
 
 function createQuantitySelect() {
     const select = document.createElement('select');
@@ -24,7 +23,7 @@ function createAddToCartButton(productId) {
     return button;
 }
 
-//-----------------------------------------------------------------Full screen image function
+/*-----Full screen image function-----*/
 
 function openModal(imgSrc) {
     var modal = document.getElementById("imageModal");
@@ -33,35 +32,38 @@ function openModal(imgSrc) {
     modalImg.src = imgSrc;
 }
 
-//----------------------------------------------------Two functions for the nagviiation arrows
+/*-----Three functions for the nagvigation arrows-----*/
 
-// Get the current product ID from the URL
+// Fetch the product ID from the URL
 function getProductId() {
     const params = new URLSearchParams(window.location.search);
     return parseInt(params.get('id'));
 }
 
-// Navigate to the next or previous product based on the arrow clicked
+// Get the last product ID in the JSON
+function getMaxProductId() {
+    if (Array.isArray(globalProducts)) {
+        return Math.max(...globalProducts.map(p => p.id));
+    } else if (typeof globalProducts === 'object') {
+        return Math.max(...Object.keys(globalProducts).map(Number));
+    }
+    return 0; // Default if no products
+}
+
+// Browse different products
 function navigateToProduct(direction) {
     let currentProductId = getProductId();
-    
-    // Determine next or previous product based on direction
+    let maxProductId = getMaxProductId();
     if (direction === 'next') {
-        currentProductId += 1;  // Increase product ID
+        currentProductId = Math.min(currentProductId + 1, maxProductId);  // Increase product ID, but not beyond max
     } else if (direction === 'prev') {
-        currentProductId -= 1;  // Decrease product ID
+        currentProductId = Math.max(currentProductId - 1, 1);  // Decrease product ID, but not below 1
     }
-
-    // Ensure the product ID stays within valid bounds (you can adjust as per your product range)
-    if (currentProductId < 1) {
-        currentProductId = 1;  // Prevent negative or zero IDs
-    }
-    
     // Redirect to the new product page
     window.location.href = `product.html?id=${currentProductId}`;
 }
 
-//----------------------------------------------------This basically generates the entire page on load. 
+/*----------This basically generates the entire page on load.----------*/
 
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -134,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error fetching data:', error);
     });
 
-    // Modal functionality
+/*-----Enlarging the product image on click-----*/
     var modal = document.getElementById("imageModal");
     var span = document.getElementsByClassName("close")[0];
 
