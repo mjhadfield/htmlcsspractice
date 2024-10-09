@@ -12,6 +12,7 @@
 h1, h2 {
     color: var(--text-brown);
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .checkout-container {
@@ -37,21 +38,20 @@ section:last-child {
 
 /* Checkout Cart Styles */
 #checkout-cart {
-    max-width: 600px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: var(--bg-content);
     border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px var(--box-shadow);
 }
 
 .checkout-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--bg-accent);
 }
 
 .checkout-item:last-child {
@@ -59,38 +59,40 @@ section:last-child {
 }
 
 .checkout-item-details {
-    flex: 1;
+    flex-grow: 1; /* Allow this section to take up available space */
 }
 
 .checkout-item-name {
-    font-size: 1.1em;
-    margin-bottom: 5px;
-    color: #333;
+    font-size: 1em;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.checkout-item-price-quantity {
+    display: flex; /* Use flexbox to align price and quantity on the same line */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space out items */
 }
 
 .checkout-item-price {
     font-weight: bold;
-    color: #555;
-}
-
-.checkout-item-actions {
-    display: flex;
-    align-items: center;
+    color: var(--text-highlight);
+    font-size: 0.9em;
 }
 
 .checkout-item-quantity {
     display: flex;
-    align-items: center;
-    margin-right: 15px;
+    align-items: center; /* Center buttons vertically */
 }
 
 .quantity-btn {
-    width: 30px;
-    height: 30px;
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
+    width: 24px;
+    height: 24px;
+    background-color: var(--bg-accent);
+    border: none;
     border-radius: 50%;
-    font-size: 1.2em;
+    font-size: 1em;
+    color: var(--text-main);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,53 +101,74 @@ section:last-child {
 }
 
 .quantity-btn:hover {
-    background-color: #e0e0e0;
+    background-color: var(--button-hover);
 }
 
 .checkout-item-quantity span {
-    margin: 0 10px;
+    margin: 0 8px; /* Space between buttons and quantity text */
     font-weight: bold;
+    color: var(--text-main);
+    font-size: 0.9em; /* Adjusted font size for better fit */
 }
 
 .remove-btn {
     background-color: transparent;
     border: none;
-    color: #ff4c4c;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: color 0.3s;
+    color: var(--text-error);
+    font-size: 1.5em; /* Slightly larger for better visibility */
+    padding-bottom: 25px;
 }
 
 .remove-btn:hover {
-    color: #ff2c2c;
+    color: var(--button-hover);
 }
 
 .checkout-total {
-    margin-top: 20px;
-    font-size: 1.3em;
+    margin-top: 15px;
+    font-size: 1.1em;
     font-weight: bold;
     text-align: right;
-    color: #333;
+    color: var(--text-highlight);
 }
 
 /* Responsive styles */
 @media (max-width: 480px) {
+    #checkout-cart {
+        padding: 8px; /* Reduced padding for mobile */
+        margin-bottom: 20px; /* Add space below cart */
+    }
+
     .checkout-item {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row; /* Ensure items remain in a row */
+        justify-content:center; /* Center items in row */
     }
 
-    .checkout-item-actions {
-        width: 100%;
-        justify-content: space-between;
-        margin-top: 10px;
+    .checkout-item-details {
+         flex-grow:auto; /* Allow this section to take up minimum space */
+         text-align:left; /* Align text to left */
     }
 
-    .checkout-item-quantity {
-        margin-right: 0;
+    .checkout-item-price-quantity {
+         flex-direction: row; /* Ensure price and quantity are in a row */
+         gap:.5rem; /* Add spacing between elements if needed */
+    }
+
+    .remove-btn {
+        padding-left:.5rem; /* Add padding for better touch target */
+        padding-right:.5rem; 
     }
 }
 
+.product-link {
+    color: var(--text-main);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.product-link:hover {
+    color: var(--text-highlight);
+    text-decoration: underline;
+}
 
 /*-----------------------Payment options & shipping-----------------------*/
 

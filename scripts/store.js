@@ -269,21 +269,23 @@ function updateCartDisplay(forceUpdate = false) {
           const itemDiv = document.createElement('div');
           itemDiv.className = 'cart-item';
           itemDiv.innerHTML = `
-            <div class="cart-item-image">
-              <img src="${product.imageUrl}" alt="${product.name}">
-              <span class="cart-item-quantity">${quantity}</span>
-              <button class="cart-item-removeall" onclick="removeAllFromCart(${productId})">x</button>
+          <div class="cart-item-image">
+            <img src="${product.imageUrl}" alt="${product.name}">
+            <span class="cart-item-quantity">${quantity}</span>
+            <button class="cart-item-removeall" onclick="removeAllFromCart(${productId})">x</button>
+          </div>
+          <div class="cart-item-container">
+            <div class="cart-item-name">
+              <a href="product.html?id=${productId}" class="product-link">${product.name}</a>
             </div>
-            <div class="cart-item-container">
-              <div class="cart-item-name">${product.name}</div>
-              <div class="cart-item-price-container">
-                <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
-              </div>
-              <div class="cart-item-remove">
-                <button class="button-remove" onclick="removeFromCart(${product.id})">Remove</button>
-              </div>
+            <div class="cart-item-price-container">
+              <span class="cart-item-price">£${itemTotal.toFixed(2)}</span>
             </div>
-          `;
+            <div class="cart-item-remove">
+              <button class="button-remove" onclick="removeFromCart(${product.id})">Remove</button>
+            </div>
+          </div>
+        `;
           itemsContainer.appendChild(itemDiv);
         }
       }

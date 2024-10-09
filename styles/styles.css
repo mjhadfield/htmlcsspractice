@@ -119,6 +119,17 @@ body {
     border-radius: 3px;
 }
 
+.product-link {
+    color: inherit; /* This will make the link color match the parent text color */
+    text-decoration: none; /* Removes the default underline */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.product-link:hover {
+    color: var(--text-highlight); /* Changes color on hover, using your highlight color variable */
+    text-decoration: underline; /* Adds underline on hover */
+}
+
 /* -----------------------------------Typography styles----------------------------------- */
 
 h1 {

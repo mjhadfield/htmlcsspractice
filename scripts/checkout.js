@@ -1,5 +1,5 @@
 cart = {};
-let shippingCost = 5; // Default to standard shipping
+let shippingCost = 0; // Default to standard shipping
 let debounceTimer;
 
 // Load the cart from localStorage
@@ -51,13 +51,21 @@ function updateCheckoutDisplay() {
                     const itemDiv = document.createElement('div');
                     itemDiv.className = 'checkout-item';
                     itemDiv.innerHTML = `
-                        <div class="checkout-item-name">${product.name}</div>
-                        <div class="checkout-item-quantity">
-                            <input type="number" value="${quantity}" min="1" max="10" id="quantity-${productId}" onchange="updateQuantity(${productId}, this.value)">
+                    <div class="checkout-item-details">
+                        <div class="checkout-item-name">
+                            <a href="product.html?id=${productId}" class="product-link">${product.name}</a>
                         </div>
-                        <div class="checkout-item-price">£${itemTotal.toFixed(2)}</div>
-                        <button onclick="removeFromCart(${productId})">Remove</button>
-                    `;
+                        <div class="checkout-item-price-quantity">
+                            <div class="checkout-item-price">£${itemTotal.toFixed(2)}</div>
+                            <div class="checkout-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${productId}, ${quantity - 1})">-</button>
+                                <span id="quantity-${productId}">${quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${productId}, ${quantity + 1})">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart(${productId})">×</button>
+                `;
                     checkoutDiv.appendChild(itemDiv);
                 }
             }
@@ -116,10 +124,12 @@ function updateTotalDisplay(subtotal) {
 
 // Update the quantity in the cart when changed
 function updateQuantity(productId, newQuantity) {
-    if (newQuantity < 1 || newQuantity > 10) return; // Validation
-    cart[productId] = parseInt(newQuantity);
-    saveCart();
-    notifyCartUpdate(); // Trigger the UI update for both basket and checkout
+    if (newQuantity >= 1 && newQuantity <= 10) {
+        cart[productId] = newQuantity;
+        document.getElementById(`quantity-${productId}`).textContent = newQuantity;
+        saveCart();
+        notifyCartUpdate(); // Trigger the UI update for both basket and checkout
+}
 }
 
 // Save the updated cart to localStorage
