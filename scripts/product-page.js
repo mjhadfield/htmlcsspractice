@@ -1,17 +1,79 @@
-// products-page.js
+
+//---------------------------------------------------------------------Purchasing options
+
+function createQuantitySelect() {
+    const select = document.createElement('select');
+    for (let i = 1; i <= 10; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        select.appendChild(option);
+    }
+    return select;
+}
+
+function createAddToCartButton(productId) {
+    const button = document.createElement('button');
+    button.textContent = 'Add to Cart';
+
+    button.addEventListener('click', function() {
+        const quantity = document.querySelector('.product-page-purchase select').value;
+        addToCart(productId, quantity);
+    });
+
+    return button;
+}
+
+//-----------------------------------------------------------------Full screen image function
+
+function openModal(imgSrc) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("fullImage");
+    modal.style.display = "block";
+    modalImg.src = imgSrc;
+}
+
+//----------------------------------------------------Two functions for the nagviiation arrows
+
+// Get the current product ID from the URL
+function getProductId() {
+    const params = new URLSearchParams(window.location.search);
+    return parseInt(params.get('id'));
+}
+
+// Navigate to the next or previous product based on the arrow clicked
+function navigateToProduct(direction) {
+    let currentProductId = getProductId();
+    
+    // Determine next or previous product based on direction
+    if (direction === 'next') {
+        currentProductId += 1;  // Increase product ID
+    } else if (direction === 'prev') {
+        currentProductId -= 1;  // Decrease product ID
+    }
+
+    // Ensure the product ID stays within valid bounds (you can adjust as per your product range)
+    if (currentProductId < 1) {
+        currentProductId = 1;  // Prevent negative or zero IDs
+    }
+    
+    // Redirect to the new product page
+    window.location.href = `product.html?id=${currentProductId}`;
+}
+
+//----------------------------------------------------This basically generates the entire page on load. 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the product ID from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
 
     console.log('Product ID from URL:', productId);
 
-    // Fetch both JSON files
+    // Fetch and parse the product and description JSON
     Promise.all([
         fetch('../scripts/products.json').then(response => response.json()),
         fetch('../scripts/descriptions.json').then(response => response.json())
-    ]).then(([products, descriptions]) => {
+                ]).then(([products, descriptions]) => {
         globalProducts = products;
         console.log('Successfully parsed JSON:');
 
@@ -19,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let product, description;
 
         if (Array.isArray(products)) {
-            product = products.find(p => p.id == productId); // Use == for type coercion
+            product = products.find(p => p.id == productId);
         } else if (typeof products === 'object') {
             product = products[productId];
         }
@@ -29,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (typeof descriptions === 'object') {
             description = descriptions[productId];
         }
-
         console.log('Found product:', product);
 
         if (product && description) {
@@ -89,33 +150,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-
-function createQuantitySelect() {
-    const select = document.createElement('select');
-    for (let i = 1; i <= 10; i++) {
-        const option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        select.appendChild(option);
-    }
-    return select;
-}
-
-function createAddToCartButton(productId) {
-    const button = document.createElement('button');
-    button.textContent = 'Add to Cart';
-
-    button.addEventListener('click', function() {
-        const quantity = document.querySelector('.product-page-purchase select').value;
-        addToCart(productId, quantity);
-    });
-
-    return button;
-}
-
-function openModal(imgSrc) {
-    var modal = document.getElementById("imageModal");
-    var modalImg = document.getElementById("fullImage");
-    modal.style.display = "block";
-    modalImg.src = imgSrc;
-}

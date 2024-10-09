@@ -43,7 +43,7 @@
     position: relative;
 }
 
-/* Completely forgotten what this bit does, think it was to try and fix alignment issues */
+/* Displays a border between the cart items */
 .cart-item::before,
 .cart-item::after {
     content: '';
@@ -63,7 +63,7 @@
     display: none;
 }
 
-/* Cart image fixed to size */
+/* Set the cart image fixed to size */
 .cart-item-image {
     width: 100px;
     height: 100px;
@@ -84,7 +84,7 @@
     object-fit: cover;
 }
 
-/* Item name */
+
 .cart-item-container {
     flex-grow: 1;
     display: flex;
@@ -104,7 +104,6 @@
     overflow-wrap: break-word;
 }
 
-/* Item Price */
 .cart-item-price-container {
     display: flex;
     justify-content: flex-start;
@@ -117,13 +116,11 @@
     font-weight: 500;
 }
 
-/* Container for the remove button */
 .cart-item-remove {
     display: flex;
     justify-content: flex-start;
 }
 
-/* The remove button */
 .button-remove {
     font-size: 12px;
     padding: 3px 8px;

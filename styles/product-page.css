@@ -145,6 +145,39 @@ body {
     gap: 5%; /* Reduced from 10% to accommodate the price */
 }
 
+/*This handles the arrow keys to move between products */
+.product-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    z-index: 9999;
+}
+
+.prev-product, .next-product {
+    background-color: var(--text-muted);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.prev-product:hover, .next-product:hover {
+    background-color: var(--text-dark);
+
+}
+
+.prev-product {
+    float: left;
+    
+}
+
+.next-product {
+    float: right;
+}
+
 
 /* This handles scaling at larger resolutions */
 @media screen and (min-width: 500px) and (max-width: 1000px) {

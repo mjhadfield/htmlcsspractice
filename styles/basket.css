@@ -20,12 +20,17 @@ h1, h2 {
     border-radius: 10px;
     padding: 30px;
     width: 600px; 
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Keeps spacing stable */
+    align-items: center; /* Centers the content horizontally */
+    will-change: transform;
 }
 
 section {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--text-muted);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 section:last-child {
@@ -38,7 +43,9 @@ section:last-child {
 
 /* Checkout Cart Styles */
 #checkout-cart {
-    max-width: 100%;
+    position: relative;
+    width: clamp(200px, 80vw, 600px);
+    min-height: 0px;
     margin: 0 auto;
     padding: 10px;
     background-color: var(--bg-content);
@@ -131,34 +138,6 @@ section:last-child {
     color: var(--text-highlight);
 }
 
-/* Responsive styles */
-@media (max-width: 480px) {
-    #checkout-cart {
-        padding: 8px; /* Reduced padding for mobile */
-        margin-bottom: 20px; /* Add space below cart */
-    }
-
-    .checkout-item {
-        flex-direction: row; /* Ensure items remain in a row */
-        justify-content:center; /* Center items in row */
-    }
-
-    .checkout-item-details {
-         flex-grow:auto; /* Allow this section to take up minimum space */
-         text-align:left; /* Align text to left */
-    }
-
-    .checkout-item-price-quantity {
-         flex-direction: row; /* Ensure price and quantity are in a row */
-         gap:.5rem; /* Add spacing between elements if needed */
-    }
-
-    .remove-btn {
-        padding-left:.5rem; /* Add padding for better touch target */
-        padding-right:.5rem; 
-    }
-}
-
 .product-link {
     color: var(--text-main);
     text-decoration: underline;
@@ -180,11 +159,10 @@ section:last-child {
 
 .option-card {
     position: relative;
-    background-color: var(--white);
     border: 2px solid var(--text-muted);
     border-radius: 8px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    width: clamp(200px, 80vw, 600px);
 }
 
 .option-card:hover {
@@ -285,4 +263,11 @@ input[type="radio"] {
 
 .button-primary:active {
     transform: translateY(0);
+}
+
+.button-link,
+.button-link:hover,
+.button-link:active,
+.button-link:visited {
+    text-decoration: none;
 }

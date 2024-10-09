@@ -1,6 +1,26 @@
+//----------------------------------------------------------------------------------------------Global Variables
+
 cart = {};
 let shippingCost = 0; // Default to standard shipping
 let debounceTimer;
+let productsCache;
+
+
+//----------------------------------------------------------------------------------------------Functions
+
+// Pre-load the products
+function preloadProducts() {
+    return fetch('scripts/products.json')
+        .then(response => response.json())
+        .then(products => {
+            productsCache = products;
+            return products; // Return the products
+        })
+        .catch(error => {
+            console.error('Error preloading products:', error);
+            throw error; // Re-throw the error to be caught in the calling function
+        });
+}
 
 // Load the cart from localStorage
 function loadCart() {
@@ -24,10 +44,9 @@ function notifyCartUpdate() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
         window.dispatchEvent(new CustomEvent('cartUpdated'));
-    }, 100);  // Adjust debounce delay as needed
+    }, 300);  // Adjust debounce delay as needed
 }
 
-// Update the cart display on the checkout page
 function updateCheckoutDisplay() {
     const checkoutDiv = document.getElementById('checkout-cart');
     checkoutDiv.innerHTML = ''; // Clear the existing display
@@ -37,58 +56,64 @@ function updateCheckoutDisplay() {
         return;
     }
 
-    // Fetch products to display with the cart
-    fetch('scripts/products.json')
-        .then(response => response.json())
-        .then(products => {
-            let subtotal = 0;
-            for (const [productId, quantity] of Object.entries(cart)) {
-                const product = products.find(p => p.id === parseInt(productId));
-                if (product) {
-                    const itemTotal = product.cost * quantity;
-                    subtotal += itemTotal;
+    if (!productsCache) {
+        console.error('Products not loaded');
+        return;
+    }
 
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'checkout-item';
-                    itemDiv.innerHTML = `
-                    <div class="checkout-item-details">
-                        <div class="checkout-item-name">
-                            <a href="product.html?id=${productId}" class="product-link">${product.name}</a>
-                        </div>
-                        <div class="checkout-item-price-quantity">
-                            <div class="checkout-item-price">£${itemTotal.toFixed(2)}</div>
-                            <div class="checkout-item-quantity">
-                                <button class="quantity-btn" onclick="updateQuantity(${productId}, ${quantity - 1})">-</button>
-                                <span id="quantity-${productId}">${quantity}</span>
-                                <button class="quantity-btn" onclick="updateQuantity(${productId}, ${quantity + 1})">+</button>
-                            </div>
-                        </div>
+    let subtotal = 0;
+    for (const [productId, quantity] of Object.entries(cart)) {
+        const product = productsCache.find(p => p.id === parseInt(productId));
+        if (product) {
+            const itemTotal = product.cost * quantity;
+            subtotal += itemTotal;
+
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'checkout-item';
+            itemDiv.innerHTML = `
+            <div class="checkout-item-details">
+                <div class="checkout-item-name">
+                    <a href="product.html?id=${productId}" class="product-link">${product.name}</a>
+                </div>
+                <div class="checkout-item-price-quantity">
+                    <div class="checkout-item-price">£${itemTotal.toFixed(2)}</div>
+                    <div class="checkout-item-quantity">
+                        <button class="quantity-btn" onclick="updateQuantity(${productId}, ${quantity - 1})">-</button>
+                        <span id="quantity-${productId}">${quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity(${productId}, ${quantity + 1})">+</button>
                     </div>
-                    <button class="remove-btn" onclick="removeFromCart(${productId})">×</button>
-                `;
-                    checkoutDiv.appendChild(itemDiv);
-                }
-            }
+                </div>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${productId})">×</button>
+        `;
+            checkoutDiv.appendChild(itemDiv);
+        }
+    }
 
-            updateShippingOptions(subtotal);
-            updateTotalDisplay(subtotal);
-        })
-        .catch(error => console.error('Error fetching products:', error));
+    updateShippingOptions(subtotal);
+    updateTotalDisplay(subtotal);
 }
 
 function updateShippingOptions(subtotal) {
     const shippingOptions = document.querySelectorAll('input[name="shipping"]');
     const freeShippingOption = document.getElementById('shipping-1');
     const freeShippingLabel = document.querySelector('label[for="shipping-1"]');
+    const standardShippingOption = document.getElementById('shipping-2');
+    const expressShippingOption = document.getElementById('shipping-3');
 
     if (subtotal >= 50) {
         freeShippingOption.disabled = false;
         freeShippingLabel.classList.remove('disabled');
     } else {
+        // Disable free shipping when subtotal is less than 50
         freeShippingOption.disabled = true;
-        freeShippingOption.checked = false;
+        freeShippingOption.checked = false;  // Ensure it's unchecked
         freeShippingLabel.classList.add('disabled');
-        document.getElementById('shipping-2').checked = true; // Select standard shipping
+
+        // Only set standard shipping as checked if express shipping is not selected
+        if (!expressShippingOption.checked) {
+            standardShippingOption.checked = true;  // Default to standard shipping
+        }
     }
 
     shippingOptions.forEach(option => {
@@ -151,7 +176,15 @@ function removeFromCart(productId) {
 // Initialize the checkout page
 document.addEventListener('DOMContentLoaded', function() {
     loadCart();
-    updateCartUI(); // Ensure both basket and checkout are updated initially
+    preloadProducts()
+        .then(() => {
+            updateCartUI(); // Only update UI after products are loaded
+            console.log('Products loaded successfully:', productsCache);
+        })
+        .catch(error => {
+            console.error('Failed to load products:', error);
+            // Handle the error, maybe show a message to the user
+        });
 
     // Add the cartUpdated event listener
     window.addEventListener('cartUpdated', updateCartUI);
