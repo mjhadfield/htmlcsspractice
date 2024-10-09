@@ -57,74 +57,71 @@
 /*-------------------------------Creating the store product card--------------------------------*/
 
 /* Store product container */
-  .product-item {
-  width: 300px; 
-  height: 400px; 
+.product-item {
+  width: 300px;
+  height: 400px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  overflow: hidden;
-  justify-content: space-between; 
+  justify-content: space-between;
   position: relative;
-  overflow: hidden; /* Prevent content overflow */
-} 
+  overflow: hidden; /* Ensure image stays within the card container */
+}
 
 /* Product image */
+.product-image-link {
+  position: absolute; /* Make the image span the entire product card */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Full height, including top and bottom containers */
+  z-index: 1; /* Ensure it's behind the text content */
+}
+
 .product-image-link img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Ensure the image covers the entire container */
   z-index: 1;
-  border-radius: 8px 8px 0 0; /* Keep rounded corners at the top */
-}
-
-.product-image-link {
-  width: 100%;
-  height: 400px; /* Fixed height for the image container */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1; /* Ensure image remains beneath top content */
-  overflow: hidden; /* THIS NEEDS LOOKING AT */
+  border-radius: 8px; /* Apply rounded corners to the entire container */
 }
 
 /* Top container for name and price */
 
 .product-top-container {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
   padding: 5px;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+  background: var(--semi-transparent);
   color: #fff;
   text-align: center;
-  z-index: 2;
+  z-index: 2; /* Ensure it appears on top of the image */
 }
 
 
 .product-top {
   font-size: 1.2rem;
   font-weight: bold;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Adds shadow for better readability */
+  text-shadow: var(--semi-transparent);
   margin: 0;
 }
 
 /* Bottom container */
-  .quantity-control-container {
+.quantity-control-container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 2; 
   width: 100%;
   height: 15%;
-  background: rgb(53, 48, 48); /* Semi-transparent background for readability */
+  background: var(--semi-transparent);
   color: #fff;
-} 
+}
 
 
 /* Bottom section for adding to basket */

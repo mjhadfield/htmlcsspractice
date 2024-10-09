@@ -18,6 +18,7 @@
     --button-main: #c68f3e; /* Muted gold */
     --button-hover: #e8b96c; /* Lighter gold for hover */
     --product-header: #eeeff096; /* Transparent white */
+    --semi-transparent: #00000080; /*Transparent black */
 }
 
 /* -----------------------------------Global Styles styles----------------------------------- */
