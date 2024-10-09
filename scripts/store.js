@@ -361,6 +361,7 @@ function updateCartIconQuantity() {
 
 // Event listener to load all functions on page load)
 document.addEventListener('DOMContentLoaded', function() {
+  // Load products and initialize product-related functions
   loadProducts().then(() => {
       const productGrid = document.getElementById('product-grid');
       if (productGrid) {
@@ -368,18 +369,19 @@ document.addEventListener('DOMContentLoaded', function() {
           sortSelect.addEventListener('change', populateProductGrid);
       }
   });
+
+  // Load cart and update cart display
   loadCart();
   updateCartDisplay();
   updateCartIconQuantity();
-});
 
-window.addEventListener('storage', function(e) {
-  if (e.key === 'cart') {
-    loadCart();
-    updateCartDisplay();
-  }
-});
+  // Category Submenu - Highlight the current page link
+  const links = document.querySelectorAll('.category-link');
+  const currentPage = window.location.pathname.split('/').pop().split('.')[0]; // Get current page name
 
-window.addEventListener('cartUpdated', function() {
-  updateCartDisplay(true);
+  links.forEach(link => {
+      if (link.getAttribute('data-page') === currentPage) {
+          link.classList.add('active'); // Add 'active' class to the current page link
+      }
+  });
 });

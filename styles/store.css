@@ -224,3 +224,74 @@
       width: 300px;
   }
 }
+
+/* -----------------------------------------------------Additional categories */
+
+/* Category menu container */
+.category-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  background-color: var(--bg-banner-nav); /* Match banner/nav background */
+  font-size: 1rem; /* Adjusted font size for better mobile readability */
+  color: var(--text-main);
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+/* Category links */
+.category-link {
+  color: var(--text-main);
+  text-decoration: none;
+  padding: 5px 8px; /* Reduced padding for smaller screens */
+  transition: color 0.3s ease;
+}
+
+.category-link:hover {
+  color: var(--text-highlight); /* Highlight color on hover */
+}
+
+/* Separator between links */
+.category-menu span {
+  color: var(--text-muted);
+}
+
+/* Active link style */
+.category-link.active {
+  color: var(--text-highlight); /* Highlight active page */
+  font-weight: bold;
+}
+
+/* Responsive scaling */
+@media (max-width: 600px) {
+  .category-menu {
+      font-size: 0.95rem; /* Slightly reduce font size */
+  }
+  
+  .category-link {
+      padding: 4px 6px; /* Further reduce padding */
+  }
+}
+
+@media (max-width: 412px) {
+  .category-menu {
+      font-size: 0.9rem; /* More reduction for smaller screens */
+      padding: 8px 0;
+  }
+  
+  .category-link {
+      padding: 3px 5px; /* Tighter padding for smaller width */
+  }
+}
+
+@media (max-width: 300px) {
+  .category-menu {
+      font-size: 0.85rem; /* Even smaller font size */
+  }
+  
+  .category-link {
+      padding: 2px 4px; /* Minimal padding for very small screens */
+  }
+}
