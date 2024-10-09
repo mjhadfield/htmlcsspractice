@@ -79,6 +79,10 @@ body {
     text-overflow: ellipsis;
 }
 
+.checkout-page .cart-contents {
+    display: none;
+}
+
 /* -----------------------------------CART STYLING - Stuff from store.css needs to be moved here ----------------------------------- */
 
 /* Cart container */
